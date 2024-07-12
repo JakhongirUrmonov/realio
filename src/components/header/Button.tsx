@@ -3,9 +3,10 @@ import {Stack, Typography} from "@mui/material";
 import React, {useState} from "react";
 import {Colors} from "@/ts/consts";
 import ProductsButton from "./ProductsButton";
-import Link from "next/link";
 import {INavItemSub} from "@/types/header";
 import {DownArrow} from "@/assets/images/icons";
+import {usePathname, useRouter} from "next/navigation";
+import {animatedPageOut} from "@/utils/functions";
 
 type Props = {
   buttonText: string;
@@ -18,13 +19,19 @@ function Button({buttonText, subMenu, link, connect}: Props): JSX.Element {
   const [hover, setHover] = useState<boolean>(false);
   const onMouseEnter = () => setHover(true);
   const onMouseLeave = () => setHover(false);
+  const router = useRouter();
+  const path = usePathname();
+  const handleClick = () => {
+    if (path !== link) {
+      animatedPageOut(link, router);
+    }
+  };
   return (
     <Stack>
       <Stack>
         <Typography
           variant="bm3"
-          component={subMenu ? "h2" : Link}
-          href={link}
+          onClick={subMenu ? undefined : handleClick}
           sx={{
             cursor: "pointer",
             transition: "color 0.3s linear",

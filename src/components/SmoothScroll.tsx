@@ -4,6 +4,7 @@ import React, {createContext, useEffect, useState} from "react";
 import {ScrollTrigger} from "gsap/all";
 import gsap from "gsap";
 import {ScrollSmoother} from "gsap/ScrollSmoother";
+import {usePathname} from "next/navigation";
 
 type SmoothScrollProps = StackProps;
 
@@ -17,10 +18,7 @@ function SmoothScroll(props: SmoothScrollProps): JSX.Element {
   const ref = React.useRef<HTMLDivElement>(null);
   const {children, sx, ...boxProps} = props;
   const [scrollSmoother, setScrollSmoother] = useState<ScrollSmoother>();
-
-  // useLayoutEffect(() => {
-  //   ScrollTrigger.refresh();
-  // });
+  const path = usePathname();
 
   useEffect(() => {
     const context = gsap.context(() => {
@@ -32,14 +30,13 @@ function SmoothScroll(props: SmoothScrollProps): JSX.Element {
         wrapper: ref.current, // a selector or element to listen for scroll events on instead of the window
         normalizeScroll: false,
       });
-      // window.addEventListener("resize", () => {
-      //   ScrollTrigger.refresh();
-      // });
       setScrollSmoother(scrollSmoother);
     });
     return () => context.kill();
   }, []);
-
+  useEffect(() => {
+    scrollSmoother?.scrollTop(0);
+  }, [scrollSmoother, path]);
   return (
     <ScrollSmootherContext.Provider value={scrollSmoother}>
       <Stack ref={ref} id="smooth-wrapper" {...boxProps} sx={{height: "max-content", ...sx}}>

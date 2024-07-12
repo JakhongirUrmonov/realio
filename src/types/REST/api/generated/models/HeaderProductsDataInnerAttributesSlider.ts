@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { HeaderProductsDataInnerAttributesLogoData } from './HeaderProductsDataInnerAttributesLogoData';
+import type { OtherSeoComponentMetaSocialsInnerImageData } from './OtherSeoComponentMetaSocialsInnerImageData';
 import {
-    HeaderProductsDataInnerAttributesLogoDataFromJSON,
-    HeaderProductsDataInnerAttributesLogoDataFromJSONTyped,
-    HeaderProductsDataInnerAttributesLogoDataToJSON,
-} from './HeaderProductsDataInnerAttributesLogoData';
+    OtherSeoComponentMetaSocialsInnerImageDataFromJSON,
+    OtherSeoComponentMetaSocialsInnerImageDataFromJSONTyped,
+    OtherSeoComponentMetaSocialsInnerImageDataToJSON,
+} from './OtherSeoComponentMetaSocialsInnerImageData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface HeaderProductsDataInnerAttributesSlider {
     /**
      * 
-     * @type {Array<HeaderProductsDataInnerAttributesLogoData>}
+     * @type {Array<OtherSeoComponentMetaSocialsInnerImageData>}
      * @memberof HeaderProductsDataInnerAttributesSlider
      */
-    data?: Array<HeaderProductsDataInnerAttributesLogoData>;
+    data?: Array<OtherSeoComponentMetaSocialsInnerImageData>;
 }
 
 /**
@@ -51,7 +51,7 @@ export function HeaderProductsDataInnerAttributesSliderFromJSONTyped(json: any, 
     }
     return {
         
-        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(HeaderProductsDataInnerAttributesLogoDataFromJSON)),
+        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(OtherSeoComponentMetaSocialsInnerImageDataFromJSON)),
     };
 }
 
@@ -61,7 +61,7 @@ export function HeaderProductsDataInnerAttributesSliderToJSON(value?: HeaderProd
     }
     return {
         
-        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(HeaderProductsDataInnerAttributesLogoDataToJSON)),
+        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(OtherSeoComponentMetaSocialsInnerImageDataToJSON)),
     };
 }
 

@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { HeaderProductsDataInnerAttributesLogo } from './HeaderProductsDataInnerAttributesLogo';
+import type { OtherSeoComponentMetaSocialsInnerImage } from './OtherSeoComponentMetaSocialsInnerImage';
 import {
-    HeaderProductsDataInnerAttributesLogoFromJSON,
-    HeaderProductsDataInnerAttributesLogoFromJSONTyped,
-    HeaderProductsDataInnerAttributesLogoToJSON,
-} from './HeaderProductsDataInnerAttributesLogo';
+    OtherSeoComponentMetaSocialsInnerImageFromJSON,
+    OtherSeoComponentMetaSocialsInnerImageFromJSONTyped,
+    OtherSeoComponentMetaSocialsInnerImageToJSON,
+} from './OtherSeoComponentMetaSocialsInnerImage';
 
 /**
  * 
@@ -46,10 +46,10 @@ export interface HeaderTokenComponent {
     description?: string;
     /**
      * 
-     * @type {HeaderProductsDataInnerAttributesLogo}
+     * @type {OtherSeoComponentMetaSocialsInnerImage}
      * @memberof HeaderTokenComponent
      */
-    icon?: HeaderProductsDataInnerAttributesLogo;
+    icon?: OtherSeoComponentMetaSocialsInnerImage;
     /**
      * 
      * @type {string}
@@ -78,7 +78,7 @@ export function HeaderTokenComponentFromJSONTyped(json: any, ignoreDiscriminator
         'id': json['id'] == null ? undefined : json['id'],
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'icon': json['icon'] == null ? undefined : HeaderProductsDataInnerAttributesLogoFromJSON(json['icon']),
+        'icon': json['icon'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['icon']),
         'link': json['link'] == null ? undefined : json['link'],
     };
 }
@@ -92,7 +92,7 @@ export function HeaderTokenComponentToJSON(value?: HeaderTokenComponent | null):
         'id': value['id'],
         'title': value['title'],
         'description': value['description'],
-        'icon': HeaderProductsDataInnerAttributesLogoToJSON(value['icon']),
+        'icon': OtherSeoComponentMetaSocialsInnerImageToJSON(value['icon']),
         'link': value['link'],
     };
 }

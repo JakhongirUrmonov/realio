@@ -19,7 +19,6 @@ export default async function Teams({title, team, description}: Props) {
         boxSizing: "border-box",
         alignItems: "center",
         paddingY: "80px",
-        marginLeft: {md: "-12.786%", xs: "-24px"},
       }}
     >
       <RoundedTitle text={title ?? ""} />

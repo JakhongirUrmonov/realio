@@ -19,6 +19,12 @@ import {
     NetworkSourceComponentFromJSONTyped,
     NetworkSourceComponentToJSON,
 } from './NetworkSourceComponent';
+import type { OtherSeoComponent } from './OtherSeoComponent';
+import {
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
 
 /**
  * 
@@ -68,6 +74,12 @@ export interface NetworkPageRequestData {
      * @memberof NetworkPageRequestData
      */
     walletLink?: string;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof NetworkPageRequestData
+     */
+    seo?: OtherSeoComponent;
 }
 
 /**
@@ -97,6 +109,7 @@ export function NetworkPageRequestDataFromJSONTyped(json: any, ignoreDiscriminat
         'notification': json['notification'] == null ? undefined : json['notification'],
         'appLink': json['appLink'] == null ? undefined : json['appLink'],
         'walletLink': json['walletLink'] == null ? undefined : json['walletLink'],
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
     };
 }
 
@@ -113,6 +126,7 @@ export function NetworkPageRequestDataToJSON(value?: NetworkPageRequestData | nu
         'notification': value['notification'],
         'appLink': value['appLink'],
         'walletLink': value['walletLink'],
+        'Seo': OtherSeoComponentToJSON(value['seo']),
     };
 }
 

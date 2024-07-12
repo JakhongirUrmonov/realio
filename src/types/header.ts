@@ -1,4 +1,4 @@
-import {HeaderProductsDataInnerAttributesLogo} from "./REST/api/generated";
+import {HeaderProductsDataInnerAttributesLogo} from "./REST/api/generated/models/HeaderProductsDataInnerAttributesLogo";
 
 export type INavItemSub = {
   title?: string;

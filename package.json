@@ -17,6 +17,7 @@
     "@openapitools/openapi-generator-cli": "^2.13.4",
     "@qubixstudio/sphere": "file:qubixstudio-sphere-1.1.13.tgz",
     "@reduxjs/toolkit": "^2.2.5",
+    "cookies-next": "^4.2.1",
     "gsap": "file:gsap-bonus.tgz",
     "next": "14.2.4",
     "react": "^18",

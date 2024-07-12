@@ -1,10 +1,9 @@
 "use client";
 import {Stack, Typography, Box} from "@mui/material";
-import React, {Dispatch, SetStateAction} from "react";
+import React from "react";
 import {Colors} from "@/ts/consts";
 import {INavItemSub} from "@/types/header";
-import CustomImage from "../CustomImage";
-import Link from "next/link";
+import ProductsButtonItem from "./ProductsButtonItem";
 
 type Props = {
   hover: boolean;
@@ -19,7 +18,8 @@ function ProductsButton({hover, data, connect}: Props): JSX.Element {
         padding: hover ? "12px 16px" : 0,
         position: "absolute",
         background: "#fcfcfc",
-        boxShadow: "0px 0px 0px 0.5px #7B8D9D29",
+        border: "0.5px solid #7B8D9D29",
+        boxShadow: "0px 2px 5px 0px rgb(0 0 0 / 12%)",
         borderRadius: "10px",
         top: "40px",
         right: 0,
@@ -41,33 +41,15 @@ function ProductsButton({hover, data, connect}: Props): JSX.Element {
             )}
             <Stack sx={{flexDirection: connect ? "column" : "row", flexWrap: connect ? "nowrap" : "wrap", marginTop: "8px"}}>
               {item.data?.map((item, key) => (
-                <Stack
+                <ProductsButtonItem
                   key={key}
-                  sx={{
-                    width: connect ? "100%" : "50%",
-                    flexDirection: "row",
-                    padding: "12px 14px",
-                    boxSizing: "border-box",
-                    textDecoration: "none",
-                    cursor: item.link ? "pointer" : "default",
-                  }}
-                  component={item.link ? Link : "div"}
-                  href={item.notProduct ? item.link ?? "" : `/products/${item.link}`}
-                  target={item.notProduct ? "_blank" : "_self"}
-                >
-                  <CustomImage
-                    style={{width: "40px", height: "40px", borderRadius: item.notProduct ? "20px" : undefined}}
-                    path={item.icon}
-                  />
-                  <Stack sx={{marginLeft: "16px"}}>
-                    <Typography variant="bm3" color={Colors.mainText}>
-                      {item.title}
-                    </Typography>
-                    <Typography variant="bm4" color={Colors.secondaryText}>
-                      {item.desc}
-                    </Typography>
-                  </Stack>
-                </Stack>
+                  title={item.title}
+                  link={item.notProduct ? undefined : `/products/${item.link}`}
+                  desc={item.desc}
+                  notProduct={item.notProduct}
+                  icon={item.icon}
+                  connect={connect}
+                />
               ))}
             </Stack>
             {!connect && data.length - 1 !== index && (

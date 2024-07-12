@@ -37,6 +37,12 @@ import {
     OtherTextWithLinkComponentFromJSONTyped,
     OtherTextWithLinkComponentToJSON,
 } from './OtherTextWithLinkComponent';
+import type { OtherSeoComponent } from './OtherSeoComponent';
+import {
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
 
 /**
  * 
@@ -86,6 +92,12 @@ export interface HomePage {
      * @memberof HomePage
      */
     announcement?: OtherTextWithLinkComponent;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof HomePage
+     */
+    seo?: OtherSeoComponent;
     /**
      * 
      * @type {Date}
@@ -146,6 +158,7 @@ export function HomePageFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'features': json['features'] == null ? undefined : ((json['features'] as Array<any>).map(HomeFeatureComponentFromJSON)),
         'products': json['products'] == null ? undefined : HeaderProductsFromJSON(json['products']),
         'announcement': json['announcement'] == null ? undefined : OtherTextWithLinkComponentFromJSON(json['announcement']),
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -167,6 +180,7 @@ export function HomePageToJSON(value?: HomePage | null): any {
         'features': value['features'] == null ? undefined : ((value['features'] as Array<any>).map(HomeFeatureComponentToJSON)),
         'products': HeaderProductsToJSON(value['products']),
         'announcement': OtherTextWithLinkComponentToJSON(value['announcement']),
+        'Seo': OtherSeoComponentToJSON(value['seo']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

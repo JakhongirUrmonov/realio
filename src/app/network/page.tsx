@@ -6,7 +6,11 @@ import Card from "@/components/network/card";
 import RoundedTitle from "@/components/home/RoundedTitle";
 import {getter} from "@/utils/api";
 import {NetworkPageListResponseDataItem} from "@/types/REST/api/generated";
-
+import {getSeo} from "@/utils/functions";
+export async function generateMetadata() {
+  const data = await getSeo(`network-page`);
+  return data;
+}
 export default async function NetWork() {
   const populateProps: string[] = ["sources.image"];
   const networkData = await getter<NetworkPageListResponseDataItem>(`network-page?populate=${populateProps.join()}`);

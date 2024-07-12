@@ -57,9 +57,7 @@ models/HeaderListResponseDataItem.ts
 models/HeaderProducts.ts
 models/HeaderProductsDataInner.ts
 models/HeaderProductsDataInnerAttributes.ts
-models/HeaderProductsDataInnerAttributesLogo.ts
-models/HeaderProductsDataInnerAttributesLogoData.ts
-models/HeaderProductsDataInnerAttributesLogoDataAttributes.ts
+models/HeaderProductsDataInnerAttributesSeo.ts
 models/HeaderProductsDataInnerAttributesSlider.ts
 models/HeaderRequest.ts
 models/HeaderRequestData.ts
@@ -85,6 +83,12 @@ models/NetworkPageRequestData.ts
 models/NetworkPageResponse.ts
 models/NetworkPageResponseDataObject.ts
 models/NetworkSourceComponent.ts
+models/OtherSeoComponent.ts
+models/OtherSeoComponentMetaSocialsInner.ts
+models/OtherSeoComponentMetaSocialsInnerImage.ts
+models/OtherSeoComponentMetaSocialsInnerImageData.ts
+models/OtherSeoComponentMetaSocialsInnerImageDataAttributes.ts
+models/OtherSeoComponentOtherMetasInner.ts
 models/OtherTextWithLinkComponent.ts
 models/Product.ts
 models/ProductListResponse.ts

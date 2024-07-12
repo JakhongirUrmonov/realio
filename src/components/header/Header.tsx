@@ -11,6 +11,7 @@ import DrawerAppBar from "./drawer";
 import {HamburgerIcon, RightArrow} from "@/assets/images/icons";
 import {Header as HeaderType, SocialListResponseDataItem} from "@/types/REST/api/generated";
 import tokenImage from "@/assets/icons/headerToken.svg";
+import CustomLink from "./CustomLink";
 interface Props {
   window?: () => Window;
   data?: HeaderType;
@@ -110,9 +111,9 @@ function Header(props: Props): JSX.Element {
           height: {xs: "80px", md: "114px"},
         }}
       >
-        <Link href={"/"}>
+        <CustomLink link={"/"}>
           <Image src={logo} width={98} height={28} alt={""} />
-        </Link>
+        </CustomLink>
         <Stack
           sx={{
             display: {xs: "none", sm: "flex"},

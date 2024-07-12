@@ -1,4 +1,4 @@
-import {Typography, Stack, Divider} from "@mui/material";
+import {Typography, Stack} from "@mui/material";
 import {Colors, ZIndex} from "@/ts/consts";
 import RoundedTitle from "@/components/home/RoundedTitle";
 import {AboutPositionsComponent} from "@/types/REST/api/generated";
@@ -8,12 +8,16 @@ import positionImage from "@/assets/images/position.png";
 type Props = {
   title?: string;
   position?: AboutPositionsComponent[];
-  description?: string;
 };
 
-export default async function Position({title, position, description}: Props) {
+export default async function Position({title, position}: Props) {
   return (
-    <Stack sx={{width: "100vw", boxSizing: "border-box", marginLeft: {md: "-12.786%", xs: "-24px"}}}>
+    <Stack
+      sx={{
+        width: "100vw",
+        boxSizing: "border-box",
+      }}
+    >
       <RoundedTitle text={title ?? ""} sx={{marginTop: {md: "88px", xs: "96px"}}} />
 
       <SlickSlider

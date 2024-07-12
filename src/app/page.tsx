@@ -11,7 +11,11 @@ import tokenImage from "@/assets/icons/headerToken.svg";
 import {RightArrow} from "@/assets/images/icons";
 import Link from "next/link";
 import Image from "next/image";
-
+import {getSeo} from "@/utils/functions";
+export async function generateMetadata() {
+  const data = await getSeo(`home-page`);
+  return data;
+}
 export default async function Home() {
   const populateProps: string[] = [
     "title",

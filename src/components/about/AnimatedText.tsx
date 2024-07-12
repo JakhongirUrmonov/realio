@@ -14,7 +14,7 @@ function AnimatedText({text}: Props): JSX.Element {
   const tablet = useMediaQuery(theme.breakpoints.only("md"));
   const lg = useMediaQuery(theme.breakpoints.only("lg"));
   return (
-    <Stack sx={{width: {lg: "80%", sm: "90%"}, height: "90vh", justifyContent: "center", mx: "auto"}}>
+    <Stack sx={{width: {lg: "80%", md: "85%", xs: "90%"}, height: "90vh", justifyContent: "center", mx: "auto"}}>
       <AnimatedTextFill
         emptyColor={Colors.secondaryText}
         filledColor={Colors.mainText}

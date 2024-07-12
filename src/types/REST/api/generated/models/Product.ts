@@ -31,12 +31,18 @@ import {
     AboutTeamMemberComponentImageFromJSONTyped,
     AboutTeamMemberComponentImageToJSON,
 } from './AboutTeamMemberComponentImage';
-import type { HeaderProductsDataInnerAttributesLogo } from './HeaderProductsDataInnerAttributesLogo';
+import type { OtherSeoComponent } from './OtherSeoComponent';
 import {
-    HeaderProductsDataInnerAttributesLogoFromJSON,
-    HeaderProductsDataInnerAttributesLogoFromJSONTyped,
-    HeaderProductsDataInnerAttributesLogoToJSON,
-} from './HeaderProductsDataInnerAttributesLogo';
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
+import type { OtherSeoComponentMetaSocialsInnerImage } from './OtherSeoComponentMetaSocialsInnerImage';
+import {
+    OtherSeoComponentMetaSocialsInnerImageFromJSON,
+    OtherSeoComponentMetaSocialsInnerImageFromJSONTyped,
+    OtherSeoComponentMetaSocialsInnerImageToJSON,
+} from './OtherSeoComponentMetaSocialsInnerImage';
 
 /**
  * 
@@ -76,10 +82,10 @@ export interface Product {
     prevDescription: string;
     /**
      * 
-     * @type {HeaderProductsDataInnerAttributesLogo}
+     * @type {OtherSeoComponentMetaSocialsInnerImage}
      * @memberof Product
      */
-    prevImage: HeaderProductsDataInnerAttributesLogo;
+    prevImage: OtherSeoComponentMetaSocialsInnerImage;
     /**
      * 
      * @type {HeaderProductsDataInnerAttributesSlider}
@@ -130,10 +136,16 @@ export interface Product {
     headerDescription: string;
     /**
      * 
-     * @type {HeaderProductsDataInnerAttributesLogo}
+     * @type {OtherSeoComponentMetaSocialsInnerImage}
      * @memberof Product
      */
-    prevImageMobile: HeaderProductsDataInnerAttributesLogo;
+    prevImageMobile: OtherSeoComponentMetaSocialsInnerImage;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof Product
+     */
+    seo?: OtherSeoComponent;
     /**
      * 
      * @type {Date}
@@ -198,7 +210,7 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'logo': AboutTeamMemberComponentImageFromJSON(json['logo']),
         'prevTitle': json['prevTitle'],
         'prevDescription': json['prevDescription'],
-        'prevImage': HeaderProductsDataInnerAttributesLogoFromJSON(json['prevImage']),
+        'prevImage': OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImage']),
         'slider': HeaderProductsDataInnerAttributesSliderFromJSON(json['slider']),
         'isDark': json['isDark'] == null ? undefined : json['isDark'],
         'website': json['website'] == null ? undefined : json['website'],
@@ -207,7 +219,8 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'notification': json['notification'] == null ? undefined : json['notification'],
         'headerTitle': json['headerTitle'],
         'headerDescription': json['headerDescription'],
-        'prevImageMobile': HeaderProductsDataInnerAttributesLogoFromJSON(json['prevImageMobile']),
+        'prevImageMobile': OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImageMobile']),
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -227,7 +240,7 @@ export function ProductToJSON(value?: Product | null): any {
         'logo': AboutTeamMemberComponentImageToJSON(value['logo']),
         'prevTitle': value['prevTitle'],
         'prevDescription': value['prevDescription'],
-        'prevImage': HeaderProductsDataInnerAttributesLogoToJSON(value['prevImage']),
+        'prevImage': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImage']),
         'slider': HeaderProductsDataInnerAttributesSliderToJSON(value['slider']),
         'isDark': value['isDark'],
         'website': value['website'],
@@ -236,7 +249,8 @@ export function ProductToJSON(value?: Product | null): any {
         'notification': value['notification'],
         'headerTitle': value['headerTitle'],
         'headerDescription': value['headerDescription'],
-        'prevImageMobile': HeaderProductsDataInnerAttributesLogoToJSON(value['prevImageMobile']),
+        'prevImageMobile': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImageMobile']),
+        'Seo': OtherSeoComponentToJSON(value['seo']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

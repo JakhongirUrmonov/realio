@@ -25,12 +25,18 @@ import {
     HeaderProductsDataInnerAttributesSliderFromJSONTyped,
     HeaderProductsDataInnerAttributesSliderToJSON,
 } from './HeaderProductsDataInnerAttributesSlider';
-import type { HeaderProductsDataInnerAttributesLogo } from './HeaderProductsDataInnerAttributesLogo';
+import type { HeaderProductsDataInnerAttributesSeo } from './HeaderProductsDataInnerAttributesSeo';
 import {
-    HeaderProductsDataInnerAttributesLogoFromJSON,
-    HeaderProductsDataInnerAttributesLogoFromJSONTyped,
-    HeaderProductsDataInnerAttributesLogoToJSON,
-} from './HeaderProductsDataInnerAttributesLogo';
+    HeaderProductsDataInnerAttributesSeoFromJSON,
+    HeaderProductsDataInnerAttributesSeoFromJSONTyped,
+    HeaderProductsDataInnerAttributesSeoToJSON,
+} from './HeaderProductsDataInnerAttributesSeo';
+import type { OtherSeoComponentMetaSocialsInnerImage } from './OtherSeoComponentMetaSocialsInnerImage';
+import {
+    OtherSeoComponentMetaSocialsInnerImageFromJSON,
+    OtherSeoComponentMetaSocialsInnerImageFromJSONTyped,
+    OtherSeoComponentMetaSocialsInnerImageToJSON,
+} from './OtherSeoComponentMetaSocialsInnerImage';
 
 /**
  * 
@@ -52,10 +58,10 @@ export interface HeaderProductsDataInnerAttributes {
     description?: string;
     /**
      * 
-     * @type {HeaderProductsDataInnerAttributesLogo}
+     * @type {OtherSeoComponentMetaSocialsInnerImage}
      * @memberof HeaderProductsDataInnerAttributes
      */
-    logo?: HeaderProductsDataInnerAttributesLogo;
+    logo?: OtherSeoComponentMetaSocialsInnerImage;
     /**
      * 
      * @type {string}
@@ -70,10 +76,10 @@ export interface HeaderProductsDataInnerAttributes {
     prevDescription?: string;
     /**
      * 
-     * @type {HeaderProductsDataInnerAttributesLogo}
+     * @type {OtherSeoComponentMetaSocialsInnerImage}
      * @memberof HeaderProductsDataInnerAttributes
      */
-    prevImage?: HeaderProductsDataInnerAttributesLogo;
+    prevImage?: OtherSeoComponentMetaSocialsInnerImage;
     /**
      * 
      * @type {HeaderProductsDataInnerAttributesSlider}
@@ -124,10 +130,16 @@ export interface HeaderProductsDataInnerAttributes {
     headerDescription?: string;
     /**
      * 
-     * @type {HeaderProductsDataInnerAttributesLogo}
+     * @type {OtherSeoComponentMetaSocialsInnerImage}
      * @memberof HeaderProductsDataInnerAttributes
      */
-    prevImageMobile?: HeaderProductsDataInnerAttributesLogo;
+    prevImageMobile?: OtherSeoComponentMetaSocialsInnerImage;
+    /**
+     * 
+     * @type {HeaderProductsDataInnerAttributesSeo}
+     * @memberof HeaderProductsDataInnerAttributes
+     */
+    seo?: HeaderProductsDataInnerAttributesSeo;
     /**
      * 
      * @type {Date}
@@ -179,10 +191,10 @@ export function HeaderProductsDataInnerAttributesFromJSONTyped(json: any, ignore
         
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'logo': json['logo'] == null ? undefined : HeaderProductsDataInnerAttributesLogoFromJSON(json['logo']),
+        'logo': json['logo'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['logo']),
         'prevTitle': json['prevTitle'] == null ? undefined : json['prevTitle'],
         'prevDescription': json['prevDescription'] == null ? undefined : json['prevDescription'],
-        'prevImage': json['prevImage'] == null ? undefined : HeaderProductsDataInnerAttributesLogoFromJSON(json['prevImage']),
+        'prevImage': json['prevImage'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImage']),
         'slider': json['slider'] == null ? undefined : HeaderProductsDataInnerAttributesSliderFromJSON(json['slider']),
         'isDark': json['isDark'] == null ? undefined : json['isDark'],
         'website': json['website'] == null ? undefined : json['website'],
@@ -191,7 +203,8 @@ export function HeaderProductsDataInnerAttributesFromJSONTyped(json: any, ignore
         'notification': json['notification'] == null ? undefined : json['notification'],
         'headerTitle': json['headerTitle'] == null ? undefined : json['headerTitle'],
         'headerDescription': json['headerDescription'] == null ? undefined : json['headerDescription'],
-        'prevImageMobile': json['prevImageMobile'] == null ? undefined : HeaderProductsDataInnerAttributesLogoFromJSON(json['prevImageMobile']),
+        'prevImageMobile': json['prevImageMobile'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImageMobile']),
+        'seo': json['Seo'] == null ? undefined : HeaderProductsDataInnerAttributesSeoFromJSON(json['Seo']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -208,10 +221,10 @@ export function HeaderProductsDataInnerAttributesToJSON(value?: HeaderProductsDa
         
         'title': value['title'],
         'description': value['description'],
-        'logo': HeaderProductsDataInnerAttributesLogoToJSON(value['logo']),
+        'logo': OtherSeoComponentMetaSocialsInnerImageToJSON(value['logo']),
         'prevTitle': value['prevTitle'],
         'prevDescription': value['prevDescription'],
-        'prevImage': HeaderProductsDataInnerAttributesLogoToJSON(value['prevImage']),
+        'prevImage': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImage']),
         'slider': HeaderProductsDataInnerAttributesSliderToJSON(value['slider']),
         'isDark': value['isDark'],
         'website': value['website'],
@@ -220,7 +233,8 @@ export function HeaderProductsDataInnerAttributesToJSON(value?: HeaderProductsDa
         'notification': value['notification'],
         'headerTitle': value['headerTitle'],
         'headerDescription': value['headerDescription'],
-        'prevImageMobile': HeaderProductsDataInnerAttributesLogoToJSON(value['prevImageMobile']),
+        'prevImageMobile': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImageMobile']),
+        'Seo': HeaderProductsDataInnerAttributesSeoToJSON(value['seo']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

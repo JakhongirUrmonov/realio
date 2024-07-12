@@ -31,6 +31,12 @@ import {
     OtherTextWithLinkComponentFromJSONTyped,
     OtherTextWithLinkComponentToJSON,
 } from './OtherTextWithLinkComponent';
+import type { OtherSeoComponent } from './OtherSeoComponent';
+import {
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
 
 /**
  * 
@@ -80,6 +86,12 @@ export interface HomePageRequestData {
      * @memberof HomePageRequestData
      */
     announcement?: OtherTextWithLinkComponent;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof HomePageRequestData
+     */
+    seo?: OtherSeoComponent;
 }
 
 /**
@@ -110,6 +122,7 @@ export function HomePageRequestDataFromJSONTyped(json: any, ignoreDiscriminator:
         'features': json['features'] == null ? undefined : ((json['features'] as Array<any>).map(HomeFeatureComponentFromJSON)),
         'products': json['products'] == null ? undefined : ((json['products'] as Array<any>).map(HeaderRequestDataProductsInnerFromJSON)),
         'announcement': json['announcement'] == null ? undefined : OtherTextWithLinkComponentFromJSON(json['announcement']),
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
     };
 }
 
@@ -126,6 +139,7 @@ export function HomePageRequestDataToJSON(value?: HomePageRequestData | null): a
         'features': value['features'] == null ? undefined : ((value['features'] as Array<any>).map(HomeFeatureComponentToJSON)),
         'products': value['products'] == null ? undefined : ((value['products'] as Array<any>).map(HeaderRequestDataProductsInnerToJSON)),
         'announcement': OtherTextWithLinkComponentToJSON(value['announcement']),
+        'Seo': OtherSeoComponentToJSON(value['seo']),
     };
 }
 

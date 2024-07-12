@@ -31,6 +31,12 @@ import {
     AboutTeamMemberComponentFromJSONTyped,
     AboutTeamMemberComponentToJSON,
 } from './AboutTeamMemberComponent';
+import type { OtherSeoComponent } from './OtherSeoComponent';
+import {
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
 
 /**
  * 
@@ -86,6 +92,12 @@ export interface AboutPageRequestData {
      * @memberof AboutPageRequestData
      */
     position?: Array<AboutPositionsComponent>;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof AboutPageRequestData
+     */
+    seo?: OtherSeoComponent;
 }
 
 /**
@@ -118,6 +130,7 @@ export function AboutPageRequestDataFromJSONTyped(json: any, ignoreDiscriminator
         'timeline': json['timeline'] == null ? undefined : ((json['timeline'] as Array<any>).map(AboutTimelineComponentFromJSON)),
         'positionTitle': json['positionTitle'],
         'position': json['position'] == null ? undefined : ((json['position'] as Array<any>).map(AboutPositionsComponentFromJSON)),
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
     };
 }
 
@@ -135,6 +148,7 @@ export function AboutPageRequestDataToJSON(value?: AboutPageRequestData | null):
         'timeline': value['timeline'] == null ? undefined : ((value['timeline'] as Array<any>).map(AboutTimelineComponentToJSON)),
         'positionTitle': value['positionTitle'],
         'position': value['position'] == null ? undefined : ((value['position'] as Array<any>).map(AboutPositionsComponentToJSON)),
+        'Seo': OtherSeoComponentToJSON(value['seo']),
     };
 }
 

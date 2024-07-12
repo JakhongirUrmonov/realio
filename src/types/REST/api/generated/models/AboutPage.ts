@@ -37,6 +37,12 @@ import {
     AboutTeamMemberComponentFromJSONTyped,
     AboutTeamMemberComponentToJSON,
 } from './AboutTeamMemberComponent';
+import type { OtherSeoComponent } from './OtherSeoComponent';
+import {
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
 
 /**
  * 
@@ -92,6 +98,12 @@ export interface AboutPage {
      * @memberof AboutPage
      */
     position?: Array<AboutPositionsComponent>;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof AboutPage
+     */
+    seo?: OtherSeoComponent;
     /**
      * 
      * @type {Date}
@@ -154,6 +166,7 @@ export function AboutPageFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'timeline': json['timeline'] == null ? undefined : ((json['timeline'] as Array<any>).map(AboutTimelineComponentFromJSON)),
         'positionTitle': json['positionTitle'],
         'position': json['position'] == null ? undefined : ((json['position'] as Array<any>).map(AboutPositionsComponentFromJSON)),
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -176,6 +189,7 @@ export function AboutPageToJSON(value?: AboutPage | null): any {
         'timeline': value['timeline'] == null ? undefined : ((value['timeline'] as Array<any>).map(AboutTimelineComponentToJSON)),
         'positionTitle': value['positionTitle'],
         'position': value['position'] == null ? undefined : ((value['position'] as Array<any>).map(AboutPositionsComponentToJSON)),
+        'Seo': OtherSeoComponentToJSON(value['seo']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

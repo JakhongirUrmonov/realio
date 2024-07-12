@@ -19,6 +19,12 @@ import {
     HeaderRequestDataProductsInnerFromJSONTyped,
     HeaderRequestDataProductsInnerToJSON,
 } from './HeaderRequestDataProductsInner';
+import type { OtherSeoComponent } from './OtherSeoComponent';
+import {
+    OtherSeoComponentFromJSON,
+    OtherSeoComponentFromJSONTyped,
+    OtherSeoComponentToJSON,
+} from './OtherSeoComponent';
 
 /**
  * 
@@ -116,6 +122,12 @@ export interface ProductRequestData {
      * @memberof ProductRequestData
      */
     prevImageMobile: HeaderRequestDataProductsInner;
+    /**
+     * 
+     * @type {OtherSeoComponent}
+     * @memberof ProductRequestData
+     */
+    seo?: OtherSeoComponent;
 }
 
 /**
@@ -160,6 +172,7 @@ export function ProductRequestDataFromJSONTyped(json: any, ignoreDiscriminator: 
         'headerTitle': json['headerTitle'],
         'headerDescription': json['headerDescription'],
         'prevImageMobile': HeaderRequestDataProductsInnerFromJSON(json['prevImageMobile']),
+        'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
     };
 }
 
@@ -184,6 +197,7 @@ export function ProductRequestDataToJSON(value?: ProductRequestData | null): any
         'headerTitle': value['headerTitle'],
         'headerDescription': value['headerDescription'],
         'prevImageMobile': HeaderRequestDataProductsInnerToJSON(value['prevImageMobile']),
+        'Seo': OtherSeoComponentToJSON(value['seo']),
     };
 }
 
