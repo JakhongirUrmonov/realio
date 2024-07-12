@@ -20,7 +20,7 @@ export const animatedPageIn = () => {
   if (whitePageOut) {
     tl.set(whitePageOut, {opacity: 1, zIndex: 99}).to(whitePageOut, {
       opacity: 0,
-      duration: 0.5,
+      duration: 0.3,
       ease: "linear",
       zIndex: -1,
     });
@@ -32,7 +32,7 @@ export const animatedPageOut = (href: string, router: AppRouterInstance) => {
   if (whitePageOut) {
     tl.set(whitePageOut, {opacity: 0, zIndex: -1}).to(whitePageOut, {
       opacity: 1,
-      duration: 0.5,
+      duration: 0.3,
       zIndex: 99,
       ease: "linear",
       onComplete: () => {

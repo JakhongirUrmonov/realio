@@ -14,6 +14,7 @@ export type INavItemSub = {
 export type INavItem = {
   text: string;
   link: string;
+  external?: boolean;
   sub?: INavItemSub[];
   connect?: boolean;
 };

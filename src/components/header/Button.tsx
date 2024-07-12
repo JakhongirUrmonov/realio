@@ -7,15 +7,17 @@ import {INavItemSub} from "@/types/header";
 import {DownArrow} from "@/assets/images/icons";
 import {usePathname, useRouter} from "next/navigation";
 import {animatedPageOut} from "@/utils/functions";
+import Link from "next/link";
 
 type Props = {
   buttonText: string;
   subMenu?: INavItemSub[];
   link: string;
   connect?: boolean;
+  external?: boolean;
 };
 
-function Button({buttonText, subMenu, link, connect}: Props): JSX.Element {
+function Button({buttonText, subMenu, link, connect, external}: Props): JSX.Element {
   const [hover, setHover] = useState<boolean>(false);
   const onMouseEnter = () => setHover(true);
   const onMouseLeave = () => setHover(false);
@@ -31,7 +33,10 @@ function Button({buttonText, subMenu, link, connect}: Props): JSX.Element {
       <Stack>
         <Typography
           variant="bm3"
-          onClick={subMenu ? undefined : handleClick}
+          onClick={subMenu ? undefined : external ? undefined : handleClick}
+          component={external ? Link : "p"}
+          href={link}
+          target={external ? "_blank" : undefined}
           sx={{
             cursor: "pointer",
             transition: "color 0.3s linear",

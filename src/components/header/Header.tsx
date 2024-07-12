@@ -52,7 +52,7 @@ function Header(props: Props): JSX.Element {
       link: "/products",
     },
     {text: "Network", link: "/network"},
-    {text: "Shop", link: props.data?.shopLink ?? ""},
+    {text: "Shop", link: props.data?.shopLink ?? "", external: true},
     {text: "About Us", link: "/about"},
     {
       text: "Connect",
@@ -124,7 +124,14 @@ function Header(props: Props): JSX.Element {
           }}
         >
           {navItems.map((item) => (
-            <Button key={item.text} subMenu={item.sub} connect={item.connect} buttonText={item.text} link={item.link} />
+            <Button
+              key={item.text}
+              subMenu={item.sub}
+              connect={item.connect}
+              buttonText={item.text}
+              link={item.link}
+              external={item.external}
+            />
           ))}
         </Stack>
         <HamburgerIcon sx={{display: {sm: "none"}}} onClick={handleDrawerToggle} />
