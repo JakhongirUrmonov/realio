@@ -1,3 +1,4 @@
+"use client";
 import {Typography, Stack} from "@mui/material";
 import {Colors, ZIndex} from "@/ts/consts";
 import RoundedTitle from "@/components/home/RoundedTitle";
@@ -5,12 +6,16 @@ import {AboutPositionsComponent} from "@/types/REST/api/generated";
 import SlickSlider from "@/components/about/SlickSlider";
 import Image from "next/image";
 import positionImage from "@/assets/images/position.png";
+import {AspectRatioMode, useAspectRatio} from "@qubixstudio/sphere";
+import {useRef} from "react";
 type Props = {
   title?: string;
   position?: AboutPositionsComponent[];
 };
 
-export default async function Position({title, position}: Props) {
+export default function Position({title, position}: Props) {
+  const ref = useRef(null);
+  const aspectRatio = useAspectRatio(1, AspectRatioMode.widthFromHeight, ref);
   return (
     <Stack
       sx={{
@@ -89,12 +94,11 @@ export default async function Position({title, position}: Props) {
               }}
             >
               <Image
+                ref={ref}
                 src={positionImage}
                 unoptimized
-                width={100}
-                height={100}
                 alt="position"
-                style={{height: "100%", width: "100%", aspectRatio: 1}}
+                style={{height: "100%", width: aspectRatio.height}}
               />
             </Stack>
           </Stack>
