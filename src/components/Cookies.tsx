@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React, {use, useEffect, useState} from "react";
 import {Stack, Typography} from "@mui/material";
 import {Colors} from "@/ts/consts";
 import {hasCookie, setCookie} from "cookies-next";
@@ -8,14 +8,17 @@ let managerInitialized = false;
 
 const Cookies = () => {
   const [showConsent, setShowConsent] = useState<boolean>(true);
+  const [cookieAccepted, setCookieAccepted] = useState<boolean>(false);
 
   useEffect(() => {
     setShowConsent(hasCookie("localConsent") || hasCookie("localConsentReject"));
+    setCookieAccepted(hasCookie("localConsent"));
   }, []);
 
   const acceptCookie = () => {
     setShowConsent(true);
     setCookie("localConsent", "true", {});
+    setCookieAccepted(true);
   };
 
   const rejectCookie = () => {
@@ -23,7 +26,7 @@ const Cookies = () => {
     setCookie("localConsentReject", "true", {});
   };
   useEffect(() => {
-    if (showConsent) {
+    if (cookieAccepted) {
       if (!managerInitialized) {
         const tagManagerArgs = {
           gtmId: "G-698N7V7VWW",
@@ -37,7 +40,7 @@ const Cookies = () => {
         window.location.reload();
       }
     }
-  }, [showConsent]);
+  }, [cookieAccepted]);
 
   if (showConsent) {
     return null;
