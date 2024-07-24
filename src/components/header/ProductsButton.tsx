@@ -17,7 +17,8 @@ function ProductsButton({hover, data, connect}: Props): JSX.Element {
       sx={{
         padding: hover ? "12px 16px" : 0,
         position: "absolute",
-        background: "#fcfcfc",
+        background: Colors.whiteText,
+        // background: "#fcfcfc",
         border: "0.5px solid #7B8D9D29",
         boxShadow: "0px 2px 5px 0px rgb(0 0 0 / 12%)",
         borderRadius: "10px",

@@ -29,12 +29,17 @@ function ProductsButtonItem({link, title, connect, desc, icon, notProduct}: Prop
   return (
     <Stack
       sx={{
-        width: connect ? "100%" : "50%",
-        flexDirection: "row",
-        padding: "12px 14px",
-        boxSizing: "border-box",
-        textDecoration: "none",
-        cursor: link ? "pointer" : "default",
+        "width": connect ? "100%" : "50%",
+        "flexDirection": "row",
+        "padding": "12px 14px",
+        "boxSizing": "border-box",
+        "textDecoration": "none",
+        "cursor": link ? "pointer" : "default",
+        "transition": "all 0.3s linear",
+        "borderRadius": "10px",
+        ":hover": {
+          background: link ? "#e9ebee" : undefined,
+        },
       }}
       component={link ? Link : "div"}
       href={notProduct ? link ?? "" : link}

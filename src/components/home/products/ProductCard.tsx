@@ -1,7 +1,7 @@
 "use client";
 import {Colors} from "@/ts/consts";
 import {Stack, Typography} from "@mui/material";
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import CustomImage from "@/components/CustomImage";
 import {AspectRatioMode, useAspectRatio} from "@qubixstudio/sphere";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -20,44 +20,60 @@ type Props = {
 };
 
 function ProductCard({background, productIcon, isDark, title, description, id, backgroundMobile}: Props): JSX.Element {
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const mobile = useMediaQuery(theme.breakpoints.down("lg"));
   const ref = useRef<HTMLDivElement>(null);
-  const aspectRatio = useAspectRatio(mobile ? 345 / 380 : 589 / 582, AspectRatioMode.heightFromWidth, ref);
+  const aspectRatio = useAspectRatio(mobile ? 345 / 420 : 589 / 582, AspectRatioMode.heightFromWidth, ref);
+  const [hover, setHover] = useState<boolean>(false);
+  const onMouseEnter = () => setHover(true);
+  const onMouseLeave = () => setHover(false);
   return (
     <Stack
       ref={ref}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       sx={{
-        borderRadius: "24px",
-        position: "relative",
-        width: {md: "calc(50% - 16px)", xs: "100%"},
-        overflow: "hidden",
-        cursor: "pointer",
+        "borderRadius": "24px",
+        "position": "relative",
+        "width": {md: "calc(50% - 16px)", xs: "100%"},
+        "overflow": "hidden",
+        "cursor": "pointer",
+        "transition": "transform 0.2s linear",
+        "height": aspectRatio.height,
+        ":hover": {
+          transform: "scale(0.99)",
+        },
       }}
     >
       <CustomLink link={`/products/${id}`}>
         <Stack>
           <CustomImage
             path={mobile ? backgroundMobile : background}
-            style={{width: "100%", height: aspectRatio.height, objectFit: "cover"}}
+            height={420}
+            width={345}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              transition: "transform 0.4s linear",
+              transform: hover ? "scale(1.1)" : "scale(1)",
+            }}
           />
-          <Stack sx={{padding: {md: "40px", xs: "32px"}, position: "absolute", top: 0, left: 0}}>
+          <Stack sx={{padding: {md: "40px", xs: "24px 14px 24px 24px"}, position: "absolute", top: 0, left: 0}}>
             <CustomImage
               path={productIcon}
               style={{width: mobile ? "40px" : "64px", height: mobile ? "40px" : "64px", objectFit: "cover"}}
             />
             <Typography
-              variant="h3"
+              variant={mobile ? "h4" : "h3"}
               sx={{
                 color: isDark ? Colors.whiteText : Colors.mainText,
-                marginTop: "16px",
-                marginBottom: "8px",
-                fontSize: {xs: "22px", md: "28px"},
-                lineHeight: {xs: "32px", md: "44px"},
+                marginTop: "12px",
+                marginBottom: "4px",
               }}
             >
               {title}
             </Typography>
-            <Typography variant="br2" sx={{color: isDark ? Colors.lightGrey : Colors.secondaryText}}>
+            <Typography variant={"br2"} sx={{color: isDark ? Colors.lightGrey : Colors.secondaryText}}>
               {description}
             </Typography>
           </Stack>

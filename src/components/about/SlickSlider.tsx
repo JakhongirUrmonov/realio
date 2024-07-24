@@ -94,6 +94,7 @@ const SlickSlider = ({
               "fill": Colors.secondaryText,
               ":hover": {
                 fill: Colors.mainText,
+                background: Colors.grey10,
               },
             }}
             onClick={() => {
@@ -112,6 +113,7 @@ const SlickSlider = ({
               "fill": Colors.secondaryText,
               ":hover": {
                 fill: Colors.mainText,
+                background: Colors.grey10,
               },
             }}
             onClick={() => {

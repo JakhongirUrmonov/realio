@@ -39,17 +39,20 @@ export default async function Home() {
             href={home.data?.attributes?.announcement?.link}
             target="_blank"
             sx={{
-              cursor: home.data?.attributes?.announcement?.link ? "pointer" : "default",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              textDecoration: "none",
-              padding: "8px",
-              border: "1px",
-              borderRadius: "100px",
-              boxShadow: "0px 2px 4px 0px rgb(17 38 60 / 23%)",
-              width: "fit-content",
-              marginBottom: "24px",
+              "cursor": home.data?.attributes?.announcement?.link ? "pointer" : "default",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "textDecoration": "none",
+              "padding": "8px",
+              "border": "1px",
+              "borderRadius": "100px",
+              "boxShadow": "0px 2px 4px 0px rgb(17 38 60 / 23%)",
+              "width": "fit-content",
+              "marginBottom": "24px",
+              ":hover": {
+                background: Colors.grey10,
+              },
             }}
           >
             <Image src={tokenImage} alt="token" width={20} height={20} />

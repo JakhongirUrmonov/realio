@@ -77,8 +77,8 @@ const Hero = ({
         ) : (
           <>
             <Button link={website} text={"Visit website"} />
-            <Button link={twitter} logo={TwitterLogo} />
-            <Button link={discord} logo={DiscordLogo} />
+            <Button link={twitter} logo={TwitterLogo} light />
+            <Button link={discord} logo={DiscordLogo} light />
           </>
         )}
       </Stack>
