@@ -2,7 +2,7 @@ import {ReactElement} from "react";
 import {Typography, Stack, SxProps} from "@mui/material";
 import TopBtn from "./topBtn";
 import {Colors} from "@/ts/consts";
-import Button, {BottomButtonProps} from "./button";
+import Button from "./button";
 
 import TwitterLogo from "@/assets/icons/twitter.svg";
 import DiscordLogo from "@/assets/icons/discord.svg";

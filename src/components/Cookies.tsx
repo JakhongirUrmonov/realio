@@ -68,21 +68,24 @@ const Cookies = () => {
         <Typography
           variant={"bm2"}
           sx={{
-            color: Colors.mainText,
-            fontSize: "14px",
-            lineHeight: "24px",
-            textDecoration: "none",
-            background: Colors.whiteText,
-            outline: "none",
-            cursor: "pointer",
-            padding: "12px 24px",
-            borderRadius: "100px",
-            border: "1px solid",
-            borderImageSource: "linear-gradient(180deg, rgba(245, 245, 245, 0.24) 0%, rgba(245, 245, 245, 0) 100%)",
-            boxShadow: "0px 0px 0px 1px #F5F8F9",
-            transition: "box-shadow 0.3s",
-            textAlign: "center",
-            flexGrow: 1,
+            "color": Colors.mainText,
+            "fontSize": "14px",
+            "lineHeight": "24px",
+            "textDecoration": "none",
+            "background": Colors.whiteText,
+            "outline": "none",
+            "cursor": "pointer",
+            "padding": "12px 24px",
+            "borderRadius": "100px",
+            "border": "1px solid",
+            "borderImageSource": "linear-gradient(180deg, rgba(245, 245, 245, 0.24) 0%, rgba(245, 245, 245, 0) 100%)",
+            "boxShadow": "0px 0px 0px 1px #F5F8F9",
+            "transition": "box-shadow 0.3s",
+            "textAlign": "center",
+            "flexGrow": 1,
+            ":hover": {
+              background: Colors.grey10,
+            },
           }}
           onClick={rejectCookie}
         >
@@ -91,21 +94,24 @@ const Cookies = () => {
         <Typography
           variant={"bm2"}
           sx={{
-            color: Colors.whiteText,
-            fontSize: "14px",
-            lineHeight: "24px",
-            textDecoration: "none",
-            background: "linear-gradient(0deg, #0B1928, rgb(11 25 40 / 83%))",
-            outline: "none",
-            cursor: "pointer",
-            padding: "12px 24px",
-            borderRadius: "100px",
-            border: "1px solid",
-            borderImageSource: "linear-gradient(180deg, rgba(245, 245, 245, 0.24) 0%, rgba(245, 245, 245, 0) 100%)",
-            boxShadow: "0px 0px 0px 1px #F5F8F9",
-            transition: "box-shadow 0.3s",
-            textAlign: "center",
-            flexGrow: 1,
+            "color": Colors.whiteText,
+            "fontSize": "14px",
+            "lineHeight": "24px",
+            "textDecoration": "none",
+            "background": "linear-gradient(0deg, #0B1928, rgb(11 25 40 / 83%))",
+            "outline": "none",
+            "cursor": "pointer",
+            "padding": "12px 24px",
+            "borderRadius": "100px",
+            "border": "1px solid",
+            "borderImageSource": "linear-gradient(180deg, rgba(245, 245, 245, 0.24) 0%, rgba(245, 245, 245, 0) 100%)",
+            "boxShadow": "0px 0px 0px 1px #F5F8F9",
+            "transition": "box-shadow 0.3s",
+            "textAlign": "center",
+            "flexGrow": 1,
+            ":hover": {
+              background: "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
+            },
           }}
           onClick={acceptCookie}
         >
