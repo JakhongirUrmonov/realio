@@ -19,7 +19,11 @@ export default async function ProductDetails({params}: Props) {
     return <NotFound />;
   }
   return (
-    <Stack>
+    <Stack
+      sx={{
+        marginTop: {md: "115px", xs: "80px"},
+      }}
+    >
       <Hero
         topBtnText={product.data?.attributes?.notification}
         title={product.data?.attributes?.title}

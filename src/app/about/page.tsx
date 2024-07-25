@@ -14,7 +14,7 @@ export default async function About() {
   const populateProps: string[] = ["description", "team.image", "timeline", "position"];
   const aboutData = await getter<AboutPageListResponseDataItem>(`about-page?populate=${populateProps.join()}`);
   return (
-    <Stack sx={{width: "100%"}}>
+    <Stack sx={{width: "100%", marginTop: {md: "115px", xs: "80px"}}}>
       <AnimatedText text={aboutData.data?.attributes?.description} />
       <Teams
         title={aboutData.data?.attributes?.teamTitle}

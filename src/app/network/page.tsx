@@ -15,7 +15,11 @@ export default async function NetWork() {
   const populateProps: string[] = ["sources.image"];
   const networkData = await getter<NetworkPageListResponseDataItem>(`network-page?populate=${populateProps.join()}`);
   return (
-    <Stack>
+    <Stack
+      sx={{
+        marginTop: {md: "115px", xs: "80px"},
+      }}
+    >
       <Hero
         topBtnText={networkData.data?.attributes?.notification}
         title={networkData.data?.attributes?.title}
