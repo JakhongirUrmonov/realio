@@ -29,7 +29,7 @@ export default async function Home() {
   const home = await getter<HomePageListResponseDataItem>(`home-page?populate=${populateProps.join()}`);
   return (
     <Stack>
-      <Stack sx={{width: "100%", height: {md: "65vh", xs: "50vh"}, position: "relative", marginTop: {md: "-87px"}}}>
+      <Stack sx={{width: "100%", height: {md: "61vh", xs: "50vh"}, position: "relative", marginTop: "30px"}}>
         <HomeHero />
       </Stack>
       <Stack sx={{width: {md: "60%"}, textAlign: "center", mx: "auto", alignItems: "center"}}>
@@ -59,7 +59,7 @@ export default async function Home() {
             <Typography variant="bm4" sx={{color: Colors.mainText, marginX: "8px"}}>
               {home.data?.attributes?.announcement?.text}
             </Typography>
-            <RightArrow sx={{fill: Colors.secondaryText}} />
+            {home.data?.attributes?.announcement?.link && <RightArrow sx={{fill: Colors.secondaryText}} />}
           </Stack>
         )}
         <Typography variant="d1">{home.data?.attributes?.title}</Typography>

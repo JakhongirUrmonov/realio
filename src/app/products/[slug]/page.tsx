@@ -4,6 +4,7 @@ import Carousel from "@/components/project/carousel";
 import {getter} from "@/utils/api";
 import {ProductListResponseDataItem} from "@/types/REST/api/generated";
 import {getSeo} from "@/utils/functions";
+import NotFound from "@/app/not-found";
 
 type Props = {params: {slug: string}};
 
@@ -14,6 +15,9 @@ export async function generateMetadata({params}: Props) {
 export default async function ProductDetails({params}: Props) {
   const populateProps: string[] = ["slider"];
   const product = await getter<ProductListResponseDataItem>(`products/${params.slug}?populate=${populateProps.join()}`);
+  if (!product.data) {
+    return <NotFound />;
+  }
   return (
     <Stack>
       <Hero

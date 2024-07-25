@@ -17,4 +17,5 @@ export type INavItem = {
   external?: boolean;
   sub?: INavItemSub[];
   connect?: boolean;
+  disabled?: boolean;
 };

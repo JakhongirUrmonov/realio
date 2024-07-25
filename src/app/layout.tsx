@@ -4,9 +4,9 @@ import {theme} from "../ts/theme";
 import {Inter} from "next/font/google";
 import MainWrapper from "@/components/wrappers/MainWrapper";
 import Footer from "@/components/footer/Footer";
-import HeaderWrapper from "@/components/header/HeaderWrapper";
 import dynamic from "next/dynamic";
 import Cookies from "@/components/Cookies";
+import HeaderWrapper from "@/components/header/HeaderWrapper";
 
 const SmoothScroll = dynamic(() => import("@/components/SmoothScroll"), {ssr: false});
 const inter = Inter({subsets: ["latin"]});
@@ -28,9 +28,9 @@ export default function RootLayout({
       >
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <HeaderWrapper />
             <SmoothScroll>
               <MainWrapper>
-                <HeaderWrapper />
                 {children}
                 <Footer />
               </MainWrapper>

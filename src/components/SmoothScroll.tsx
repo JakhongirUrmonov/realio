@@ -5,6 +5,7 @@ import {ScrollTrigger} from "gsap/all";
 import gsap from "gsap";
 import {ScrollSmoother} from "gsap/ScrollSmoother";
 import {usePathname} from "next/navigation";
+// import HeaderWrapper from "./header/HeaderWrapper";
 
 type SmoothScrollProps = StackProps;
 
@@ -39,6 +40,7 @@ function SmoothScroll(props: SmoothScrollProps): JSX.Element {
   }, [scrollSmoother, path]);
   return (
     <ScrollSmootherContext.Provider value={scrollSmoother}>
+      {/* <HeaderWrapper /> */}
       <Stack ref={ref} id="smooth-wrapper" {...boxProps} sx={{height: "max-content", ...sx}}>
         <Stack sx={{height: "max-content", ...sx}} id={"smooth-content"}>
           {children}

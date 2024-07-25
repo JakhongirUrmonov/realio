@@ -1,7 +1,7 @@
 "use client";
-import {Stack, Typography} from "@mui/material";
+import {Stack, Typography, useMediaQuery} from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, {useEffect} from "react";
 import logo from "@/assets/images/logo.svg";
 import Button from "./Button";
 import Link from "next/link";
@@ -12,6 +12,8 @@ import {HamburgerIcon, RightArrow} from "@/assets/images/icons";
 import {Header as HeaderType, SocialListResponseDataItem} from "@/types/REST/api/generated";
 import tokenImage from "@/assets/icons/headerToken.svg";
 import CustomLink from "./CustomLink";
+import {theme} from "@/ts/theme";
+import gsap from "gsap";
 interface Props {
   window?: () => Window;
   data?: HeaderType;
@@ -22,6 +24,25 @@ function Header(props: Props): JSX.Element {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  const ref = React.useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (ref.current && !isMobile) {
+        gsap.to(ref.current, {
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "+=160 top",
+            toggleActions: "play none none reverse",
+          },
+          backdropFilter: "blur(5px)",
+        });
+      }
+    });
+    return () => {
+      ctx.revert();
+    };
+  }, [isMobile]);
   const subProjects = props.data?.products?.data?.map((item) => {
     return {
       icon: item.attributes?.logo,
@@ -61,12 +82,20 @@ function Header(props: Props): JSX.Element {
           data: subConnect,
         },
       ],
+      disabled: subConnect && subConnect?.length > 0 ? false : true,
       link: "/connect",
       connect: true,
     },
   ];
   return (
-    <>
+    <Stack
+      ref={ref}
+      sx={{
+        position: "fixed",
+        width: "100%",
+        zIndex: ZIndex.header,
+      }}
+    >
       {props.data?.announcement?.text && (
         <Stack
           sx={{
@@ -76,7 +105,6 @@ function Header(props: Props): JSX.Element {
             width: "100vw",
             backgroundColor: Colors.grey10,
             boxSizing: "border-box",
-            zIndex: ZIndex.header,
           }}
         >
           <Stack
@@ -95,49 +123,52 @@ function Header(props: Props): JSX.Element {
             <Typography variant="bm4" sx={{color: Colors.mainText, marginX: "8px"}}>
               {props.data.announcement.text}
             </Typography>
-            <RightArrow sx={{fill: Colors.secondaryText}} />
+            {props.data?.announcement?.link && <RightArrow sx={{fill: Colors.secondaryText}} />}
           </Stack>
         </Stack>
       )}
-
-      <Stack
-        sx={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          boxSizing: "border-box",
-          width: "100%",
-          zIndex: ZIndex.header,
-          height: {xs: "80px", md: "114px"},
-        }}
-      >
-        <CustomLink link={"/"}>
-          <Image src={logo} width={98} height={28} alt={""} />
-        </CustomLink>
+      <Stack sx={{overflow: "visible", paddingX: {md: "10.2%", xs: "24px"}}}>
         <Stack
           sx={{
-            display: {xs: "none", sm: "flex"},
             flexDirection: "row",
-            gap: {xs: "0 15px", md: "0 24px"},
+            justifyContent: "space-between",
             alignItems: "center",
-            position: "relative",
+            boxSizing: "border-box",
+
+            width: "100%",
+            zIndex: ZIndex.header,
+            height: {xs: "80px", md: "114px"},
           }}
         >
-          {navItems.map((item) => (
-            <Button
-              key={item.text}
-              subMenu={item.sub}
-              connect={item.connect}
-              buttonText={item.text}
-              link={item.link}
-              external={item.external}
-            />
-          ))}
+          <CustomLink link={"/"}>
+            <Image src={logo} width={98} height={28} alt={""} />
+          </CustomLink>
+          <Stack
+            sx={{
+              display: {xs: "none", sm: "flex"},
+              flexDirection: "row",
+              gap: {xs: "0 15px", md: "0 24px"},
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            {navItems.map((item) => (
+              <Button
+                key={item.text}
+                subMenu={item.sub}
+                connect={item.connect}
+                buttonText={item.text}
+                link={item.link}
+                external={item.external}
+                disabled={item.disabled}
+              />
+            ))}
+          </Stack>
+          <HamburgerIcon sx={{display: {sm: "none"}}} onClick={handleDrawerToggle} />
+          <DrawerAppBar navItems={navItems} mobileOpen={mobileOpen} socials={props.socials} setMobileOpen={setMobileOpen} />
         </Stack>
-        <HamburgerIcon sx={{display: {sm: "none"}}} onClick={handleDrawerToggle} />
-        <DrawerAppBar navItems={navItems} mobileOpen={mobileOpen} socials={props.socials} setMobileOpen={setMobileOpen} />
       </Stack>
-    </>
+    </Stack>
   );
 }
 

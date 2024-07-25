@@ -45,7 +45,7 @@ function ProductsButton({hover, data, connect}: Props): JSX.Element {
                 <ProductsButtonItem
                   key={key}
                   title={item.title}
-                  link={item.notProduct ? undefined : `/products/${item.link}`}
+                  link={item.notProduct ? item.link : `/products/${item.link}`}
                   desc={item.desc}
                   notProduct={item.notProduct}
                   icon={item.icon}

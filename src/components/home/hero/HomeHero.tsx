@@ -80,7 +80,16 @@ function HomeHero(): JSX.Element {
   }, []);
 
   return (
-    <Stack sx={{position: "absolute", top: 0, right: 0, left: "-24px", bottom: 0, width: {md: "auto", xs: "100vw"}}}>
+    <Stack
+      sx={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        left: {xs: "-24px", md: "0"},
+        bottom: 0,
+        width: {md: "auto", xs: "100vw"},
+      }}
+    >
       {!mobile ? (
         <Box
           component={"svg"}

@@ -15,9 +15,10 @@ type Props = {
   link: string;
   connect?: boolean;
   external?: boolean;
+  disabled?: boolean;
 };
 
-function Button({buttonText, subMenu, link, connect, external}: Props): JSX.Element {
+function Button({buttonText, subMenu, link, connect, external, disabled}: Props): JSX.Element {
   const [hover, setHover] = useState<boolean>(false);
   const onMouseEnter = () => setHover(true);
   const onMouseLeave = () => setHover(false);
@@ -34,14 +35,14 @@ function Button({buttonText, subMenu, link, connect, external}: Props): JSX.Elem
         <Typography
           variant="bm3"
           onClick={subMenu ? undefined : external ? undefined : handleClick}
-          component={external ? Link : "p"}
-          href={link}
+          component={external ? Link : "div"}
+          href={subMenu ? "div" : link}
           target={external ? "_blank" : undefined}
           sx={{
             cursor: "pointer",
             transition: "color 0.3s linear",
             color: hover ? Colors.mainText : Colors.secondaryText,
-            display: "flex",
+            display: disabled ? "none" : "flex",
             alignItems: "center",
             textDecoration: "none",
             paddingBottom: "18px",
