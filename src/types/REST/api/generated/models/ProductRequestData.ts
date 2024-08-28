@@ -13,12 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { HeaderRequestDataProductsInner } from './HeaderRequestDataProductsInner';
+import type { OtherLinkWithTextComponent } from './OtherLinkWithTextComponent';
 import {
-    HeaderRequestDataProductsInnerFromJSON,
-    HeaderRequestDataProductsInnerFromJSONTyped,
-    HeaderRequestDataProductsInnerToJSON,
-} from './HeaderRequestDataProductsInner';
+    OtherLinkWithTextComponentFromJSON,
+    OtherLinkWithTextComponentFromJSONTyped,
+    OtherLinkWithTextComponentToJSON,
+} from './OtherLinkWithTextComponent';
+import type { BlogRequestDataThumbnail } from './BlogRequestDataThumbnail';
+import {
+    BlogRequestDataThumbnailFromJSON,
+    BlogRequestDataThumbnailFromJSONTyped,
+    BlogRequestDataThumbnailToJSON,
+} from './BlogRequestDataThumbnail';
 import type { OtherSeoComponent } from './OtherSeoComponent';
 import {
     OtherSeoComponentFromJSON,
@@ -46,10 +52,10 @@ export interface ProductRequestData {
     description: string;
     /**
      * 
-     * @type {HeaderRequestDataProductsInner}
+     * @type {BlogRequestDataThumbnail}
      * @memberof ProductRequestData
      */
-    logo: HeaderRequestDataProductsInner;
+    logo: BlogRequestDataThumbnail;
     /**
      * 
      * @type {string}
@@ -64,28 +70,22 @@ export interface ProductRequestData {
     prevDescription: string;
     /**
      * 
-     * @type {HeaderRequestDataProductsInner}
+     * @type {BlogRequestDataThumbnail}
      * @memberof ProductRequestData
      */
-    prevImage: HeaderRequestDataProductsInner;
+    prevImage: BlogRequestDataThumbnail;
     /**
      * 
-     * @type {Array<HeaderRequestDataProductsInner>}
+     * @type {Array<BlogRequestDataThumbnail>}
      * @memberof ProductRequestData
      */
-    slider: Array<HeaderRequestDataProductsInner>;
+    slider: Array<BlogRequestDataThumbnail>;
     /**
      * 
      * @type {boolean}
      * @memberof ProductRequestData
      */
     isDark?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductRequestData
-     */
-    website?: string;
     /**
      * 
      * @type {string}
@@ -118,16 +118,28 @@ export interface ProductRequestData {
     headerDescription: string;
     /**
      * 
-     * @type {HeaderRequestDataProductsInner}
+     * @type {BlogRequestDataThumbnail}
      * @memberof ProductRequestData
      */
-    prevImageMobile: HeaderRequestDataProductsInner;
+    prevImageMobile: BlogRequestDataThumbnail;
     /**
      * 
      * @type {OtherSeoComponent}
      * @memberof ProductRequestData
      */
     seo?: OtherSeoComponent;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductRequestData
+     */
+    slug: string;
+    /**
+     * 
+     * @type {OtherLinkWithTextComponent}
+     * @memberof ProductRequestData
+     */
+    websiteButton?: OtherLinkWithTextComponent;
 }
 
 /**
@@ -144,6 +156,7 @@ export function instanceOfProductRequestData(value: object): value is ProductReq
     if (!('headerTitle' in value) || value['headerTitle'] === undefined) return false;
     if (!('headerDescription' in value) || value['headerDescription'] === undefined) return false;
     if (!('prevImageMobile' in value) || value['prevImageMobile'] === undefined) return false;
+    if (!('slug' in value) || value['slug'] === undefined) return false;
     return true;
 }
 
@@ -159,20 +172,21 @@ export function ProductRequestDataFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'title': json['title'],
         'description': json['description'],
-        'logo': HeaderRequestDataProductsInnerFromJSON(json['logo']),
+        'logo': BlogRequestDataThumbnailFromJSON(json['logo']),
         'prevTitle': json['prevTitle'],
         'prevDescription': json['prevDescription'],
-        'prevImage': HeaderRequestDataProductsInnerFromJSON(json['prevImage']),
-        'slider': ((json['slider'] as Array<any>).map(HeaderRequestDataProductsInnerFromJSON)),
+        'prevImage': BlogRequestDataThumbnailFromJSON(json['prevImage']),
+        'slider': ((json['slider'] as Array<any>).map(BlogRequestDataThumbnailFromJSON)),
         'isDark': json['isDark'] == null ? undefined : json['isDark'],
-        'website': json['website'] == null ? undefined : json['website'],
         'twitter': json['twitter'] == null ? undefined : json['twitter'],
         'discord': json['discord'] == null ? undefined : json['discord'],
         'notification': json['notification'] == null ? undefined : json['notification'],
         'headerTitle': json['headerTitle'],
         'headerDescription': json['headerDescription'],
-        'prevImageMobile': HeaderRequestDataProductsInnerFromJSON(json['prevImageMobile']),
+        'prevImageMobile': BlogRequestDataThumbnailFromJSON(json['prevImageMobile']),
         'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
+        'slug': json['slug'],
+        'websiteButton': json['websiteButton'] == null ? undefined : OtherLinkWithTextComponentFromJSON(json['websiteButton']),
     };
 }
 
@@ -184,20 +198,21 @@ export function ProductRequestDataToJSON(value?: ProductRequestData | null): any
         
         'title': value['title'],
         'description': value['description'],
-        'logo': HeaderRequestDataProductsInnerToJSON(value['logo']),
+        'logo': BlogRequestDataThumbnailToJSON(value['logo']),
         'prevTitle': value['prevTitle'],
         'prevDescription': value['prevDescription'],
-        'prevImage': HeaderRequestDataProductsInnerToJSON(value['prevImage']),
-        'slider': ((value['slider'] as Array<any>).map(HeaderRequestDataProductsInnerToJSON)),
+        'prevImage': BlogRequestDataThumbnailToJSON(value['prevImage']),
+        'slider': ((value['slider'] as Array<any>).map(BlogRequestDataThumbnailToJSON)),
         'isDark': value['isDark'],
-        'website': value['website'],
         'twitter': value['twitter'],
         'discord': value['discord'],
         'notification': value['notification'],
         'headerTitle': value['headerTitle'],
         'headerDescription': value['headerDescription'],
-        'prevImageMobile': HeaderRequestDataProductsInnerToJSON(value['prevImageMobile']),
+        'prevImageMobile': BlogRequestDataThumbnailToJSON(value['prevImageMobile']),
         'Seo': OtherSeoComponentToJSON(value['seo']),
+        'slug': value['slug'],
+        'websiteButton': OtherLinkWithTextComponentToJSON(value['websiteButton']),
     };
 }
 

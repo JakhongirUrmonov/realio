@@ -16,6 +16,7 @@ export default async function Timeline({title, timeline, description}: Props) {
       sx={{
         width: "100vw",
         boxSizing: "border-box",
+        // marginLeft: {md: "-13%", xs: "-24px"},
       }}
     >
       <RoundedTitle text={title ?? ""} sx={{marginTop: {md: "160px", xs: "121px"}}} />
@@ -56,7 +57,7 @@ export default async function Timeline({title, timeline, description}: Props) {
               </Typography>
               <Typography variant="h3">{item.title}</Typography>
               <Divider sx={{backgroundColor: "#DEE1E4", my: "16px"}} />
-              <Typography variant="bm4" color={Colors.secondaryText}>
+              <Typography variant="br3" color={Colors.secondaryText}>
                 {item.description}
               </Typography>
             </Stack>

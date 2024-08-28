@@ -2,7 +2,6 @@
 import {HeaderProductsDataInnerAttributesLogo} from "@/types/REST/api/generated/models/HeaderProductsDataInnerAttributesLogo";
 import Image from "next/image";
 import {ReactElement} from "react";
-
 type Props = {
   src?: string;
   path?: HeaderProductsDataInnerAttributesLogo;
@@ -11,8 +10,23 @@ type Props = {
   [key: string]: any;
   height?: number;
   width?: number;
+  unoptimazed?: boolean;
+  priority?: boolean;
+  fill?: boolean;
 };
-const CustomImage = ({src, path, alt, className, height, width, ...props}: Props): ReactElement => {
+const CustomImage = ({
+  src,
+  path,
+  alt,
+  className,
+  height,
+  width,
+  sx,
+  unoptimazed,
+  priority,
+  fill,
+  ...props
+}: Props): ReactElement => {
   const url = src
     ? src
     : path?.data?.attributes?.url
@@ -25,10 +39,11 @@ const CustomImage = ({src, path, alt, className, height, width, ...props}: Props
         <Image
           src={url}
           alt={alt || "image"}
-          priority
-          unoptimized
-          width={width ? width : 100}
-          height={height ? height : 100}
+          priority={priority}
+          unoptimized={unoptimazed}
+          width={width ? width : fill ? undefined : 100}
+          height={height ? height : fill ? undefined : 100}
+          fill={fill}
           {...props}
         />
       )}

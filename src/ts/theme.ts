@@ -1,10 +1,17 @@
 "use client";
 import {createTheme, Theme} from "@mui/material/styles";
 import {Colors} from "./consts";
+import { Instrument_Sans } from "next/font/google";
 
+const instrument_Sans = Instrument_Sans({
+  weight: ["400",'500','600'],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     d1: React.CSSProperties;
+    d1light: React.CSSProperties;
     bs1: React.CSSProperties;
     bs2: React.CSSProperties;
     bs3: React.CSSProperties;
@@ -23,6 +30,7 @@ declare module "@mui/material/styles" {
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     d1: React.CSSProperties;
+    d1light: React.CSSProperties;
     bs1: React.CSSProperties;
     bs2: React.CSSProperties;
     bs3: React.CSSProperties;
@@ -60,6 +68,7 @@ declare module "@mui/material/Typography" {
     br3: true;
     br4: true;
     c1: true;
+    d1light:true;
   }
 }
 
@@ -76,6 +85,7 @@ function getTheme(): Theme {
         defaultProps: {
           variantMapping: {
             d1: "p",
+            d1light: 'p',
             bs1: "p",
             bs2: "p",
             bs3: "p",
@@ -107,6 +117,7 @@ function getTheme(): Theme {
     },
   });
   theme = createTheme(theme, {
+    cssVariables: true,
     components: {
       MuiButton: {
         styleOverrides: {
@@ -117,7 +128,7 @@ function getTheme(): Theme {
       },
     },
     typography: {
-      fontFamily: ["Instrument Sans", "Arial", "Helvetica", "Verdana", "sans-serif"].join(","),
+      fontFamily: [instrument_Sans.style.fontFamily, "Arial", "Helvetica", "Verdana", "sans-serif"].join(","),
       allVariants: {
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",
@@ -126,8 +137,21 @@ function getTheme(): Theme {
         lineHeight: "84px",
         fontSize: "56px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
+        [theme.breakpoints.down("md")]: {
+          fontSize: "32px",
+          lineHeight: "48px",
+        },
+      },
+      d1light: {
+        lineHeight: "84px",
+        fontSize: "56px",
+        fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
+        fontWeight: "400",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "32px",
           lineHeight: "48px",
@@ -137,8 +161,9 @@ function getTheme(): Theme {
         lineHeight: "60px",
         fontSize: "40px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "32px",
           lineHeight: "60px",
@@ -148,8 +173,9 @@ function getTheme(): Theme {
         lineHeight: "48px",
         fontSize: "32px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "28px",
           lineHeight: "48px",
@@ -157,21 +183,23 @@ function getTheme(): Theme {
       },
       h3: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
         fontSize: "28px",
         lineHeight: "44px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "24px",
-          lineHeight: "44px",
+          lineHeight: "32px",
         },
       },
       h4: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
         fontSize: "24px",
         lineHeight: "36px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "22px",
           lineHeight: "36px",
@@ -179,10 +207,11 @@ function getTheme(): Theme {
       },
       h5: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
         fontSize: "22px",
         lineHeight: "32px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "20px",
           lineHeight: "32px",
@@ -192,8 +221,9 @@ function getTheme(): Theme {
         fontSize: "20px",
         lineHeight: "32px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "600",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "20px",
           lineHeight: "32px",
@@ -203,15 +233,17 @@ function getTheme(): Theme {
         fontSize: "18px",
         lineHeight: "28px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "600",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       bs3: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "600",
         fontSize: "16px",
         lineHeight: "24px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "16px",
           lineHeight: "24px",
@@ -219,10 +251,11 @@ function getTheme(): Theme {
       },
       bs4: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "600",
         fontSize: "14px",
         lineHeight: "20px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         [theme.breakpoints.down("md")]: {
           fontSize: "14px",
           lineHeight: "20px",
@@ -232,64 +265,73 @@ function getTheme(): Theme {
         fontSize: "20px",
         lineHeight: "32px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       bm2: {
         fontSize: "18px",
         lineHeight: "28px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       bm3: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
         fontSize: "16px",
         lineHeight: "24px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       bm4: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
         fontSize: "14px",
         lineHeight: "20px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       br1: {
         fontSize: "20px",
         lineHeight: "32px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "400",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       br2: {
         fontSize: "18px",
         lineHeight: "28px",
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "400",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       br3: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "400",
         fontSize: "16px",
         lineHeight: "24px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       br4: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "400",
         fontSize: "14px",
         lineHeight: "20px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
       },
       c1: {
         fontStyle: "normal",
+        WebkitFontSmoothing: "antialiased",
         fontWeight: "500",
         fontSize: "16px",
         lineHeight: "24px",
-        fontFamily: "Instrument Sans, Arial, Helvetica, Verdana",
+        fontFamily: instrument_Sans.style.fontFamily,
         letterSpacing: "0.1em",
         textTransform: "uppercase",
       },

@@ -1,5 +1,5 @@
 "use client";
-import {Stack} from "@mui/material";
+import {Stack, SxProps} from "@mui/material";
 import React, {ReactNode} from "react";
 import {usePathname, useRouter} from "next/navigation";
 import {animatedPageOut} from "@/utils/functions";
@@ -7,9 +7,10 @@ import {animatedPageOut} from "@/utils/functions";
 type Props = {
   children: ReactNode;
   link: string;
+  sx?: SxProps;
 };
 
-function CustomLink({children, link}: Props): JSX.Element {
+function CustomLink({children, link, sx}: Props): JSX.Element {
   const router = useRouter();
   const path = usePathname();
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -19,7 +20,7 @@ function CustomLink({children, link}: Props): JSX.Element {
     }
   };
   return (
-    <Stack sx={{cursor: "pointer"}} onClick={handleClick}>
+    <Stack sx={{cursor: "pointer", ...sx}} onClick={handleClick}>
       {children}
     </Stack>
   );

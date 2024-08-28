@@ -43,6 +43,12 @@ export interface HeaderSocialsComponent {
      * @memberof HeaderSocialsComponent
      */
     discord?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HeaderSocialsComponent
+     */
+    shopLink?: string;
 }
 
 /**
@@ -66,6 +72,7 @@ export function HeaderSocialsComponentFromJSONTyped(json: any, ignoreDiscriminat
         'twitter': json['twitter'] == null ? undefined : json['twitter'],
         'linkedin': json['linkedin'] == null ? undefined : json['linkedin'],
         'discord': json['discord'] == null ? undefined : json['discord'],
+        'shopLink': json['shopLink'] == null ? undefined : json['shopLink'],
     };
 }
 
@@ -79,6 +86,7 @@ export function HeaderSocialsComponentToJSON(value?: HeaderSocialsComponent | nu
         'twitter': value['twitter'],
         'linkedin': value['linkedin'],
         'discord': value['discord'],
+        'shopLink': value['shopLink'],
     };
 }
 

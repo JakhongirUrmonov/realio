@@ -6,18 +6,19 @@ import Button from "./button";
 
 import TwitterLogo from "@/assets/icons/twitter.svg";
 import DiscordLogo from "@/assets/icons/discord.svg";
+import {OtherTextWithLinkComponent} from "@/types/REST/api/generated";
 type Props = {
   topBtnText?: string;
   title?: string;
   info?: string;
   // bottomButtons: BottomButtonProps[];
   sx?: SxProps;
-  website?: string;
+  website?: OtherTextWithLinkComponent;
   twitter?: string;
   discord?: string;
   isNetwork?: boolean;
-  appLink?: string;
-  walletLink?: string;
+  appLink?: OtherTextWithLinkComponent;
+  walletLink?: OtherTextWithLinkComponent;
 };
 
 const Hero = ({
@@ -40,7 +41,7 @@ const Hero = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        width: {lg: "70%", md: "100%", xs: "100vw"},
+        width: {lg: "70%", xs: "100%"},
         ...sx,
       }}
     >
@@ -71,12 +72,12 @@ const Hero = ({
       >
         {isNetwork ? (
           <>
-            <Button link={appLink} text={"Launch app"} />
-            <Button link={walletLink} text={"Add Network to Wallet"} light={true} />
+            <Button link={appLink?.link} text={appLink?.text} />
+            <Button link={walletLink?.link} text={walletLink?.text} light={true} />
           </>
         ) : (
           <>
-            <Button link={website} text={"Visit website"} />
+            <Button link={website?.link} text={website?.text} />
             <Button link={twitter} logo={TwitterLogo} light />
             <Button link={discord} logo={DiscordLogo} light />
           </>

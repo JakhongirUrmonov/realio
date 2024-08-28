@@ -22,7 +22,11 @@ export default async function About() {
         description={aboutData.data?.attributes?.teamDescription}
       />
       <Timeline title={aboutData.data?.attributes?.timelineTitle} timeline={aboutData.data?.attributes?.timeline} />
-      <Position title={aboutData.data?.attributes?.positionTitle} position={aboutData.data?.attributes?.position} />
+      {aboutData.data?.attributes?.position?.length && aboutData.data?.attributes?.position.length > 0 ? (
+        <Position title={aboutData.data?.attributes?.positionTitle} position={aboutData.data?.attributes?.position} />
+      ) : (
+        ""
+      )}
     </Stack>
   );
 }

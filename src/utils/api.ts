@@ -1,6 +1,7 @@
 import {IApiReturn} from "@/types/api";
+import {cache} from "react";
 
-export const getter = async <T>(url: string, withMeta?: boolean): Promise<IApiReturn<T>> => {
+export const getter = cache(async <T>(url: string, withMeta?: boolean): Promise<IApiReturn<T>> => {
   let result: IApiReturn<T> = {ok: false, data: null, msg: ""};
 
   try {
@@ -25,7 +26,7 @@ export const getter = async <T>(url: string, withMeta?: boolean): Promise<IApiRe
     result.msg = String(error);
     return result;
   }
-};
+});
 
 export const getData = <T>(url: string, withMeta?: boolean): Promise<T> => {
   return fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/api/${url}`, {

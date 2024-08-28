@@ -1,7 +1,7 @@
 "use client";
 
-import {ReactElement, useRef, useState} from "react";
-import {Stack} from "@mui/material";
+import {ReactElement, useState} from "react";
+import {Stack, Box} from "@mui/material";
 import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
@@ -10,8 +10,9 @@ import Button from "../network/button";
 import NextSvg from "@/assets/icons/next.svg";
 import DotsSvg from "@/assets/icons/dots.svg";
 import ActiveDotsSvg from "@/assets/icons//activedots.svg";
-import {HeaderProductsDataInnerAttributesLogoData} from "@/types/REST/api/generated";
-import CustomImage from "../CustomImage";
+import {HeaderProductsDataInnerAttributesLogoData} from "@/types/REST/api/generated/models/HeaderProductsDataInnerAttributesLogoData";
+import CarouselImage from "./CarouselImage";
+import {Colors} from "@/ts/consts";
 
 type Props = {
   data?: HeaderProductsDataInnerAttributesLogoData[];
@@ -20,6 +21,7 @@ function SampleNextArrow(props: any) {
   return (
     <Stack
       onClick={props.onClick}
+      className="arrows"
       sx={{
         position: "absolute",
         zIndex: 2,
@@ -38,6 +40,7 @@ function SamplePrevArrow(props: any) {
   return (
     <Stack
       onClick={props.onClick}
+      className="arrows"
       sx={{
         transform: "rotate(180deg)",
         position: "absolute",
@@ -67,37 +70,52 @@ const Carousel = ({data}: Props): ReactElement => {
     autoplay: true,
     waitForAnimate: false,
     autoplaySpeed: 2500,
-
-    beforeChange: (current: number) => setActiveIndex(current),
+    beforeChange: (currentSlide: number, nextSlide: number) => setActiveIndex(nextSlide),
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     appendDots: (dots: any) => (
       <ul style={{margin: "30px 0 0 0", padding: 0}}>
-        {dots.map((dot: any, index: number) => (
-          <li key={index} style={{display: "inline-block", margin: "0 4px"}}>
-            <Image
-              src={index === activeIndex ? ActiveDotsSvg : DotsSvg}
-              alt="dots"
-              width={index === activeIndex ? 30 : 15}
-              height={15}
-            />
-          </li>
-        ))}
+        {dots.map((dot: any, index: number) => {
+          return (
+            <li
+              key={index}
+              style={{display: "inline-block", margin: "0 3px", width: index === activeIndex ? 30 : 10, height: "auto"}}
+            >
+              <Box
+                sx={{
+                  background: index === activeIndex ? Colors.mainText : Colors.grey10,
+                  height: 10,
+                  width: index === activeIndex ? 30 : 10,
+                  transition: "all 0.4s linear",
+                  borderRadius: "30px",
+                }}
+              />
+            </li>
+          );
+        })}
       </ul>
     ),
-    customPaging: () => <Image src={DotsSvg} alt="next" width={15} height={15} />,
+    customPaging: () => (
+      <Box
+        sx={{
+          background: Colors.grey10,
+          height: 10,
+          width: 10,
+          transition: "all 0.3s linear",
+          borderRadius: "30px",
+        }}
+      />
+    ),
   };
 
   return (
     <Stack sx={{width: "100%"}}>
       <Stack
         sx={{
-          width: "95%",
-          // height: {md: "560px"},
-          maxWidth: {md: "958px", xs: "400px", sm: "600px"},
-          border: "4.83px solid rgba(255, 255, 255, 0.24)",
+          width: "100%",
+          // border: "4.83px solid rgba(255, 255, 255, 0.24)",
           boxShadow: "0px 0px 0px 1.21px rgba(255, 255, 255, 1)",
-          margin: "0 auto 80px auto",
+          margin: "0 0 80px 0",
         }}
       >
         <Stack
@@ -105,13 +123,11 @@ const Carousel = ({data}: Props): ReactElement => {
           sx={{
             "width": {md: "80%", xs: "100%"},
             "margin": "0px auto 0px auto",
-            "& li.slick-active img": {
-              backgroundImage: `url("@/assets/icons//activedots.svg")`,
-              backgroundSize: "cover",
-              width: "18px",
-              height: "6px",
-              content: '""',
-              display: "block",
+            "& .arrows": {
+              display: {md: data?.length && data?.length > 1 ? "flex" : "none", xs: "none"},
+            },
+            "& .slick-dots": {
+              display: data?.length && data?.length > 1 ? "block" : "none",
             },
           }}
         >
@@ -120,19 +136,12 @@ const Carousel = ({data}: Props): ReactElement => {
               <Stack
                 key={item.id}
                 sx={{
-                  "width": "100%",
-                  "height": "100%",
-                  "position": "relative",
-                  "borderRadius": "30px",
-                  "boxShadow": "0px 0px 0px 1.21px #FFFFFF",
-                  "overflow": "hidden",
-                  "& img": {
-                    width: "100%",
-                    height: "450px",
-                  },
+                  width: "100%",
+                  height: "100%",
+                  position: "relative",
                 }}
               >
-                <CustomImage alt="" style={{width: "100%", height: "100%"}} path={{data: item}} />
+                <CarouselImage image={{data: item}} />
               </Stack>
             ))}
           </Slider>

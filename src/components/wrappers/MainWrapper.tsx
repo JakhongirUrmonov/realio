@@ -12,14 +12,13 @@ const MainWrapper = ({children, sx, refs}: Props) => {
     <Stack
       sx={{
         height: "100%",
-        maxHeight: "100%",
         width: "100%",
-        maxWidth: "100%",
         alignItems: "center",
         paddingX: {md: "10.2%", xs: "24px"},
         boxSizing: "border-box",
         position: "relative",
-        overflowX: "hidden",
+        overflowX: "clip",
+        overflowY: "visible",
         ...sx,
       }}
       ref={refs}

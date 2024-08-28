@@ -42,7 +42,7 @@ export interface AboutPositionsComponent {
      * @type {string}
      * @memberof AboutPositionsComponent
      */
-    email?: string;
+    url?: string;
 }
 
 /**
@@ -65,7 +65,7 @@ export function AboutPositionsComponentFromJSONTyped(json: any, ignoreDiscrimina
         'id': json['id'] == null ? undefined : json['id'],
         'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'] == null ? undefined : json['description'],
-        'email': json['email'] == null ? undefined : json['email'],
+        'url': json['url'] == null ? undefined : json['url'],
     };
 }
 
@@ -78,7 +78,7 @@ export function AboutPositionsComponentToJSON(value?: AboutPositionsComponent | 
         'id': value['id'],
         'title': value['title'],
         'description': value['description'],
-        'email': value['email'],
+        'url': value['url'],
     };
 }
 

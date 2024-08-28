@@ -15,6 +15,7 @@ export default function NotFound() {
       >
         <Typography variant="d1">404</Typography>
         <Typography variant="h2">Page not found</Typography>
+        {/* <Ticker /> */}
       </Stack>
     </Stack>
   );

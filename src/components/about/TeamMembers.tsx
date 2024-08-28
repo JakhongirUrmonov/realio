@@ -56,14 +56,17 @@ export default function TeamMember({teamMember}: Props) {
               href={teamMember?.linkedin ?? ""}
               target="_blank"
               sx={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "24px",
-                border: "1px solid rgba(255,255,255,0.16)",
-                backgroundColor: "rgba(255,255,255,0.16)",
-                justifyContent: "center",
-                alignItems: "center",
-                marginRight: "12px",
+                "width": "48px",
+                "height": "48px",
+                "borderRadius": "24px",
+                "border": "1px solid rgba(255,255,255,0.16)",
+                "backgroundColor": "rgba(255,255,255,0.16)",
+                "justifyContent": "center",
+                "alignItems": "center",
+                "marginRight": "12px",
+                ":hover": {
+                  background: "linear-gradient(0deg, rgb(11 25 40 / 10%), rgb(11 25 40 / 10%))",
+                },
               }}
             >
               <CustomImage src={LinkedinLogo} style={{width: "16px", height: "16px"}} />
@@ -75,13 +78,16 @@ export default function TeamMember({teamMember}: Props) {
               href={teamMember?.twitter ?? ""}
               target="_blank"
               sx={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "24px",
-                border: "1px solid rgba(255,255,255,0.16)",
-                backgroundColor: "rgba(255,255,255,0.16)",
-                justifyContent: "center",
-                alignItems: "center",
+                "width": "48px",
+                "height": "48px",
+                "borderRadius": "24px",
+                "border": "1px solid rgba(255,255,255,0.16)",
+                "backgroundColor": "rgba(255,255,255,0.16)",
+                "justifyContent": "center",
+                "alignItems": "center",
+                ":hover": {
+                  background: "linear-gradient(0deg, rgb(11 25 40 / 10%), rgb(11 25 40 / 10%))",
+                },
               }}
             >
               <CustomImage src={TwitterLogo} style={{width: "16px", height: "16px"}} />

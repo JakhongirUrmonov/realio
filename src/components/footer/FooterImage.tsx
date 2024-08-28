@@ -11,7 +11,7 @@ const FooterImage = () => {
       {mobile ? (
         <CustomImage
           src={footerMobileImage}
-          style={{position: "absolute", top: 0, bottom: 0, width: "100vw", left: "-24px", height: "100%"}}
+          style={{position: "absolute", width: "100vw", left: "-24px", height: "67%"}}
         />
       ) : (
         <CustomImage

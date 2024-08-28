@@ -1,30 +1,32 @@
 "use client";
-import React, {use, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Stack, Typography} from "@mui/material";
-import {Colors} from "@/ts/consts";
+import {Colors, ZIndex} from "@/ts/consts";
 import {hasCookie, setCookie} from "cookies-next";
 import TagManager from "react-gtm-module";
+import { Cookie } from "@/app/CookieContext";
 let managerInitialized = false;
 
 const Cookies = () => {
-  const [showConsent, setShowConsent] = useState<boolean>(true);
+  const {isCookieShow, setIsCookieShow} = useContext(Cookie);
   const [cookieAccepted, setCookieAccepted] = useState<boolean>(false);
 
   useEffect(() => {
-    setShowConsent(hasCookie("localConsent") || hasCookie("localConsentReject"));
+    setIsCookieShow(!(hasCookie("localConsent") || hasCookie("localConsentReject")));
     setCookieAccepted(hasCookie("localConsent"));
   }, []);
 
   const acceptCookie = () => {
-    setShowConsent(true);
+    setIsCookieShow(false);
     setCookie("localConsent", "true", {});
     setCookieAccepted(true);
   };
 
   const rejectCookie = () => {
-    setShowConsent(true);
+    setIsCookieShow(false);
     setCookie("localConsentReject", "true", {});
   };
+
   useEffect(() => {
     if (cookieAccepted) {
       if (!managerInitialized) {
@@ -42,10 +44,6 @@ const Cookies = () => {
     }
   }, [cookieAccepted]);
 
-  if (showConsent) {
-    return null;
-  }
-
   return (
     <Stack
       sx={{
@@ -58,6 +56,8 @@ const Cookies = () => {
         borderRadius: "16px",
         bottom: {md: "32px", xs: "24px"},
         left: {xs: "24px", sm: "auto"},
+        zIndex: ZIndex.aboveHeader,
+        display: isCookieShow ? "block" : "none",
       }}
     >
       <Typography variant="bm2">We use cookies!</Typography>

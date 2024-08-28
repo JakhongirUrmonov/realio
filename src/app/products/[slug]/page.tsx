@@ -5,34 +5,40 @@ import {getter} from "@/utils/api";
 import {ProductListResponseDataItem} from "@/types/REST/api/generated";
 import {getSeo} from "@/utils/functions";
 import NotFound from "@/app/not-found";
+import MainWrapper from "@/components/wrappers/MainWrapper";
 
 type Props = {params: {slug: string}};
 
 export async function generateMetadata({params}: Props) {
-  const data = await getSeo(`products/${params.slug}`);
+  const data = await getSeo(`products?filters[slug][$eq]=${params.slug}`);
   return data;
 }
 export default async function ProductDetails({params}: Props) {
-  const populateProps: string[] = ["slider"];
-  const product = await getter<ProductListResponseDataItem>(`products/${params.slug}?populate=${populateProps.join()}`);
+  const populateProps: string[] = ["slider", "websiteButton"];
+  const product = await getter<ProductListResponseDataItem[]>(
+    `products?filters[slug][$eq]=${params.slug}&populate=${populateProps.join()}`
+  );
   if (!product.data) {
     return <NotFound />;
   }
   return (
-    <Stack
-      sx={{
-        marginTop: {md: "115px", xs: "80px"},
-      }}
-    >
-      <Hero
-        topBtnText={product.data?.attributes?.notification}
-        title={product.data?.attributes?.title}
-        info={product.data?.attributes?.description}
-        website={product.data?.attributes?.website}
-        twitter={product.data?.attributes?.twitter}
-        discord={product.data?.attributes?.discord}
-      />
-      <Carousel data={product.data?.attributes?.slider.data} />
-    </Stack>
+    <MainWrapper>
+      <Stack
+        sx={{
+          marginTop: {md: "115px", xs: "80px"},
+          width: "100%",
+        }}
+      >
+        <Hero
+          topBtnText={product.data[0]?.attributes?.notification}
+          title={product.data[0]?.attributes?.title}
+          info={product.data[0]?.attributes?.description}
+          website={product.data[0]?.attributes?.websiteButton}
+          twitter={product.data[0]?.attributes?.twitter}
+          discord={product.data[0]?.attributes?.discord}
+        />
+        <Carousel data={product.data[0]?.attributes?.slider.data} />
+      </Stack>
+    </MainWrapper>
   );
 }

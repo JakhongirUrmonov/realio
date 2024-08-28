@@ -25,6 +25,12 @@ import {
     HeaderProductsDataInnerAttributesSliderFromJSONTyped,
     HeaderProductsDataInnerAttributesSliderToJSON,
 } from './HeaderProductsDataInnerAttributesSlider';
+import type { OtherLinkWithTextComponent } from './OtherLinkWithTextComponent';
+import {
+    OtherLinkWithTextComponentFromJSON,
+    OtherLinkWithTextComponentFromJSONTyped,
+    OtherLinkWithTextComponentToJSON,
+} from './OtherLinkWithTextComponent';
 import type { AboutTeamMemberComponentImage } from './AboutTeamMemberComponentImage';
 import {
     AboutTeamMemberComponentImageFromJSON,
@@ -103,12 +109,6 @@ export interface Product {
      * @type {string}
      * @memberof Product
      */
-    website?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Product
-     */
     twitter?: string;
     /**
      * 
@@ -146,6 +146,18 @@ export interface Product {
      * @memberof Product
      */
     seo?: OtherSeoComponent;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    slug: string;
+    /**
+     * 
+     * @type {OtherLinkWithTextComponent}
+     * @memberof Product
+     */
+    websiteButton?: OtherLinkWithTextComponent;
     /**
      * 
      * @type {Date}
@@ -192,6 +204,7 @@ export function instanceOfProduct(value: object): value is Product {
     if (!('headerTitle' in value) || value['headerTitle'] === undefined) return false;
     if (!('headerDescription' in value) || value['headerDescription'] === undefined) return false;
     if (!('prevImageMobile' in value) || value['prevImageMobile'] === undefined) return false;
+    if (!('slug' in value) || value['slug'] === undefined) return false;
     return true;
 }
 
@@ -213,7 +226,6 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'prevImage': OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImage']),
         'slider': HeaderProductsDataInnerAttributesSliderFromJSON(json['slider']),
         'isDark': json['isDark'] == null ? undefined : json['isDark'],
-        'website': json['website'] == null ? undefined : json['website'],
         'twitter': json['twitter'] == null ? undefined : json['twitter'],
         'discord': json['discord'] == null ? undefined : json['discord'],
         'notification': json['notification'] == null ? undefined : json['notification'],
@@ -221,6 +233,8 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'headerDescription': json['headerDescription'],
         'prevImageMobile': OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImageMobile']),
         'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
+        'slug': json['slug'],
+        'websiteButton': json['websiteButton'] == null ? undefined : OtherLinkWithTextComponentFromJSON(json['websiteButton']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -243,7 +257,6 @@ export function ProductToJSON(value?: Product | null): any {
         'prevImage': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImage']),
         'slider': HeaderProductsDataInnerAttributesSliderToJSON(value['slider']),
         'isDark': value['isDark'],
-        'website': value['website'],
         'twitter': value['twitter'],
         'discord': value['discord'],
         'notification': value['notification'],
@@ -251,6 +264,8 @@ export function ProductToJSON(value?: Product | null): any {
         'headerDescription': value['headerDescription'],
         'prevImageMobile': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImageMobile']),
         'Seo': OtherSeoComponentToJSON(value['seo']),
+        'slug': value['slug'],
+        'websiteButton': OtherLinkWithTextComponentToJSON(value['websiteButton']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

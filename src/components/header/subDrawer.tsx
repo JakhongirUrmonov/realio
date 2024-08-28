@@ -1,4 +1,5 @@
-import React, {Dispatch, SetStateAction} from "react";
+"use client";
+import React, {Dispatch, SetStateAction, useContext} from "react";
 import {Stack, Box, List, Typography, Drawer, ListItem} from "@mui/material";
 import NetWorkButton from "@/components/network/button";
 import {INavItem} from "@/types/header";
@@ -6,10 +7,8 @@ import TwitterLogo from "@/assets/icons/twitter.svg";
 import DiscordLogo from "@/assets/icons/discord.svg";
 import LinkedinLogo from "@/assets/icons/linkedin.svg";
 import {Colors} from "@/ts/consts";
-import Image from "next/image";
 import {HamburgerBackIcon, HamburgerCloseIcon} from "@/assets/images/icons";
-import CustomImage from "../CustomImage";
-import Link from "next/link";
+import SubDrawerItem from "./subDrawerItem";
 
 interface Props {
   window?: () => Window;
@@ -26,7 +25,6 @@ export default function SubDrawerAppBar({window, item, open, setOpen, setMobileO
   const handleDrawerToggle = () => {
     setOpen((prevState) => !prevState);
   };
-
   const handleClose = () => {
     setOpen(false);
     setMobileOpen(false);
@@ -86,25 +84,17 @@ export default function SubDrawerAppBar({window, item, open, setOpen, setMobileO
                 </Typography>
               )}
               <Stack sx={{flexDirection: "column", marginTop: "8px"}}>
-                {i?.data?.map((item, key) => (
-                  <Stack
+                {i?.data?.map((innerItem, key) => (
+                  <SubDrawerItem
                     key={key}
-                    component={item.link ? Link : "div"}
-                    href={item.notProduct ? item.link ?? "" : `/products/${item.link}`}
-                    target={item.notProduct ? "_blank" : "_self"}
-                    sx={{width: "100%", flexDirection: "row", padding: "12px 0", textDecoration: "none"}}
-                    onClick={item.link ? handleClose : undefined}
-                  >
-                    <CustomImage style={{width: "40px", height: "40px"}} path={item.icon} />
-                    <Stack sx={{marginLeft: "16px"}}>
-                      <Typography variant="bm3" color={Colors.mainText}>
-                        {item.title}
-                      </Typography>
-                      <Typography variant="bm4" color={Colors.secondaryText}>
-                        {item.desc}
-                      </Typography>
-                    </Stack>
-                  </Stack>
+                    title={innerItem.title}
+                    link={innerItem.notProduct ? innerItem.link : `/products/${innerItem.link}`}
+                    desc={innerItem.desc}
+                    notProduct={innerItem.notProduct}
+                    icon={innerItem.icon}
+                    isWallet={innerItem.isWallet}
+                    handleClose={handleClose}
+                  />
                 ))}
               </Stack>
             </ListItem>

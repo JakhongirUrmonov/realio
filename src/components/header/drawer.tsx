@@ -1,3 +1,4 @@
+"use client";
 import React, {Dispatch, SetStateAction, useState} from "react";
 import {Stack, Box, keyframes, List, Typography, Drawer, ListItem} from "@mui/material";
 import NetWorkButton from "@/components/network/button";
@@ -22,20 +23,6 @@ interface Props {
 export default function DrawerAppBar({window, navItems, mobileOpen, setMobileOpen, socials}: Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [subItems, setSubItems] = useState<INavItem | undefined>(undefined);
-  const textAnimation = keyframes` 
-    0% {
-      opacity:0;
-      transform: translateX(-120px);
-    }
-    50% {
-      opacity:0;
-      transform: translateX(-120px);
-    }
-    100% {
-      opacity:1;
-      transform: translate(0);
-    }
-  `;
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -91,7 +78,6 @@ export default function DrawerAppBar({window, navItems, mobileOpen, setMobileOpe
                 variant="h4"
                 sx={{
                   textAlign: "center",
-                  animation: mobileOpen ? `${textAnimation} 0.${index + 5}s ease` : undefined,
                   color: Colors.secondaryText,
                   cursor: "pointer",
                 }}

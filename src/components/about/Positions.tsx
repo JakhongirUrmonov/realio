@@ -21,6 +21,7 @@ export default function Position({title, position}: Props) {
       sx={{
         width: "100vw",
         boxSizing: "border-box",
+        // marginLeft: {md: "-13%", xs: "-24px"},
       }}
     >
       <RoundedTitle text={title ?? ""} sx={{marginTop: {md: "88px", xs: "96px"}}} />
@@ -70,6 +71,7 @@ export default function Position({title, position}: Props) {
               </Typography>
               <Typography
                 variant="bm1"
+                onClick={() => window.open(item.url, "_blank")}
                 sx={{
                   color: Colors.whiteText,
                   padding: "16px 32px",

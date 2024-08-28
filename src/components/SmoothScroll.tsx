@@ -1,13 +1,16 @@
 "use client";
 import {Stack, StackProps} from "@mui/material";
-import React, {createContext, useEffect, useState} from "react";
+import React, {createContext, useEffect, useLayoutEffect, useState} from "react";
 import {ScrollTrigger} from "gsap/all";
 import gsap from "gsap";
 import {ScrollSmoother} from "gsap/ScrollSmoother";
 import {usePathname} from "next/navigation";
-// import HeaderWrapper from "./header/HeaderWrapper";
-
-type SmoothScrollProps = StackProps;
+import Header from "./header/Header";
+import {Header as HeaderType, SocialListResponseDataItem} from "@/types/REST/api/generated";
+type SmoothScrollProps = {
+  data?: HeaderType;
+  socials?: SocialListResponseDataItem;
+} & StackProps;
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -21,11 +24,11 @@ function SmoothScroll(props: SmoothScrollProps): JSX.Element {
   const [scrollSmoother, setScrollSmoother] = useState<ScrollSmoother>();
   const path = usePathname();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const context = gsap.context(() => {
       if (ref.current === null) return;
       const scrollSmoother = ScrollSmoother.create({
-        smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+        smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
         effects: true, // looks for data-speed and data-lag attributes on elements
         //smoothTouch: 0.5, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
         wrapper: ref.current, // a selector or element to listen for scroll events on instead of the window
@@ -40,7 +43,7 @@ function SmoothScroll(props: SmoothScrollProps): JSX.Element {
   }, [scrollSmoother, path]);
   return (
     <ScrollSmootherContext.Provider value={scrollSmoother}>
-      {/* <HeaderWrapper /> */}
+      <Header data={props.data} socials={props.socials} />
       <Stack ref={ref} id="smooth-wrapper" {...boxProps} sx={{height: "max-content", ...sx}}>
         <Stack sx={{height: "max-content", ...sx}} id={"smooth-content"}>
           {children}

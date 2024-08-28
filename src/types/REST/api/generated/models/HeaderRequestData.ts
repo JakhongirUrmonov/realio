@@ -13,24 +13,30 @@
  */
 
 import { mapValues } from '../runtime';
-import type { HeaderRequestDataProductsInner } from './HeaderRequestDataProductsInner';
-import {
-    HeaderRequestDataProductsInnerFromJSON,
-    HeaderRequestDataProductsInnerFromJSONTyped,
-    HeaderRequestDataProductsInnerToJSON,
-} from './HeaderRequestDataProductsInner';
 import type { HeaderTokenComponent } from './HeaderTokenComponent';
 import {
     HeaderTokenComponentFromJSON,
     HeaderTokenComponentFromJSONTyped,
     HeaderTokenComponentToJSON,
 } from './HeaderTokenComponent';
+import type { BlogRequestDataThumbnail } from './BlogRequestDataThumbnail';
+import {
+    BlogRequestDataThumbnailFromJSON,
+    BlogRequestDataThumbnailFromJSONTyped,
+    BlogRequestDataThumbnailToJSON,
+} from './BlogRequestDataThumbnail';
 import type { OtherTextWithLinkComponent } from './OtherTextWithLinkComponent';
 import {
     OtherTextWithLinkComponentFromJSON,
     OtherTextWithLinkComponentFromJSONTyped,
     OtherTextWithLinkComponentToJSON,
 } from './OtherTextWithLinkComponent';
+import type { HeaderWalletComponent } from './HeaderWalletComponent';
+import {
+    HeaderWalletComponentFromJSON,
+    HeaderWalletComponentFromJSONTyped,
+    HeaderWalletComponentToJSON,
+} from './HeaderWalletComponent';
 
 /**
  * 
@@ -38,12 +44,6 @@ import {
  * @interface HeaderRequestData
  */
 export interface HeaderRequestData {
-    /**
-     * 
-     * @type {string}
-     * @memberof HeaderRequestData
-     */
-    shopLink: string;
     /**
      * 
      * @type {Array<HeaderTokenComponent>}
@@ -58,23 +58,28 @@ export interface HeaderRequestData {
     connect?: Array<HeaderTokenComponent>;
     /**
      * 
-     * @type {Array<HeaderRequestDataProductsInner>}
+     * @type {Array<BlogRequestDataThumbnail>}
      * @memberof HeaderRequestData
      */
-    products?: Array<HeaderRequestDataProductsInner>;
+    products?: Array<BlogRequestDataThumbnail>;
     /**
      * 
      * @type {OtherTextWithLinkComponent}
      * @memberof HeaderRequestData
      */
     announcement?: OtherTextWithLinkComponent;
+    /**
+     * 
+     * @type {HeaderWalletComponent}
+     * @memberof HeaderRequestData
+     */
+    walletButtons?: HeaderWalletComponent;
 }
 
 /**
  * Check if a given object implements the HeaderRequestData interface.
  */
 export function instanceOfHeaderRequestData(value: object): value is HeaderRequestData {
-    if (!('shopLink' in value) || value['shopLink'] === undefined) return false;
     return true;
 }
 
@@ -88,11 +93,11 @@ export function HeaderRequestDataFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'shopLink': json['shopLink'],
         'headerTokens': json['headerTokens'] == null ? undefined : ((json['headerTokens'] as Array<any>).map(HeaderTokenComponentFromJSON)),
         'connect': json['connect'] == null ? undefined : ((json['connect'] as Array<any>).map(HeaderTokenComponentFromJSON)),
-        'products': json['products'] == null ? undefined : ((json['products'] as Array<any>).map(HeaderRequestDataProductsInnerFromJSON)),
+        'products': json['products'] == null ? undefined : ((json['products'] as Array<any>).map(BlogRequestDataThumbnailFromJSON)),
         'announcement': json['announcement'] == null ? undefined : OtherTextWithLinkComponentFromJSON(json['announcement']),
+        'walletButtons': json['walletButtons'] == null ? undefined : HeaderWalletComponentFromJSON(json['walletButtons']),
     };
 }
 
@@ -102,11 +107,11 @@ export function HeaderRequestDataToJSON(value?: HeaderRequestData | null): any {
     }
     return {
         
-        'shopLink': value['shopLink'],
         'headerTokens': value['headerTokens'] == null ? undefined : ((value['headerTokens'] as Array<any>).map(HeaderTokenComponentToJSON)),
         'connect': value['connect'] == null ? undefined : ((value['connect'] as Array<any>).map(HeaderTokenComponentToJSON)),
-        'products': value['products'] == null ? undefined : ((value['products'] as Array<any>).map(HeaderRequestDataProductsInnerToJSON)),
+        'products': value['products'] == null ? undefined : ((value['products'] as Array<any>).map(BlogRequestDataThumbnailToJSON)),
         'announcement': OtherTextWithLinkComponentToJSON(value['announcement']),
+        'walletButtons': HeaderWalletComponentToJSON(value['walletButtons']),
     };
 }
 

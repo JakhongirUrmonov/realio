@@ -100,6 +100,12 @@ export interface HomePage {
     seo?: OtherSeoComponent;
     /**
      * 
+     * @type {string}
+     * @memberof HomePage
+     */
+    blogsTitle?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof HomePage
      */
@@ -159,6 +165,7 @@ export function HomePageFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'products': json['products'] == null ? undefined : HeaderProductsFromJSON(json['products']),
         'announcement': json['announcement'] == null ? undefined : OtherTextWithLinkComponentFromJSON(json['announcement']),
         'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
+        'blogsTitle': json['blogsTitle'] == null ? undefined : json['blogsTitle'],
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -181,6 +188,7 @@ export function HomePageToJSON(value?: HomePage | null): any {
         'products': HeaderProductsToJSON(value['products']),
         'announcement': OtherTextWithLinkComponentToJSON(value['announcement']),
         'Seo': OtherSeoComponentToJSON(value['seo']),
+        'blogsTitle': value['blogsTitle'],
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

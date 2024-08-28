@@ -1,12 +1,13 @@
 "use client";
 import {Stack, Typography, Box} from "@mui/material";
-import React from "react";
+import React, {useContext} from "react";
 import {Colors} from "@/ts/consts";
 import CustomImage from "../CustomImage";
 import Link from "next/link";
 import {HeaderProductsDataInnerAttributesLogo} from "@/types/REST/api/generated/models/HeaderProductsDataInnerAttributesLogo";
 import {usePathname, useRouter} from "next/navigation";
 import {animatedPageOut} from "@/utils/functions";
+import {PopupContext} from "./Header";
 
 type Props = {
   link?: string;
@@ -15,16 +16,27 @@ type Props = {
   icon?: HeaderProductsDataInnerAttributesLogo | undefined;
   notProduct?: boolean;
   connect?: boolean;
+  isWallet?: boolean;
+  onMouseLeave?:() => void;
 };
 
-function ProductsButtonItem({link, title, connect, desc, icon, notProduct}: Props): JSX.Element {
+function ProductsButtonItem({link, title, connect, desc, icon, notProduct, isWallet,onMouseLeave}: Props): JSX.Element {
   const router = useRouter();
+  const {setIsPopupOpen} = useContext(PopupContext);
   const path = usePathname();
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    if (path !== link) {
+    if (isWallet) {
+      setIsPopupOpen?.(true);
+    }
+    if (path !== link && !isWallet && !notProduct) {
+      onMouseLeave?.();
       animatedPageOut(link ?? "", router);
     }
+    if (notProduct && link) {
+      window.open(link, "_blank");
+    }
+    if (notProduct) return undefined;
   };
   return (
     <Stack
@@ -34,19 +46,22 @@ function ProductsButtonItem({link, title, connect, desc, icon, notProduct}: Prop
         "padding": "12px 14px",
         "boxSizing": "border-box",
         "textDecoration": "none",
-        "cursor": link ? "pointer" : "default",
+        "cursor": link ? "pointer" : isWallet ? "pointer" : "default",
         "transition": "all 0.3s linear",
         "borderRadius": "10px",
         ":hover": {
-          background: link ? "#e9ebee" : undefined,
+          background: link ? "#e9ebee" : isWallet ? "#e9ebee" : undefined,
         },
       }}
       component={link ? Link : "div"}
-      href={notProduct ? link ?? "" : link}
-      onClick={notProduct ? undefined : handleClick}
+      href={link ?? ""}
+      onClick={handleClick}
       target={notProduct ? "_blank" : "_self"}
     >
-      <CustomImage style={{width: "40px", height: "40px", borderRadius: notProduct ? "20px" : undefined}} path={icon} />
+      <CustomImage
+        style={{width: "40px", height: "40px", borderRadius: connect ? "10px" : notProduct ? "20px" : undefined}}
+        path={icon}
+      />
       <Stack sx={{marginLeft: "16px"}}>
         <Typography variant="bm3" color={Colors.mainText}>
           {title}

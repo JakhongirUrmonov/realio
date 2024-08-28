@@ -14,31 +14,45 @@ export function formatNumber(num: number): string {
     return num.toString();
   }
 }
+
+
 export const animatedPageIn = () => {
-  const whitePageOut = document.getElementById("whitePageOut");
-  const tl = gsap.timeline();
-  if (whitePageOut) {
-    tl.set(whitePageOut, {opacity: 1, zIndex: 99}).to(whitePageOut, {
-      opacity: 0,
-      duration: 0.3,
-      ease: "linear",
-      zIndex: -1,
-    });
+  const transitionElement = document.getElementById("whitePageOut");
+
+  if (transitionElement) {
+    gsap.timeline()
+      .set(transitionElement, {
+        opacity: 1,
+        pointerEvents: "none", // Disable interactions during fade-in
+      })
+      .to(transitionElement, {
+        opacity: 0,
+        duration: 0.5, // Adjust the duration for the fade-in effect
+        ease: "power2.out",
+        onComplete: () => {
+          transitionElement.style.pointerEvents = "none"; // Ensure clicks are re-enabled after fade
+        },
+      });
   }
 };
+
 export const animatedPageOut = (href: string, router: AppRouterInstance) => {
-  const whitePageOut = document.getElementById("whitePageOut");
-  const tl = gsap.timeline();
-  if (whitePageOut) {
-    tl.set(whitePageOut, {opacity: 0, zIndex: -1}).to(whitePageOut, {
-      opacity: 1,
-      duration: 0.3,
-      zIndex: 99,
-      ease: "linear",
-      onComplete: () => {
-        router.push(href);
-      },
-    });
+  const transitionElement = document.getElementById("whitePageOut");
+
+  if (transitionElement) {
+    gsap.timeline()
+      .set(transitionElement, {
+        opacity: 0,
+        pointerEvents: "all", // Enable interactions for fade-out (if needed)
+      })
+      .to(transitionElement, {
+        opacity: 1,
+        duration: 0.5, // Adjust the duration for the fade-out effect
+        ease: "power2.in",
+        onComplete: () => {
+          router.push(href);
+        },
+      });
   }
 };
 export const getSeo = async (href: string) => {
@@ -64,20 +78,21 @@ export const getSeo = async (href: string) => {
   seo?.otherMetas?.forEach((meta) => {
     otherMetas[meta.name ?? ""] = meta.content;
   });
-  return {
-    title: seo?.metaTitle,
-    description: seo?.metaDescription,
-    robots: seo?.metaRobots,
-    openGraph: {
-      ...otherMetas,
-      ...socialNetworks,
-      title: seo?.metaTitle,
-      description: seo?.metaDescription,
-    },
-    ...socialNetworks,
-    keywords: seo?.keywords,
-    alternates: {
-      canonical: seo?.canonicalURL,
-    },
-  };
+  return;
+  // return {
+  //   title: seo?.metaTitle,
+  //   description: seo?.metaDescription,
+  //   robots: seo?.metaRobots,
+  //   openGraph: {
+  //     ...otherMetas,
+  //     ...socialNetworks,
+  //     title: seo?.metaTitle,
+  //     description: seo?.metaDescription,
+  //   },
+  //   ...socialNetworks,
+  //   keywords: seo?.keywords,
+  //   alternates: {
+  //     canonical: seo?.canonicalURL,
+  //   },
+  // };
 };

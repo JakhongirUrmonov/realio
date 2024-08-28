@@ -27,6 +27,7 @@ type Props = {
   minElement: number;
   minElementMd: number;
   minElementSm: number;
+  isBlog?: boolean;
 };
 
 const SlickSlider = ({
@@ -42,6 +43,7 @@ const SlickSlider = ({
   minElement,
   minElementMd,
   minElementSm,
+  isBlog,
 }: Props): ReactElement => {
   const md = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const sm = useMediaQuery(theme.breakpoints.between("sm", "md"));
@@ -49,6 +51,7 @@ const SlickSlider = ({
   const [tempSlideWidth, setTempSlideWidth] = useState<string>();
   const [slideNumber, setSlideNumber] = useState<number>(1);
   const [edgeCase, setEdgeCase] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (xs) {
       setTempSlideWidth(isPosition ? "93.5%" : slideWidthXs ? slideWidthXs : "65%");
@@ -78,9 +81,18 @@ const SlickSlider = ({
       else setEdgeCase(false);
   }, [children?.length, slideNumber, children]);
   return (
-    <Stack>
+    <Stack ref={containerRef} sx={{width: "100%"}}>
       {edgeCase && (
-        <Stack direction={"row"} sx={{justifyContent: "center", marginTop: "-24px", zIndex: 10, ...navContainerSx}}>
+        <Stack
+          direction={"row"}
+          sx={{
+            justifyContent: "center",
+            marginTop: "-24px",
+            zIndex: 10,
+            userSelect: "none",
+            ...navContainerSx,
+          }}
+        >
           <LeftArrow
             sx={{
               "cursor": "pointer",
@@ -127,15 +139,23 @@ const SlickSlider = ({
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
-        slidesPerView={"auto"}
+        slidesPerView={isBlog ? slideNumber : "auto"}
         spaceBetween={slideSpace}
         className="mySwiper"
         sx={{
-          "width": {xs: window.innerWidth - (isPosition ? (xs ? 24 : 48) : 34)},
-          "paddingLeft": {xs: isPosition ? "24px" : "34px"},
-          "paddingRight": isPosition ? "24px" : "0",
+          "width": {
+            xs: isBlog
+              ? (containerRef?.current?.clientWidth ?? 0) - (containerRef?.current?.clientWidth ?? 0) * 0.204
+              : (containerRef?.current?.clientWidth ?? 0) - (isPosition ? (xs ? 24 : 48) : 34),
+            lg: isBlog ? "100%" : undefined,
+          },
+          "paddingLeft": {xs: isBlog ? undefined : isPosition ? "24px" : "34px"},
+          "paddingRight": isBlog ? undefined : isPosition ? "24px" : "0",
           "& .swiper-wrapper": {
             justifyContent: edgeCase ? undefined : "center",
+          },
+          "& .swiper-slide:last-child": {
+            marginRight: isBlog && !edgeCase ? "0px !important" : undefined,
           },
           ...swiperContainerSx,
         }}

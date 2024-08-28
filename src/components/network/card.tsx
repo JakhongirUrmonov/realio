@@ -17,11 +17,11 @@ export type CardType = {
 const Card = (props: CardType): ReactElement => {
   return (
     <Stack sx={{width: "100%", height: "100%", backgroundColor: Colors.grey50, borderRadius: "24px"}}>
-      <Stack width="100%" height="243px" sx={{display: "flex", alignItems: "center"}}>
+      <Stack width="100%" height="243px" sx={{display: "flex", alignItems: "center",position:'relative'}}>
         <CustomImage
           alt={props.text}
           path={props.imgSrc}
-          unoptimized
+         fill
           style={{width: "100%", height: "100%", objectFit: "contain"}}
         />
       </Stack>

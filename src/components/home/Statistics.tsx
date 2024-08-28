@@ -14,7 +14,7 @@ export default async function Statistics() {
     },
     {
       value: formatNumber(result.data[4166].total_supply),
-      text: "Total supply",
+      text: "Network Supply Cap",
     },
     {
       value: `$${formatNumber(result.data[4166].quote.USD.market_cap)}`,
@@ -55,7 +55,7 @@ export default async function Statistics() {
                 width: {md: "1px", xs: "32px"},
                 height: {md: "32px", xs: "1px"},
                 backgroundColor: Colors.secondaryText,
-                margin: {lg: "0 40px", md: "0 28px", xs: "48px 0px"},
+                margin: {lg: "0 40px", md: "0 28px", xs: "20px 0px"},
               }}
             />
           )}

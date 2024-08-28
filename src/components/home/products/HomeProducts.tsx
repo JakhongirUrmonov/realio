@@ -16,12 +16,13 @@ function HomeProducts({products}: Props): JSX.Element {
         flexWrap: "wrap",
         gap: {md: "32px", xs: "16px"},
         rowGap: {md: "40px", xs: "16px"},
+        width:"100%"
       }}
     >
       {products?.map((item, key) => (
         <ProductCard
           key={key}
-          id={item.id}
+          slug={item.attributes?.slug}
           background={item.attributes?.prevImage}
           title={item.attributes?.prevTitle}
           description={item.attributes?.prevDescription}

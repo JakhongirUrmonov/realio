@@ -9,27 +9,27 @@ type Props = {
   hover: boolean;
   data: INavItemSub[];
   connect?: boolean;
+  onMouseLeave?:() => void;
 };
 
-function ProductsButton({hover, data, connect}: Props): JSX.Element {
+function ProductsButton({hover, data, connect, onMouseLeave}: Props): JSX.Element {
   return (
     <Stack
       sx={{
-        padding: hover ? "12px 16px" : 0,
+        padding: "12px 16px",
         position: "absolute",
         background: Colors.whiteText,
-        // background: "#fcfcfc",
         border: "0.5px solid #7B8D9D29",
         boxShadow: "0px 2px 5px 0px rgb(0 0 0 / 12%)",
         borderRadius: "10px",
-        top: "40px",
+        top: "50px",
         right: 0,
         transition: "opacity 0.3s linear",
         opacity: hover ? "1" : "0",
-        height: hover ? "auto" : "0",
         width: connect ? "309px" : "516px",
         maxWidth: {sm: "500px", md: "none"},
         overflow: "hidden",
+        visibility: hover ? "visible" : "hidden",
       }}
     >
       <Stack>
@@ -50,6 +50,8 @@ function ProductsButton({hover, data, connect}: Props): JSX.Element {
                   notProduct={item.notProduct}
                   icon={item.icon}
                   connect={connect}
+                  isWallet={item.isWallet}
+                  onMouseLeave={onMouseLeave}
                 />
               ))}
             </Stack>

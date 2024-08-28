@@ -1,4 +1,5 @@
 "use client";
+import {Colors} from "@/ts/consts";
 import {animatedPageIn} from "@/utils/functions";
 import {Stack, SxProps} from "@mui/material";
 import {usePathname} from "next/navigation";
@@ -24,7 +25,16 @@ const Template = ({children, sx, refs}: Props) => {
     >
       <Stack
         id={"whitePageOut"}
-        sx={{position: "absolute", top: 0, left: 0, width: "100vw", height: "100%", background: "white"}}
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100%",
+          background: Colors.whiteText,
+          zIndex: 100,
+          pointerEvents:"none"
+        }}
       />
 
       {children}

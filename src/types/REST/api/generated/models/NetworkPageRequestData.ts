@@ -19,6 +19,12 @@ import {
     NetworkSourceComponentFromJSONTyped,
     NetworkSourceComponentToJSON,
 } from './NetworkSourceComponent';
+import type { OtherLinkWithTextComponent } from './OtherLinkWithTextComponent';
+import {
+    OtherLinkWithTextComponentFromJSON,
+    OtherLinkWithTextComponentFromJSONTyped,
+    OtherLinkWithTextComponentToJSON,
+} from './OtherLinkWithTextComponent';
 import type { OtherSeoComponent } from './OtherSeoComponent';
 import {
     OtherSeoComponentFromJSON,
@@ -64,22 +70,22 @@ export interface NetworkPageRequestData {
     notification?: string;
     /**
      * 
-     * @type {string}
-     * @memberof NetworkPageRequestData
-     */
-    appLink?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NetworkPageRequestData
-     */
-    walletLink?: string;
-    /**
-     * 
      * @type {OtherSeoComponent}
      * @memberof NetworkPageRequestData
      */
     seo?: OtherSeoComponent;
+    /**
+     * 
+     * @type {OtherLinkWithTextComponent}
+     * @memberof NetworkPageRequestData
+     */
+    appLink?: OtherLinkWithTextComponent;
+    /**
+     * 
+     * @type {OtherLinkWithTextComponent}
+     * @memberof NetworkPageRequestData
+     */
+    walletLink?: OtherLinkWithTextComponent;
 }
 
 /**
@@ -107,9 +113,9 @@ export function NetworkPageRequestDataFromJSONTyped(json: any, ignoreDiscriminat
         'networkTitle': json['networkTitle'],
         'sources': json['sources'] == null ? undefined : ((json['sources'] as Array<any>).map(NetworkSourceComponentFromJSON)),
         'notification': json['notification'] == null ? undefined : json['notification'],
-        'appLink': json['appLink'] == null ? undefined : json['appLink'],
-        'walletLink': json['walletLink'] == null ? undefined : json['walletLink'],
         'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
+        'appLink': json['appLink'] == null ? undefined : OtherLinkWithTextComponentFromJSON(json['appLink']),
+        'walletLink': json['walletLink'] == null ? undefined : OtherLinkWithTextComponentFromJSON(json['walletLink']),
     };
 }
 
@@ -124,9 +130,9 @@ export function NetworkPageRequestDataToJSON(value?: NetworkPageRequestData | nu
         'networkTitle': value['networkTitle'],
         'sources': value['sources'] == null ? undefined : ((value['sources'] as Array<any>).map(NetworkSourceComponentToJSON)),
         'notification': value['notification'],
-        'appLink': value['appLink'],
-        'walletLink': value['walletLink'],
         'Seo': OtherSeoComponentToJSON(value['seo']),
+        'appLink': OtherLinkWithTextComponentToJSON(value['appLink']),
+        'walletLink': OtherLinkWithTextComponentToJSON(value['walletLink']),
     };
 }
 

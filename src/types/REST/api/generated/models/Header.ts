@@ -37,6 +37,12 @@ import {
     OtherTextWithLinkComponentFromJSONTyped,
     OtherTextWithLinkComponentToJSON,
 } from './OtherTextWithLinkComponent';
+import type { HeaderWalletComponent } from './HeaderWalletComponent';
+import {
+    HeaderWalletComponentFromJSON,
+    HeaderWalletComponentFromJSONTyped,
+    HeaderWalletComponentToJSON,
+} from './HeaderWalletComponent';
 
 /**
  * 
@@ -44,12 +50,6 @@ import {
  * @interface Header
  */
 export interface Header {
-    /**
-     * 
-     * @type {string}
-     * @memberof Header
-     */
-    shopLink: string;
     /**
      * 
      * @type {Array<HeaderTokenComponent>}
@@ -74,6 +74,12 @@ export interface Header {
      * @memberof Header
      */
     announcement?: OtherTextWithLinkComponent;
+    /**
+     * 
+     * @type {HeaderWalletComponent}
+     * @memberof Header
+     */
+    walletButtons?: HeaderWalletComponent;
     /**
      * 
      * @type {Date}
@@ -110,7 +116,6 @@ export interface Header {
  * Check if a given object implements the Header interface.
  */
 export function instanceOfHeader(value: object): value is Header {
-    if (!('shopLink' in value) || value['shopLink'] === undefined) return false;
     return true;
 }
 
@@ -124,11 +129,11 @@ export function HeaderFromJSONTyped(json: any, ignoreDiscriminator: boolean): He
     }
     return {
         
-        'shopLink': json['shopLink'],
         'headerTokens': json['headerTokens'] == null ? undefined : ((json['headerTokens'] as Array<any>).map(HeaderTokenComponentFromJSON)),
         'connect': json['connect'] == null ? undefined : ((json['connect'] as Array<any>).map(HeaderTokenComponentFromJSON)),
         'products': json['products'] == null ? undefined : HeaderProductsFromJSON(json['products']),
         'announcement': json['announcement'] == null ? undefined : OtherTextWithLinkComponentFromJSON(json['announcement']),
+        'walletButtons': json['walletButtons'] == null ? undefined : HeaderWalletComponentFromJSON(json['walletButtons']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -143,11 +148,11 @@ export function HeaderToJSON(value?: Header | null): any {
     }
     return {
         
-        'shopLink': value['shopLink'],
         'headerTokens': value['headerTokens'] == null ? undefined : ((value['headerTokens'] as Array<any>).map(HeaderTokenComponentToJSON)),
         'connect': value['connect'] == null ? undefined : ((value['connect'] as Array<any>).map(HeaderTokenComponentToJSON)),
         'products': HeaderProductsToJSON(value['products']),
         'announcement': OtherTextWithLinkComponentToJSON(value['announcement']),
+        'walletButtons': HeaderWalletComponentToJSON(value['walletButtons']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

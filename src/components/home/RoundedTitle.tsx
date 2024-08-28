@@ -32,16 +32,16 @@ function RoundedTitle({text, sx}: Props): JSX.Element {
         ...sx,
       }}
     >
-      <Stack sx={{position: "absolute", left: 0, top: 0}}>
-        <Image unoptimized src={xs ? leftImageMobile : leftImage} alt="test" />
+      <Stack sx={{position: "absolute", left: 0, top: 0, width:{sm:'261px',xs:"125px"},height:{sm:"140px",xs:"140px"}}}>
+        <Image fill src={xs ? leftImageMobile : leftImage} alt="test" />
       </Stack>
       <Stack sx={{height: "140px", justifyContent: "center"}}>
         <Typography variant="c1" color={Colors.secondaryText}>
           {text}
         </Typography>
       </Stack>
-      <Stack sx={{position: "absolute", right: 0, top: 0}}>
-        <Image unoptimized src={xs ? rightImageMobile : rightImage} alt="test" />
+      <Stack sx={{position: "absolute", right: 0, top: 0, width:{sm:'261px',xs:"157px"},height:{sm:"140px",xs:"140px"}}}>
+        <Image fill src={xs ? rightImageMobile : rightImage} alt="test" />
       </Stack>
     </Stack>
   );

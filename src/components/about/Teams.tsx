@@ -10,7 +10,7 @@ type Props = {
   description?: string;
 };
 
-export default async function Teams({title, team, description}: Props) {
+export default function Teams({title, team, description}: Props) {
   return (
     <Stack
       sx={{
@@ -19,6 +19,7 @@ export default async function Teams({title, team, description}: Props) {
         boxSizing: "border-box",
         alignItems: "center",
         paddingY: "80px",
+        // marginLeft: {md: "-13%", xs: "-24px"},
       }}
     >
       <RoundedTitle text={title ?? ""} />

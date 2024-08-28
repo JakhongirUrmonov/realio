@@ -25,6 +25,12 @@ import {
     NetworkSourceComponentFromJSONTyped,
     NetworkSourceComponentToJSON,
 } from './NetworkSourceComponent';
+import type { OtherLinkWithTextComponent } from './OtherLinkWithTextComponent';
+import {
+    OtherLinkWithTextComponentFromJSON,
+    OtherLinkWithTextComponentFromJSONTyped,
+    OtherLinkWithTextComponentToJSON,
+} from './OtherLinkWithTextComponent';
 import type { OtherSeoComponent } from './OtherSeoComponent';
 import {
     OtherSeoComponentFromJSON,
@@ -70,22 +76,22 @@ export interface NetworkPage {
     notification?: string;
     /**
      * 
-     * @type {string}
-     * @memberof NetworkPage
-     */
-    appLink?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NetworkPage
-     */
-    walletLink?: string;
-    /**
-     * 
      * @type {OtherSeoComponent}
      * @memberof NetworkPage
      */
     seo?: OtherSeoComponent;
+    /**
+     * 
+     * @type {OtherLinkWithTextComponent}
+     * @memberof NetworkPage
+     */
+    appLink?: OtherLinkWithTextComponent;
+    /**
+     * 
+     * @type {OtherLinkWithTextComponent}
+     * @memberof NetworkPage
+     */
+    walletLink?: OtherLinkWithTextComponent;
     /**
      * 
      * @type {Date}
@@ -143,9 +149,9 @@ export function NetworkPageFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'networkTitle': json['networkTitle'],
         'sources': json['sources'] == null ? undefined : ((json['sources'] as Array<any>).map(NetworkSourceComponentFromJSON)),
         'notification': json['notification'] == null ? undefined : json['notification'],
-        'appLink': json['appLink'] == null ? undefined : json['appLink'],
-        'walletLink': json['walletLink'] == null ? undefined : json['walletLink'],
         'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
+        'appLink': json['appLink'] == null ? undefined : OtherLinkWithTextComponentFromJSON(json['appLink']),
+        'walletLink': json['walletLink'] == null ? undefined : OtherLinkWithTextComponentFromJSON(json['walletLink']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -165,9 +171,9 @@ export function NetworkPageToJSON(value?: NetworkPage | null): any {
         'networkTitle': value['networkTitle'],
         'sources': value['sources'] == null ? undefined : ((value['sources'] as Array<any>).map(NetworkSourceComponentToJSON)),
         'notification': value['notification'],
-        'appLink': value['appLink'],
-        'walletLink': value['walletLink'],
         'Seo': OtherSeoComponentToJSON(value['seo']),
+        'appLink': OtherLinkWithTextComponentToJSON(value['appLink']),
+        'walletLink': OtherLinkWithTextComponentToJSON(value['walletLink']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),

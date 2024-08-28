@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {images: {
+const nextConfig = {
+  images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: ["picsum.photos", "localhost",'network.masanov.uz'],
+    domains: ["localhost",'strapi.realiostage.network'],
   },
   typescript: {
     // !! WARN !!

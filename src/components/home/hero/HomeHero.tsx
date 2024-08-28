@@ -276,29 +276,29 @@ function HomeHero(): JSX.Element {
                 id="realio"
                 d="M350.605 295.459C350.605 380.61 281.705 449.637 196.714 449.637C111.723 449.637 42.8227 380.61 42.8227 295.459C42.8227 210.309 111.723 141.281 196.714 141.281C281.705 141.281 350.605 210.309 350.605 295.459Z"
                 stroke="black"
-                stroke-opacity="0.08"
-                stroke-width="0.573152"
+                strokeOpacity="0.08"
+                strokeWidth="0.573152"
               />
               <path
                 id="liquid"
                 d="M413.652 295.461C413.652 415.431 316.525 512.686 196.714 512.686C76.9027 512.686 -20.2242 415.431 -20.2242 295.461C-20.2242 175.491 76.9027 78.2363 196.714 78.2363C316.525 78.2363 413.652 175.491 413.652 295.461Z"
                 stroke="black"
-                stroke-opacity="0.06"
-                stroke-width="0.573152"
+                strokeOpacity="0.06"
+                strokeWidth="0.573152"
               />
               <path
                 id="freehold"
                 d="M474.407 295.459C474.407 448.983 350.079 573.438 196.714 573.438C43.3493 573.438 -80.9781 448.983 -80.9781 295.459C-80.9781 141.936 43.3493 17.4804 196.714 17.4804C350.079 17.4804 474.407 141.936 474.407 295.459Z"
                 stroke="black"
-                stroke-opacity="0.03"
-                stroke-width="0.573152"
+                strokeOpacity="0.03"
+                strokeWidth="0.573152"
               />
               <path
                 id="district"
                 d="M539.745 295.461C539.745 485.071 386.165 638.779 196.714 638.779C7.26282 638.779 -146.318 485.071 -146.318 295.461C-146.318 105.851 7.26282 -47.8572 196.714 -47.8572C386.165 -47.8572 539.745 105.851 539.745 295.461Z"
                 stroke="black"
-                stroke-opacity="0.04"
-                stroke-width="0.573152"
+                strokeOpacity="0.04"
+                strokeWidth="0.573152"
               />
               <g opacity="0.8" filter="url(#filter1_d_128_5586)">
                 <path
@@ -316,7 +316,7 @@ function HomeHero(): JSX.Element {
                 <path
                   d="M184.081 297.128V296.749L184.084 296.751L184.086 297.128C184.085 297.128 184.083 297.128 184.081 297.128ZM252.661 231.504C250.038 267.048 220.23 295.329 184.078 295.56C183.223 295.563 182.804 296.603 183.418 297.198L184.55 298.293L184.559 298.302L185.667 299.41L185.667 299.41L244.98 358.66C244.98 358.66 244.98 358.661 244.98 358.661C246.145 359.825 246.459 361.483 245.836 363.01C245.165 364.541 243.77 365.461 242.138 365.461H185.663C184.571 365.461 183.653 365.08 182.868 364.296L122.438 303.882C121.274 302.718 120.959 301.06 121.582 299.533C122.253 298.002 123.648 297.081 125.279 297.081H171.242C178.326 297.081 184.493 291.381 184.493 284.577V231.14C184.493 228.969 186.282 227.18 188.454 227.18H248.698C249.872 227.18 250.818 227.597 251.596 228.492L251.607 228.505L251.62 228.518C252.388 229.325 252.74 230.36 252.661 231.504Z"
                   stroke="url(#paint4_linear_128_5586)"
-                  stroke-width="1.56767"
+                  strokeWidth="1.56767"
                 />
               </g>
             </g>
@@ -423,6 +423,7 @@ function HomeHero(): JSX.Element {
         id="realioIcon"
         alt="realio"
         src={realio}
+        priority
         style={{
           willChange: "transform",
           position: "absolute",
@@ -434,6 +435,7 @@ function HomeHero(): JSX.Element {
         id="districtIcon"
         alt="district"
         src={district}
+        priority
         style={{
           willChange: "transform",
           position: "absolute",
@@ -444,6 +446,7 @@ function HomeHero(): JSX.Element {
       <Image
         id="freeholdIcon"
         alt="freehold"
+        priority
         src={freehold}
         style={{
           willChange: "transform",
@@ -456,6 +459,7 @@ function HomeHero(): JSX.Element {
         id="liquidIcon"
         alt="liquid"
         src={liquid}
+        priority
         style={{
           willChange: "transform",
           position: "absolute",

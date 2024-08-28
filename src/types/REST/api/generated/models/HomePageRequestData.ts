@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { HeaderRequestDataProductsInner } from './HeaderRequestDataProductsInner';
-import {
-    HeaderRequestDataProductsInnerFromJSON,
-    HeaderRequestDataProductsInnerFromJSONTyped,
-    HeaderRequestDataProductsInnerToJSON,
-} from './HeaderRequestDataProductsInner';
 import type { HomeFeatureComponent } from './HomeFeatureComponent';
 import {
     HomeFeatureComponentFromJSON,
     HomeFeatureComponentFromJSONTyped,
     HomeFeatureComponentToJSON,
 } from './HomeFeatureComponent';
+import type { BlogRequestDataThumbnail } from './BlogRequestDataThumbnail';
+import {
+    BlogRequestDataThumbnailFromJSON,
+    BlogRequestDataThumbnailFromJSONTyped,
+    BlogRequestDataThumbnailToJSON,
+} from './BlogRequestDataThumbnail';
 import type { OtherTextWithLinkComponent } from './OtherTextWithLinkComponent';
 import {
     OtherTextWithLinkComponentFromJSON,
@@ -76,10 +76,10 @@ export interface HomePageRequestData {
     features?: Array<HomeFeatureComponent>;
     /**
      * 
-     * @type {Array<HeaderRequestDataProductsInner>}
+     * @type {Array<BlogRequestDataThumbnail>}
      * @memberof HomePageRequestData
      */
-    products?: Array<HeaderRequestDataProductsInner>;
+    products?: Array<BlogRequestDataThumbnail>;
     /**
      * 
      * @type {OtherTextWithLinkComponent}
@@ -92,6 +92,12 @@ export interface HomePageRequestData {
      * @memberof HomePageRequestData
      */
     seo?: OtherSeoComponent;
+    /**
+     * 
+     * @type {string}
+     * @memberof HomePageRequestData
+     */
+    blogsTitle?: string;
 }
 
 /**
@@ -120,9 +126,10 @@ export function HomePageRequestDataFromJSONTyped(json: any, ignoreDiscriminator:
         'productsTitle': json['productsTitle'],
         'featuresTitle': json['featuresTitle'],
         'features': json['features'] == null ? undefined : ((json['features'] as Array<any>).map(HomeFeatureComponentFromJSON)),
-        'products': json['products'] == null ? undefined : ((json['products'] as Array<any>).map(HeaderRequestDataProductsInnerFromJSON)),
+        'products': json['products'] == null ? undefined : ((json['products'] as Array<any>).map(BlogRequestDataThumbnailFromJSON)),
         'announcement': json['announcement'] == null ? undefined : OtherTextWithLinkComponentFromJSON(json['announcement']),
         'seo': json['Seo'] == null ? undefined : OtherSeoComponentFromJSON(json['Seo']),
+        'blogsTitle': json['blogsTitle'] == null ? undefined : json['blogsTitle'],
     };
 }
 
@@ -137,9 +144,10 @@ export function HomePageRequestDataToJSON(value?: HomePageRequestData | null): a
         'productsTitle': value['productsTitle'],
         'featuresTitle': value['featuresTitle'],
         'features': value['features'] == null ? undefined : ((value['features'] as Array<any>).map(HomeFeatureComponentToJSON)),
-        'products': value['products'] == null ? undefined : ((value['products'] as Array<any>).map(HeaderRequestDataProductsInnerToJSON)),
+        'products': value['products'] == null ? undefined : ((value['products'] as Array<any>).map(BlogRequestDataThumbnailToJSON)),
         'announcement': OtherTextWithLinkComponentToJSON(value['announcement']),
         'Seo': OtherSeoComponentToJSON(value['seo']),
+        'blogsTitle': value['blogsTitle'],
     };
 }
 

@@ -8,6 +8,7 @@ export type INavItemSub = {
     desc?: string;
     icon?: HeaderProductsDataInnerAttributesLogo | undefined;
     notProduct?: boolean;
+    isWallet?: boolean;
   }[];
 };
 

@@ -1,0 +1,45 @@
+<svg width="1204" height="488" viewBox="0 0 1204 488" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_5_1078)">
+<mask id="mask0_5_1078" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-154" y="-350" width="1512" height="914">
+<rect x="-154" y="-350" width="1512" height="913.771" fill="url(#paint0_radial_5_1078)"/>
+</mask>
+<g mask="url(#mask0_5_1078)">
+<g opacity="0.24" filter="url(#filter0_f_5_1078)">
+<circle cx="602" cy="667.304" r="574.636" fill="url(#paint1_linear_5_1078)"/>
+<circle cx="602" cy="667.304" r="574.636" fill="url(#paint2_radial_5_1078)"/>
+</g>
+<circle cx="602" cy="667.304" r="574.136" fill="url(#paint3_linear_5_1078)" stroke="url(#paint4_diamond_5_1078)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_5_1078" x="-96.6361" y="-31.3325" width="1397.27" height="1397.27" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="62" result="effect1_foregroundBlur_5_1078"/>
+</filter>
+<radialGradient id="paint0_radial_5_1078" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(602 -99.9402) rotate(90) scale(663.712 1098.23)">
+<stop stop-color="#D9D9D9"/>
+<stop offset="1" stop-color="#737373" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="paint1_linear_5_1078" x1="493.628" y1="388.189" x2="985.801" y2="1068.12" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.8"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<radialGradient id="paint2_radial_5_1078" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(455.178 460.372) rotate(51.597) scale(871.776)">
+<stop stop-color="#D23EB7"/>
+<stop offset="0.745" stop-color="#3E6DD2"/>
+</radialGradient>
+<linearGradient id="paint3_linear_5_1078" x1="493.628" y1="388.189" x2="985.801" y2="1068.12" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.48"/>
+<stop offset="1" stop-color="white" stop-opacity="0.8"/>
+</linearGradient>
+<radialGradient id="paint4_diamond_5_1078" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(353.695 156.364) rotate(66.0759) scale(641.896 680.86)">
+<stop stop-color="#3E6DD2"/>
+<stop offset="0.236855" stop-color="#B666DB"/>
+<stop offset="0.486855" stop-color="white"/>
+</radialGradient>
+<clipPath id="clip0_5_1078">
+<rect width="1204" height="488" fill="white"/>
+</clipPath>
+</defs>
+</svg>

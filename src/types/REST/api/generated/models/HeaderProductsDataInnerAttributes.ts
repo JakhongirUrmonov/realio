@@ -25,6 +25,12 @@ import {
     HeaderProductsDataInnerAttributesSliderFromJSONTyped,
     HeaderProductsDataInnerAttributesSliderToJSON,
 } from './HeaderProductsDataInnerAttributesSlider';
+import type { HeaderProductsDataInnerAttributesWebsiteButton } from './HeaderProductsDataInnerAttributesWebsiteButton';
+import {
+    HeaderProductsDataInnerAttributesWebsiteButtonFromJSON,
+    HeaderProductsDataInnerAttributesWebsiteButtonFromJSONTyped,
+    HeaderProductsDataInnerAttributesWebsiteButtonToJSON,
+} from './HeaderProductsDataInnerAttributesWebsiteButton';
 import type { HeaderProductsDataInnerAttributesSeo } from './HeaderProductsDataInnerAttributesSeo';
 import {
     HeaderProductsDataInnerAttributesSeoFromJSON,
@@ -97,12 +103,6 @@ export interface HeaderProductsDataInnerAttributes {
      * @type {string}
      * @memberof HeaderProductsDataInnerAttributes
      */
-    website?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HeaderProductsDataInnerAttributes
-     */
     twitter?: string;
     /**
      * 
@@ -140,6 +140,18 @@ export interface HeaderProductsDataInnerAttributes {
      * @memberof HeaderProductsDataInnerAttributes
      */
     seo?: HeaderProductsDataInnerAttributesSeo;
+    /**
+     * 
+     * @type {string}
+     * @memberof HeaderProductsDataInnerAttributes
+     */
+    slug?: string;
+    /**
+     * 
+     * @type {HeaderProductsDataInnerAttributesWebsiteButton}
+     * @memberof HeaderProductsDataInnerAttributes
+     */
+    websiteButton?: HeaderProductsDataInnerAttributesWebsiteButton;
     /**
      * 
      * @type {Date}
@@ -197,7 +209,6 @@ export function HeaderProductsDataInnerAttributesFromJSONTyped(json: any, ignore
         'prevImage': json['prevImage'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImage']),
         'slider': json['slider'] == null ? undefined : HeaderProductsDataInnerAttributesSliderFromJSON(json['slider']),
         'isDark': json['isDark'] == null ? undefined : json['isDark'],
-        'website': json['website'] == null ? undefined : json['website'],
         'twitter': json['twitter'] == null ? undefined : json['twitter'],
         'discord': json['discord'] == null ? undefined : json['discord'],
         'notification': json['notification'] == null ? undefined : json['notification'],
@@ -205,6 +216,8 @@ export function HeaderProductsDataInnerAttributesFromJSONTyped(json: any, ignore
         'headerDescription': json['headerDescription'] == null ? undefined : json['headerDescription'],
         'prevImageMobile': json['prevImageMobile'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['prevImageMobile']),
         'seo': json['Seo'] == null ? undefined : HeaderProductsDataInnerAttributesSeoFromJSON(json['Seo']),
+        'slug': json['slug'] == null ? undefined : json['slug'],
+        'websiteButton': json['websiteButton'] == null ? undefined : HeaderProductsDataInnerAttributesWebsiteButtonFromJSON(json['websiteButton']),
         'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'publishedAt': json['publishedAt'] == null ? undefined : (new Date(json['publishedAt'])),
@@ -227,7 +240,6 @@ export function HeaderProductsDataInnerAttributesToJSON(value?: HeaderProductsDa
         'prevImage': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImage']),
         'slider': HeaderProductsDataInnerAttributesSliderToJSON(value['slider']),
         'isDark': value['isDark'],
-        'website': value['website'],
         'twitter': value['twitter'],
         'discord': value['discord'],
         'notification': value['notification'],
@@ -235,6 +247,8 @@ export function HeaderProductsDataInnerAttributesToJSON(value?: HeaderProductsDa
         'headerDescription': value['headerDescription'],
         'prevImageMobile': OtherSeoComponentMetaSocialsInnerImageToJSON(value['prevImageMobile']),
         'Seo': HeaderProductsDataInnerAttributesSeoToJSON(value['seo']),
+        'slug': value['slug'],
+        'websiteButton': HeaderProductsDataInnerAttributesWebsiteButtonToJSON(value['websiteButton']),
         'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
         'publishedAt': value['publishedAt'] == null ? undefined : ((value['publishedAt']).toISOString()),
