@@ -44,6 +44,7 @@ const CustomImage = ({
           width={width ? width : fill ? undefined : 100}
           height={height ? height : fill ? undefined : 100}
           fill={fill}
+          sizes={fill ? "100%" : undefined}
           {...props}
         />
       )}

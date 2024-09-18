@@ -4,9 +4,8 @@ import Image from "next/image";
 import sectionImg from "@/assets/images/aboutIllustration.svg";
 import Card from "@/components/network/card";
 import RoundedTitle from "@/components/home/RoundedTitle";
-import {getter} from "@/utils/api";
+import {getter, getSeo} from "@/utils/api";
 import {NetworkPageListResponseDataItem} from "@/types/REST/api/generated";
-import {getSeo} from "@/utils/functions";
 import MainWrapper from "@/components/wrappers/MainWrapper";
 export async function generateMetadata() {
   const data = await getSeo(`network-page`);
@@ -19,6 +18,7 @@ export default async function NetWork() {
     <Stack
       sx={{
         marginTop: {md: "115px", xs: "80px"},
+        alignItems: "center",
       }}
     >
       <MainWrapper>

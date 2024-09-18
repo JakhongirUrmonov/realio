@@ -18,7 +18,7 @@ export default async function Statistics() {
     },
     {
       value: `$${formatNumber(result.data[4166].quote.USD.market_cap)}`,
-      text: "Market cap",
+      text: "Market Cap",
     },
     {
       value: `$${formatNumber(result.data[4166].quote.USD.volume_24h)}`,

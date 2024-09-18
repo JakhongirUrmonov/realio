@@ -54,6 +54,7 @@ export * from './BlogResponse';
 export * from './BlogResponseDataObject';
 export * from './BlogRichtextComponent';
 export * from './BlogSmallImageComponent';
+export * from './BlogYoutubeComponent';
 export * from './ErrorData';
 export * from './ErrorError';
 export * from './Footer';

@@ -1,7 +1,7 @@
 "use client";
 import {Colors} from "@/ts/consts";
 import {Stack, Typography} from "@mui/material";
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import CustomImage from "@/components/CustomImage";
 import {AspectRatioMode, useAspectRatio} from "@qubixstudio/sphere";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -21,40 +21,76 @@ type Props = {
 
 function ProductCard({background, productIcon, isDark, title, description, slug, backgroundMobile}: Props): JSX.Element {
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const imageResolution = useMediaQuery(theme.breakpoints.down("sm"));
   const ref = useRef<HTMLDivElement>(null);
-  const aspectRatio = useAspectRatio(mobile ? 345 / 500 : 589 / 582, AspectRatioMode.heightFromWidth, ref);
-  const [hover, setHover] = useState<boolean>(false);
-  const onMouseEnter = () => setHover(true);
-  const onMouseLeave = () => setHover(false);
+  // Media query check
+  const xs = useMediaQuery(theme.breakpoints.between("xs", "mini"));
+  const mini = useMediaQuery(theme.breakpoints.between("mini", "sm"));
+  const sm = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const md = useMediaQuery(theme.breakpoints.between("md", "lg"));
+
+  const [aspectRatioNumber, setAspectRatioNumber] = useState<number>(589 / 582);
+
+  useEffect(() => {
+    if (xs) {
+      setAspectRatioNumber(345 / 550);
+    } else if (mini) {
+      setAspectRatioNumber(345 / 400);
+    } else if (sm) {
+      setAspectRatioNumber(345 / 300);
+    } else if (md) {
+      setAspectRatioNumber(345 / 420);
+    } else {
+      setAspectRatioNumber(589 / 582);
+    }
+  }, [xs, mini, md, sm]);
+
+  const aspectRatio = useAspectRatio(aspectRatioNumber, AspectRatioMode.heightFromWidth, ref);
+
   return (
     <Stack
       ref={ref}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
       sx={{
         borderRadius: "24px",
         position: "relative",
-        width: {md: "calc(50% - 16px)", xs: "100%"},
+        width: {md: "calc(50% - 8px)", lg: "calc(50% - 16px)", xs: "100%", sm: "90%"},
         overflow: "hidden",
         cursor: "pointer",
         transition: "transform 0.2s linear",
         height: aspectRatio.height,
+        WebkitTapHighlightColor: "transparent",
       }}
     >
       <CustomLink sx={{borderRadius: "24px", overflow: "hidden", height: "100%"}} link={`/products/${slug}`}>
-        <Stack sx={{height: "100%", position: "relative"}}>
+        <Stack
+          sx={{
+            "height": "100%",
+            "position": "relative",
+            ":hover": {
+              "#productBackImage": {
+                transform: "scale(1.1)",
+              },
+            },
+          }}
+        >
           <CustomImage
-            path={mobile ? backgroundMobile : background}
+            path={imageResolution ? backgroundMobile : background}
+            id="productBackImage"
             fill
             style={{
               objectFit: "cover",
               transition: "transform 0.4s linear",
-              webKitMaskImage: "-webkit-radial-gradient(white, black)",
-              transform: hover ? "scale(1.1)" : "scale(1)",
               willChange: "transform",
             }}
           />
-          <Stack sx={{padding: {md: "40px", xs: "24px 14px 24px 24px"}, position: "absolute", top: 0, left: 0}}>
+          <Stack
+            sx={{
+              padding: {md: "30px 5px 30px 30px", lg: "40px", xs: "24px 14px 24px 24px", mini: "40px"},
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          >
             <CustomImage
               path={productIcon}
               style={{width: mobile ? "40px" : "64px", height: mobile ? "40px" : "64px", objectFit: "cover"}}

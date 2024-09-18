@@ -37,6 +37,12 @@ import {
     BlogMediumImageComponentFromJSONTyped,
     BlogMediumImageComponentToJSON,
 } from './BlogMediumImageComponent';
+import type { BlogYoutubeComponent } from './BlogYoutubeComponent';
+import {
+    BlogYoutubeComponentFromJSON,
+    BlogYoutubeComponentFromJSONTyped,
+    BlogYoutubeComponentToJSON,
+} from './BlogYoutubeComponent';
 import type { BlogImageWithTextComponent } from './BlogImageWithTextComponent';
 import {
     BlogImageWithTextComponentFromJSON,
@@ -92,6 +98,18 @@ export interface BlogRequestDataDynamicZoneInner {
      * @memberof BlogRequestDataDynamicZoneInner
      */
     text?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlogRequestDataDynamicZoneInner
+     */
+    imageType?: BlogRequestDataDynamicZoneInnerImageTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlogRequestDataDynamicZoneInner
+     */
+    link?: string;
 }
 
 
@@ -103,6 +121,15 @@ export const BlogRequestDataDynamicZoneInnerImagePositionEnum = {
     Right: 'right'
 } as const;
 export type BlogRequestDataDynamicZoneInnerImagePositionEnum = typeof BlogRequestDataDynamicZoneInnerImagePositionEnum[keyof typeof BlogRequestDataDynamicZoneInnerImagePositionEnum];
+
+/**
+ * @export
+ */
+export const BlogRequestDataDynamicZoneInnerImageTypeEnum = {
+    Vertical: 'vertical',
+    Horizontal: 'horizontal'
+} as const;
+export type BlogRequestDataDynamicZoneInnerImageTypeEnum = typeof BlogRequestDataDynamicZoneInnerImageTypeEnum[keyof typeof BlogRequestDataDynamicZoneInnerImageTypeEnum];
 
 
 /**
@@ -128,6 +155,8 @@ export function BlogRequestDataDynamicZoneInnerFromJSONTyped(json: any, ignoreDi
         'image': json['image'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['image']),
         'imagePosition': json['imagePosition'] == null ? undefined : json['imagePosition'],
         'text': json['text'] == null ? undefined : json['text'],
+        'imageType': json['imageType'] == null ? undefined : json['imageType'],
+        'link': json['link'] == null ? undefined : json['link'],
     };
 }
 
@@ -143,6 +172,8 @@ export function BlogRequestDataDynamicZoneInnerToJSON(value?: BlogRequestDataDyn
         'image': OtherSeoComponentMetaSocialsInnerImageToJSON(value['image']),
         'imagePosition': value['imagePosition'],
         'text': value['text'],
+        'imageType': value['imageType'],
+        'link': value['link'],
     };
 }
 

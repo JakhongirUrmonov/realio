@@ -1,10 +1,10 @@
 "use client";
 import {createTheme, Theme} from "@mui/material/styles";
 import {Colors} from "./consts";
-import { Instrument_Sans } from "next/font/google";
+import {Instrument_Sans} from "next/font/google";
 
 const instrument_Sans = Instrument_Sans({
-  weight: ["400",'500','600'],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
@@ -68,7 +68,7 @@ declare module "@mui/material/Typography" {
     br3: true;
     br4: true;
     c1: true;
-    d1light:true;
+    d1light: true;
   }
 }
 
@@ -85,7 +85,7 @@ function getTheme(): Theme {
         defaultProps: {
           variantMapping: {
             d1: "p",
-            d1light: 'p',
+            d1light: "p",
             bs1: "p",
             bs2: "p",
             bs3: "p",
@@ -107,7 +107,7 @@ function getTheme(): Theme {
       values: {
         //TODO update breakpoints
         xs: 0,
-        mini: 420,
+        mini: 400,
         sm: 582,
         md: 900,
         lg: 1220,

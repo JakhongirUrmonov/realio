@@ -26,7 +26,7 @@ export const metadata = {
   },
 };
 const instrument_Sans = Instrument_Sans({
-  weight: ["400",'500','600'],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
@@ -55,16 +55,20 @@ export default async function RootLayout({
         style={{
           margin: 0,
           overflowX: "hidden",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
         }}
       >
-        <AppRouterCacheProvider options={{ key: 'css' }}>
+        <AppRouterCacheProvider options={{key: "css"}}>
           <CookieContext>
-          <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
               <Header socials={socials.data?.attributes?.socials} data={header.data?.attributes} />
               {children}
               <Cookies />
               <Footer />
-          </ThemeProvider>
+            </ThemeProvider>
           </CookieContext>
         </AppRouterCacheProvider>
       </body>

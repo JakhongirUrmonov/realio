@@ -79,14 +79,14 @@ const Carousel = ({data}: Props): ReactElement => {
           return (
             <li
               key={index}
-              style={{display: "inline-block", margin: "0 3px", width: index === activeIndex ? 30 : 10, height: "auto"}}
+              style={{display: "inline-block", margin: "0 3px", width: index === activeIndex ? 30 : 15, height: "auto"}}
             >
               <Box
                 sx={{
-                  background: index === activeIndex ? Colors.mainText : Colors.grey10,
+                  background: index === activeIndex ? Colors.mainText : Colors.borderColor,
                   height: 10,
-                  width: index === activeIndex ? 30 : 10,
-                  transition: "all 0.4s linear",
+                  width: index === activeIndex ? 30 : 15,
+                  transition: "width 0.5s ease-out",
                   borderRadius: "30px",
                 }}
               />
@@ -98,10 +98,10 @@ const Carousel = ({data}: Props): ReactElement => {
     customPaging: () => (
       <Box
         sx={{
-          background: Colors.grey10,
+          background: Colors.borderColor,
           height: 10,
-          width: 10,
-          transition: "all 0.3s linear",
+          width: 15,
+          transition: "width 0.5s ease-out",
           borderRadius: "30px",
         }}
       />

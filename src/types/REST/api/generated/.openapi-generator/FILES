@@ -65,6 +65,7 @@ models/BlogResponse.ts
 models/BlogResponseDataObject.ts
 models/BlogRichtextComponent.ts
 models/BlogSmallImageComponent.ts
+models/BlogYoutubeComponent.ts
 models/ErrorData.ts
 models/ErrorError.ts
 models/Footer.ts

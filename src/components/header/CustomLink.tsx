@@ -20,7 +20,7 @@ function CustomLink({children, link, sx}: Props): JSX.Element {
     }
   };
   return (
-    <Stack sx={{cursor: "pointer", ...sx}} onClick={handleClick}>
+    <Stack sx={{cursor: "pointer", WebkitTapHighlightColor: "transparent", ...sx}} onClick={handleClick}>
       {children}
     </Stack>
   );

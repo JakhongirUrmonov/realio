@@ -26,11 +26,11 @@ function SubDrawerItem({link, title, desc, icon, notProduct, isWallet, handleClo
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (isWallet) {
-      handleClose?.()
+      handleClose?.();
       setIsPopupOpen?.(true);
     }
     if (path !== link && !isWallet && !notProduct) {
-      handleClose?.()
+      handleClose?.();
       animatedPageOut(link ?? "", router);
     }
     if (notProduct && link) {
@@ -43,7 +43,13 @@ function SubDrawerItem({link, title, desc, icon, notProduct, isWallet, handleClo
       component={link ? Link : "div"}
       href={notProduct ? link ?? "" : link}
       target={notProduct ? "_blank" : "_self"}
-      sx={{width: "100%", flexDirection: "row", padding: "12px 0", textDecoration: "none"}}
+      sx={{
+        width: "100%",
+        flexDirection: "row",
+        padding: "12px 0",
+        textDecoration: "none",
+        WebkitTapHighlightColor: "transparent",
+      }}
       onClick={handleClick}
     >
       <CustomImage style={{width: "40px", height: "40px"}} path={icon} />

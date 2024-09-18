@@ -1,9 +1,8 @@
 import Stack from "@mui/material/Stack";
 import Hero from "@/components/network/hero";
 import Carousel from "@/components/project/carousel";
-import {getter} from "@/utils/api";
+import {getter, getSeo} from "@/utils/api";
 import {ProductListResponseDataItem} from "@/types/REST/api/generated";
-import {getSeo} from "@/utils/functions";
 import NotFound from "@/app/not-found";
 import MainWrapper from "@/components/wrappers/MainWrapper";
 

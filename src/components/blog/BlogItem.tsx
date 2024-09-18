@@ -23,16 +23,22 @@ export default function BlogItem({blog}: Props) {
     }
   };
   return (
-    <Stack component={Link} onClick={handleClick} href={blog?.link ?? ""} ref={ref} sx={{textDecoration: "none"}}>
+    <Stack
+      component={Link}
+      onClick={handleClick}
+      href={blog?.link ?? ""}
+      ref={ref}
+      sx={{textDecoration: "none", WebkitTapHighlightColor: "transparent"}}
+    >
       <Stack
         sx={{
-          cursor: "pointer",
-          position: "relative",
-          borderRadius: "16px",
-          overflow:"hidden",
-          height: size.height,
-          ":hover":{
-            "img":{transform: "scale(1.1)"},
+          "cursor": "pointer",
+          "position": "relative",
+          "borderRadius": "16px",
+          "overflow": "hidden",
+          "height": size.height,
+          ":hover": {
+            img: {transform: "scale(1.1)"},
           },
         }}
       >

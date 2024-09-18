@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 type Props = {
   text?: string;
 };
-const AnimatedTextFill = dynamic(() => import("@qubixstudio/sphere/sphere/components/AnimatedTextFill"), {ssr: false});
+const AnimatedTextFill = dynamic(() => import("./AnimatedTextFill"), {ssr: false});
 function AnimatedText({text}: Props): JSX.Element {
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const tablet = useMediaQuery(theme.breakpoints.only("md"));
@@ -22,7 +22,7 @@ function AnimatedText({text}: Props): JSX.Element {
         justifyContent: "center",
         mx: "auto",
         paddingX: {md: "10.2%", xs: "24px"},
-        boxSizing:"border-box"
+        boxSizing: "border-box",
       }}
     >
       <AnimatedTextFill

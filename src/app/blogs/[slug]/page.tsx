@@ -11,7 +11,6 @@ import MainWrapper from "@/components/wrappers/MainWrapper";
 import BlogImage from "@/components/blog/BlogImage";
 
 const ProjectDetails = async ({params}: {params: {slug: string}}) => {
-  // let blogData;
   const populateProps: string[] = [
     "dynamicZone.bigImage",
     "dynamicZone.smallImage",
@@ -42,6 +41,17 @@ const ProjectDetails = async ({params}: {params: {slug: string}}) => {
           return (
             <BlogImage key={key} imageType={"mediumImage"} image={component.image} position={component.imagePosition} />
           );
+        case BlogComponent.youtube:
+          return (
+            <Stack
+              component={"iframe"}
+              sx={{aspectRatio: "16/9", borderRadius: "16px"}}
+              frameBorder="0"
+              allowFullScreen
+              key={key}
+              src={component.link}
+            />
+          );
         case BlogComponent.imageWithText:
           return (
             <Stack
@@ -49,17 +59,26 @@ const ProjectDetails = async ({params}: {params: {slug: string}}) => {
               sx={{
                 flexDirection: {lg: component.imagePosition == "left" ? "row-reverse" : "row"},
                 gap: "40px",
-                flex: "1 1 0",
               }}
             >
-              <Stack sx={{flex: "1 1 0", width: "100%"}}>
+              <Stack sx={{flex: component.imageType === "horizontal" ? "1 1 0" : undefined, width: "100%"}}>
                 <HtmlStringParser htmlString={component.text} />
               </Stack>
-              <Stack sx={{width: {xs: "100%", lg: undefined}, flex: "1 1 0"}}>
+              <Stack
+                sx={{
+                  width: {xs: "100%", md: component.imageType === "horizontal" ? "100%" : "35%"},
+                  flex: component.imageType === "horizontal" ? "1 1 0" : undefined,
+                }}
+              >
                 <CustomImage
                   unoptimazed
                   path={component.image}
-                  style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "16px"}}
+                  style={{
+                    width: "100%",
+                    height: component.imageType === "horizontal" ? "100%" : "auto",
+                    objectFit: "cover",
+                    borderRadius: "16px",
+                  }}
                 />
               </Stack>
             </Stack>

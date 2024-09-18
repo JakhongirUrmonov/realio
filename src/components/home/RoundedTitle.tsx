@@ -2,10 +2,10 @@
 import {Colors} from "@/ts/consts";
 import {Stack, Typography, SxProps, useMediaQuery} from "@mui/material";
 import React from "react";
-import leftImage from "@/assets/images/homeLeftTitle.png";
-import rightImage from "@/assets/images/homeRightTitle.png";
-import leftImageMobile from "@/assets/images/leftTitleMobile.png";
-import rightImageMobile from "@/assets/images/rightTitleMobile.png";
+import leftImage from "@/assets/images/homeLeftTitle.svg";
+import rightImage from "@/assets/images/homeRightTitle.svg";
+import leftImageMobile from "@/assets/images/leftTitleMobile.svg";
+import rightImageMobile from "@/assets/images/rightTitleMobile.svg";
 import Image from "next/image";
 import {theme} from "@/ts/theme";
 
@@ -32,7 +32,9 @@ function RoundedTitle({text, sx}: Props): JSX.Element {
         ...sx,
       }}
     >
-      <Stack sx={{position: "absolute", left: 0, top: 0, width:{sm:'261px',xs:"125px"},height:{sm:"140px",xs:"140px"}}}>
+      <Stack
+        sx={{position: "absolute", left: 0, top: 0, width: {sm: "261px", xs: "125px"}, height: {sm: "140px", xs: "140px"}}}
+      >
         <Image fill src={xs ? leftImageMobile : leftImage} alt="test" />
       </Stack>
       <Stack sx={{height: "140px", justifyContent: "center"}}>
@@ -40,7 +42,9 @@ function RoundedTitle({text, sx}: Props): JSX.Element {
           {text}
         </Typography>
       </Stack>
-      <Stack sx={{position: "absolute", right: 0, top: 0, width:{sm:'261px',xs:"157px"},height:{sm:"140px",xs:"140px"}}}>
+      <Stack
+        sx={{position: "absolute", right: 0, top: 0, width: {sm: "261px", xs: "157px"}, height: {sm: "140px", xs: "140px"}}}
+      >
         <Image fill src={xs ? rightImageMobile : rightImage} alt="test" />
       </Stack>
     </Stack>

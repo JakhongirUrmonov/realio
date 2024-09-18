@@ -2,27 +2,34 @@
 import {Stack, Typography} from "@mui/material";
 import {Colors} from "@/ts/consts";
 import Link from "next/link";
-import { useContext } from "react";
-import { Cookie } from "@/app/CookieContext";
+import {useContext} from "react";
+import {Cookie} from "@/app/CookieContext";
 interface Props {
   text?: string;
   link?: string;
   isCookie?: boolean;
 }
 const FooterLink = ({text, link, isCookie}: Props) => {
-    const {setIsCookieShow} = useContext(Cookie)
+  const {setIsCookieShow} = useContext(Cookie);
   const handleClick = () => {
-    if(isCookie)
-    setIsCookieShow(true)
+    if (isCookie) setIsCookieShow(true);
   };
 
   return (
-    <Stack sx={{flexDirection: {md: "row"}}} >
+    <Stack sx={{flexDirection: {md: "row"}}}>
       <Typography
-        component={!isCookie?Link:'p'}
-        href={!isCookie?link ?? "":undefined}
-        target={!isCookie?"_blank":undefined}
-        sx={{textDecoration: "none", color: Colors.lightGrey,cursor:"pointer"}}
+        component={!isCookie ? Link : "p"}
+        href={!isCookie ? link ?? "" : undefined}
+        target={!isCookie ? "_blank" : undefined}
+        sx={{
+          "textDecoration": "none",
+          "color": Colors.lightGrey,
+          "cursor": "pointer",
+          "transition": "color 0.3s linear",
+          ":hover": {
+            color: Colors.mainText,
+          },
+        }}
         variant="bm4"
         onClick={handleClick}
       >

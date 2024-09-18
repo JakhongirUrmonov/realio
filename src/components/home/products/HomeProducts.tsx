@@ -11,12 +11,12 @@ function HomeProducts({products}: Props): JSX.Element {
   return (
     <Stack
       sx={{
-        flexDirection: {md: "row"},
-        justifyContent: "flex-start",
+        flexDirection: {sm: "row"},
+        justifyContent: {xs: "center", md: "flex-start"},
         flexWrap: "wrap",
-        gap: {md: "32px", xs: "16px"},
-        rowGap: {md: "40px", xs: "16px"},
-        width:"100%"
+        gap: {md: "16px", lg: "32px", xs: "16px"},
+        rowGap: {md: "20px", lg: "40px", xs: "16px"},
+        width: "100%",
       }}
     >
       {products?.map((item, key) => (

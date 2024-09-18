@@ -1,11 +1,10 @@
 import {Stack} from "@mui/material";
-import {getter} from "@/utils/api";
+import {getter, getSeo} from "@/utils/api";
 import {AboutPageListResponseDataItem} from "@/types/REST/api/generated";
 import AnimatedText from "@/components/about/AnimatedText";
 import Teams from "@/components/about/Teams";
 import Timeline from "@/components/about/Timeline";
 import Position from "@/components/about/Positions";
-import {getSeo} from "@/utils/functions";
 export async function generateMetadata() {
   const data = await getSeo(`about-page`);
   return data;

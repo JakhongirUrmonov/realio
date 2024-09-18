@@ -57,7 +57,13 @@ export default async function Timeline({title, timeline, description}: Props) {
               </Typography>
               <Typography variant="h3">{item.title}</Typography>
               <Divider sx={{backgroundColor: "#DEE1E4", my: "16px"}} />
-              <Typography variant="br3" color={Colors.secondaryText}>
+              <Typography
+                variant="br3"
+                color={Colors.secondaryText}
+                sx={{
+                  fontSize: {xs: "15px", md: "16px"},
+                }}
+              >
                 {item.description}
               </Typography>
             </Stack>

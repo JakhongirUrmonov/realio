@@ -73,7 +73,7 @@ const Hero = ({
         {isNetwork ? (
           <>
             <Button link={appLink?.link} text={appLink?.text} />
-            <Button link={walletLink?.link} text={walletLink?.text} light={true} />
+            <Button link={walletLink?.link} text={walletLink?.text} />
           </>
         ) : (
           <>

@@ -4,7 +4,7 @@ import {Stack, Typography} from "@mui/material";
 import {Colors, ZIndex} from "@/ts/consts";
 import {hasCookie, setCookie} from "cookies-next";
 import TagManager from "react-gtm-module";
-import { Cookie } from "@/app/CookieContext";
+import {Cookie} from "@/app/CookieContext";
 let managerInitialized = false;
 
 const Cookies = () => {
@@ -14,7 +14,7 @@ const Cookies = () => {
   useEffect(() => {
     setIsCookieShow(!(hasCookie("localConsent") || hasCookie("localConsentReject")));
     setCookieAccepted(hasCookie("localConsent"));
-  }, []);
+  }, [setIsCookieShow]);
 
   const acceptCookie = () => {
     setIsCookieShow(false);

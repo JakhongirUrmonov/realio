@@ -1,16 +1,7 @@
 "use client";
 import {Stack, Typography} from "@mui/material";
 import Image from "next/image";
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-} from "react";
+import React, {createContext, Dispatch, SetStateAction, useCallback, useEffect, useRef, useState, useMemo} from "react";
 import logo from "@/assets/images/logo.svg";
 import Button from "./Button";
 import Link from "next/link";
@@ -23,7 +14,10 @@ import tokenImage from "@/assets/icons/headerToken.svg";
 import CustomLink from "./CustomLink";
 import gsap from "gsap";
 import WalletButton from "./wallet/Wallet";
-
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+import Loader from "../share/Loader";
+import MainWrapper from "../wrappers/MainWrapper";
+gsap.registerPlugin(ScrollTrigger);
 interface Props {
   window?: () => Window;
   data?: HeaderType;
@@ -43,11 +37,7 @@ export const PopupContext = createContext<AppContextInterface>(popupContextDefau
 
 function Header(props: Props): JSX.Element {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [opacity, setOpacity] = useState(0);
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-  const prevScroll = useRef(0);
-  const currentScroll = useRef(0);
-  const timer = useRef<NodeJS.Timeout | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   // Memoize nav items to avoid re-creating them on every render
@@ -125,6 +115,7 @@ function Header(props: Props): JSX.Element {
               gsap.to(ref.current, {
                 opacity: self.direction === -1 ? 1 : 0,
                 duration: 0.3,
+                pointerEvents: self.direction === -1 ? "all" : "none",
               });
             },
           },
@@ -147,11 +138,28 @@ function Header(props: Props): JSX.Element {
   return (
     <PopupContext.Provider value={{isPopupOpen, setIsPopupOpen}}>
       <Stack
+        id={"whitePageOut"}
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100%",
+          background: Colors.whiteText,
+          zIndex: 100,
+          pointerEvents: "none",
+        }}
+      >
+        <Loader />
+      </Stack>
+      <Stack
         ref={ref}
         sx={{
           position: "fixed",
           width: "100%",
           zIndex: ZIndex.aboveHeader,
+          justifyContent: "center",
+          alignItems: "center",
           top: 0,
           left: 0,
         }}
@@ -187,7 +195,7 @@ function Header(props: Props): JSX.Element {
             </Stack>
           </Stack>
         )}
-        <Stack sx={{overflow: "visible", paddingX: {md: "10.2%", xs: "24px"}}}>
+        <MainWrapper>
           <Stack
             sx={{
               flexDirection: "row",
@@ -231,7 +239,7 @@ function Header(props: Props): JSX.Element {
               setMobileOpen={setMobileOpen}
             />
           </Stack>
-        </Stack>
+        </MainWrapper>
       </Stack>
       {props.data?.walletButtons ? (
         <WalletButton open={isPopupOpen} data={props.data?.walletButtons} setOpen={setIsPopupOpen} />

@@ -80,6 +80,7 @@ export default function DrawerAppBar({window, navItems, mobileOpen, setMobileOpe
                   textAlign: "center",
                   color: Colors.secondaryText,
                   cursor: "pointer",
+                  WebkitTapHighlightColor: "transparent",
                 }}
                 onClick={() => {
                   if (item.sub?.length) {

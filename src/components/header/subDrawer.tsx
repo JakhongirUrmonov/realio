@@ -77,7 +77,15 @@ export default function SubDrawerAppBar({window, item, open, setOpen, setMobileO
         </Stack>
         <List sx={{width: "100%"}}>
           {item?.sub?.map((i, index) => (
-            <ListItem key={index} sx={{display: "flex", flexDirection: "column", alignItems: "start", padding: 0}}>
+            <ListItem
+              key={index}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+                padding: 0,
+              }}
+            >
               {i?.title && (
                 <Typography variant="bm4" sx={{color: Colors.secondaryText, marginTop: "24px"}}>
                   {i.title}

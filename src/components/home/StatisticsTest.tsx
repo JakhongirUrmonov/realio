@@ -1,82 +1,11 @@
 "use client";
+import {getRioCirculationData, getEthereumData, getStellarData, getAlgorandData} from "@/utils/api";
+import {numbersFormatter} from "@/utils/functions";
 import React, {useState, useEffect, useCallback} from "react";
-const numbersFormatter = (num: number, digits: number) => {
-  const lookup = [
-    {value: 1, symbol: ""},
-    {value: 1e3, symbol: "k"},
-    {value: 1e6, symbol: "M"},
-    {value: 1e9, symbol: "G"},
-    {value: 1e12, symbol: "T"},
-    {value: 1e15, symbol: "P"},
-    {value: 1e18, symbol: "E"},
-  ];
-  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-  const item = lookup
-    .slice()
-    .reverse()
-    .find(({value}) => num >= value);
-  const result = item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
-  return result;
-};
 
 const formatValue3 = (value: number) => value.toFixed(3);
 const formatValue2 = (value: number) => value.toFixed(2);
 const formatValue1 = (value: number) => value.toFixed(1);
-console.log(process.env.NEXT_PUBLIC_RIO_STELLAR_HOLDERS_URL ?? "");
-const getRioCirculationData = async () => {
-  try {
-    const res = await fetch(process.env.NEXT_PUBLIC_RIO_STELLAR_HOLDERS_URL ?? "");
-    const data = await res.json();
-    return {
-      circulating: Math.round(parseFloat(data)),
-    };
-  } catch (e) {
-    return {holders: 0};
-  }
-};
-
-const getEthereumData = async () => {
-  try {
-    const res = await fetch(process.env.NEXT_PUBLIC_RIO_ETHEREUM_DATA_URL ?? "");
-    const data = await res.json();
-    return {
-      price: data.tokenInfo.price.rate,
-      percentChange: data.tokenInfo.price.diff,
-      volume: data.tokenInfo.price.volume24h,
-      holders: data.tokenInfo.holdersCount,
-    };
-  } catch (e) {
-    // TODO: add info toast
-    return {price: 0, volume: 0, percentChange: 0, holders: 0};
-  }
-};
-
-const getStellarData = async () => {
-  try {
-    const res = await fetch(process.env.NEXT_PUBLIC_REACT_APP_RIO_STELLAR_HOLDERS_URL ?? "");
-    const data = await res.json();
-    const numAccounts = data._embedded.records[0].num_accounts;
-    return {
-      holders: numAccounts,
-    };
-  } catch (e) {
-    // TODO: add info toast
-    return {holders: 0};
-  }
-};
-
-const getAlgorandData = async () => {
-  try {
-    const res = await fetch(process.env.NEXT_PUBLIC_REACT_APP_RIO_ALGORAND_HOLDERS_URL ?? "");
-    const data = await res.json();
-    return {
-      holders: data.balances.length,
-    };
-  } catch (e) {
-    // TODO: add info toast
-    return {holders: 0};
-  }
-};
 
 const tallyHolders = (holders: Record<string, number>) => {
   return Object.keys(holders).reduce((acc, key) => {
