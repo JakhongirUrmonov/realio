@@ -23,19 +23,19 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
   const [title, setTitle] = useState<string | undefined>(data?.title ?? "");
   const [desc, setDesc] = useState<string | undefined>(data?.description ?? "");
   const [error, setError] = useState<boolean>(false);
-  const [keplrClicked, setKeplrClicked] = useState<boolean>(false)
-  const [metaMaskClicked, setMetaMaskClicked] = useState<boolean>(false)
+  const [keplrClicked, setKeplrClicked] = useState<boolean>(false);
+  const [metaMaskClicked, setMetaMaskClicked] = useState<boolean>(false);
   const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const handleClose = () => {
     setOpen?.(false);
     setDesc(data?.description);
-    setTitle(data?.title)
-    setImage(undefined)
+    setTitle(data?.title);
+    setImage(undefined);
   };
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
       console.log("Metamask is installed");
-      
+
       setMetaMaskInstalled(true);
       setError(false);
     } else {
@@ -50,10 +50,8 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       setKeplrInstalled(true);
       setError(false);
     }
-  
-  }, [data?.connection?.errorMessageSubtitle, data?.connection?.errorMessageTitle]) ;
+  }, [data?.connection?.errorMessageSubtitle, data?.connection?.errorMessageTitle]);
 
-  
   const handleRetry = () => {
     if (metaMaskClicked) connectToMetaMask();
     if (keplrClicked) connectToKeplr();
@@ -64,13 +62,13 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       window.location.href = "metamask://";
       return;
     }
-    setKeplrClicked(false)
+    setKeplrClicked(false);
     setImage(data?.metamaskImage);
     setTitle(data?.connection?.awaitingMessageTitle);
-    setError(false)
+    setError(false);
     setDesc(`${data?.connection?.awaitingMessageSubtitle} ${data?.metamaskTitle}`);
-    if(!metaMaskInstalled){
-      setError(true)
+    if (!metaMaskInstalled) {
+      setError(true);
       setTitle("MetaMask is not installed");
       setDesc(isMobile() ? "Please install MetaMask mobile app" : "Please install MetaMask extension");
       return;
@@ -123,13 +121,13 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       window.location.href = "keplrwallet://";
       return;
     }
-    setMetaMaskClicked(false)
+    setMetaMaskClicked(false);
     setImage(data?.keplrImage);
     setTitle(data?.connection?.awaitingMessageTitle ?? "Awaiting confirmation");
     setDesc(`${data?.connection?.awaitingMessageSubtitle} ${data?.keplrText}`);
-    setError(false)
-    if(!keplrInstalled){
-      setError(true)
+    setError(false);
+    if (!keplrInstalled) {
+      setError(true);
       setTitle("Keplr is not installed");
       setTitle(isMobile() ? "Please install Keplr mobile app" : "Please install Keplr extension");
       return;
@@ -150,7 +148,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       setError(true);
     }
 
-    try {    
+    try {
       await window.keplr.experimentalSuggestChain({
         chainId: process.env.NEXT_PUBLIC_REACT_APP_CHAIN_ID,
         chainName: "realio",
@@ -254,8 +252,9 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
               title={data?.keplrText ?? ""}
               status={keplrInstalled ? "Installed" : undefined}
               onClick={() => {
-                setKeplrClicked(true)
-                connectToKeplr()}}
+                setKeplrClicked(true);
+                connectToKeplr();
+              }}
               icon={data?.keplrImage}
             />
             <WalletItem
@@ -263,8 +262,9 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
               status={metaMaskInstalled ? "Installed" : undefined}
               icon={data?.metamaskImage}
               onClick={() => {
-                setMetaMaskClicked(true)
-                connectToMetaMask()}}
+                setMetaMaskClicked(true);
+                connectToMetaMask();
+              }}
             />
           </Stack>
           <Stack
@@ -292,34 +292,36 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
                 {desc ? desc : ""}
               </Typography>
             )}
-            {error && (metaMaskClicked && metaMaskInstalled) || (keplrClicked && keplrInstalled) && (
-              <Typography
-                component="button"
-                variant="bm3"
-                onClick={handleRetry}
-                sx={{
-                  "width": "auto",
-                  "background": "linear-gradient(0deg, #0B1928, rgb(11 25 40 / 83%))",
-                  "outline": "none",
-                  "cursor": "pointer",
-                  "padding": "12px 24px",
-                  "gap": "8px",
-                  "borderRadius": "100px",
-                  "border": "1px solid",
-                  "borderImageSource": "linear-gradient(180deg, rgba(245, 245, 245, 0.24) 0%, rgba(245, 245, 245, 0) 100%)",
-                  "height": "48px",
-                  "boxShadow": "0px 0px 0px 1px #F5F8F9",
-                  "justifyContent": "center",
-                  "transition": "all 0.3s linear",
-                  "color": Colors.whiteText,
-                  ":hover": {
-                    background: "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
-                  },
-                }}
-              >
-                {desc}
-              </Typography>
-            )}
+            {(error && metaMaskClicked && metaMaskInstalled) ||
+              (keplrClicked && keplrInstalled && (
+                <Typography
+                  component="button"
+                  variant="bm3"
+                  onClick={handleRetry}
+                  sx={{
+                    "width": "auto",
+                    "background": "linear-gradient(0deg, #0B1928, rgb(11 25 40 / 83%))",
+                    "outline": "none",
+                    "cursor": "pointer",
+                    "padding": "12px 24px",
+                    "gap": "8px",
+                    "borderRadius": "100px",
+                    "border": "1px solid",
+                    "borderImageSource":
+                      "linear-gradient(180deg, rgba(245, 245, 245, 0.24) 0%, rgba(245, 245, 245, 0) 100%)",
+                    "height": "48px",
+                    "boxShadow": "0px 0px 0px 1px #F5F8F9",
+                    "justifyContent": "center",
+                    "transition": "all 0.3s linear",
+                    "color": Colors.whiteText,
+                    ":hover": {
+                      background: "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
+                    },
+                  }}
+                >
+                  {desc}
+                </Typography>
+              ))}
           </Stack>
         </Stack>
       </Stack>

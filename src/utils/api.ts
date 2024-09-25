@@ -97,22 +97,6 @@ export const getSeo = async (href: string) => {
     otherMetas[meta.name ?? ""] = meta.content;
   });
   return {};
-  // return {
-  //   title: seo?.metaTitle,
-  //   description: seo?.metaDescription,
-  //   robots: seo?.metaRobots,
-  //   openGraph: {
-  //     ...otherMetas,
-  //     ...socialNetworks,
-  //     title: seo?.metaTitle,
-  //     description: seo?.metaDescription,
-  //   },
-  //   ...socialNetworks,
-  //   keywords: seo?.keywords,
-  //   alternates: {
-  //     canonical: seo?.canonicalURL,
-  //   },
-  // };
 };
 
 export const getRioCirculationData = async () => {
