@@ -9,7 +9,7 @@ type Props = {
   hover: boolean;
   data: INavItemSub[];
   connect?: boolean;
-  onMouseLeave?:() => void;
+  onMouseLeave?: () => void;
 };
 
 function ProductsButton({hover, data, connect, onMouseLeave}: Props): JSX.Element {
@@ -30,6 +30,7 @@ function ProductsButton({hover, data, connect, onMouseLeave}: Props): JSX.Elemen
         maxWidth: {sm: "500px", md: "none"},
         overflow: "hidden",
         visibility: hover ? "visible" : "hidden",
+        cursor: "default",
       }}
     >
       <Stack>

@@ -75,7 +75,7 @@ const ProjectDetails = async ({params}: {params: {slug: string}}) => {
                   path={component.image}
                   style={{
                     width: "100%",
-                    height: component.imageType === "horizontal" ? "100%" : "auto",
+                    height: "auto",
                     objectFit: "cover",
                     borderRadius: "16px",
                   }}
