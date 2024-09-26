@@ -195,7 +195,7 @@ function Header(props: Props): JSX.Element {
             </Stack>
           </Stack>
         )}
-        <MainWrapper>
+        <MainWrapper sx={{overflow: "visible"}}>
           <Stack
             sx={{
               flexDirection: "row",
