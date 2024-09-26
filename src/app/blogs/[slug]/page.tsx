@@ -34,12 +34,28 @@ const ProjectDetails = async ({params}: {params: {slug: string}}) => {
         case BlogComponent.richText:
           return <HtmlStringParser key={key} htmlString={component.rich} />;
         case BlogComponent.bigImage:
-          return <BlogImage key={key} imageType={"bigImage"} image={component.image} position={component.imagePosition} />;
+          return (
+            <BlogImage key={key} imageSizeType={"bigImage"} image={component.image} position={component.imagePosition} />
+          );
         case BlogComponent.smallImage:
-          return <BlogImage key={key} imageType={"smallImage"} image={component.image} position={component.imagePosition} />;
+          return (
+            <BlogImage
+              key={key}
+              imageSizeType={"smallImage"}
+              imageType={component.imageType}
+              image={component.image}
+              position={component.imagePosition}
+            />
+          );
         case BlogComponent.mediumImage:
           return (
-            <BlogImage key={key} imageType={"mediumImage"} image={component.image} position={component.imagePosition} />
+            <BlogImage
+              key={key}
+              imageSizeType={"mediumImage"}
+              imageType={component.imageType}
+              image={component.image}
+              position={component.imagePosition}
+            />
           );
         case BlogComponent.youtube:
           return (

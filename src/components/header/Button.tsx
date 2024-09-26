@@ -40,7 +40,7 @@ function Button({buttonText, subMenu, link, connect, external, disabled}: Props)
         onMouseLeave={onMouseLeave}
       >
         <Typography
-          onClick={subMenu ? undefined : external ? undefined : handleClick}
+          onClick={subMenu ? () => setHover(!hover) : external ? undefined : handleClick}
           variant="bm3"
           component={external ? Link : "div"}
           href={subMenu ? "div" : link}
@@ -56,6 +56,7 @@ function Button({buttonText, subMenu, link, connect, external, disabled}: Props)
             borderRadius: "100px",
             boxShadow: hover ? "none" : connect ? "0px 0px 0px 1px #F5F8F9" : undefined,
             border: hover && connect ? `1px solid ${Colors.primary500}` : "1px solid transparent",
+            WebkitTapHighlightColor: "transparent",
           }}
         >
           {buttonText}
@@ -70,8 +71,8 @@ function Button({buttonText, subMenu, link, connect, external, disabled}: Props)
               hover={hover}
             />
           )}
-          {subMenu && <ProductsButton hover={hover} data={subMenu} connect={connect} onMouseLeave={onMouseLeave} />}
         </Typography>
+        {subMenu && <ProductsButton hover={hover} data={subMenu} connect={connect} onMouseLeave={onMouseLeave} />}
       </Stack>
     </Stack>
   );

@@ -17,10 +17,10 @@ type Props = {
   notProduct?: boolean;
   connect?: boolean;
   isWallet?: boolean;
-  onMouseLeave?:() => void;
+  onMouseLeave: () => void;
 };
 
-function ProductsButtonItem({link, title, connect, desc, icon, notProduct, isWallet,onMouseLeave}: Props): JSX.Element {
+function ProductsButtonItem({link, title, connect, desc, icon, notProduct, isWallet, onMouseLeave}: Props): JSX.Element {
   const router = useRouter();
   const {setIsPopupOpen} = useContext(PopupContext);
   const path = usePathname();
@@ -30,7 +30,7 @@ function ProductsButtonItem({link, title, connect, desc, icon, notProduct, isWal
       setIsPopupOpen?.(true);
     }
     if (path !== link && !isWallet && !notProduct) {
-      onMouseLeave?.();
+      onMouseLeave();
       animatedPageOut(link ?? "", router);
     }
     if (notProduct && link) {
@@ -48,6 +48,7 @@ function ProductsButtonItem({link, title, connect, desc, icon, notProduct, isWal
         "textDecoration": "none",
         "cursor": link ? "pointer" : isWallet ? "pointer" : "default",
         "transition": "all 0.3s linear",
+        "WebkitTapHighlightColor": "transparent",
         "borderRadius": "10px",
         ":hover": {
           background: link ? "#e9ebee" : isWallet ? "#e9ebee" : undefined,

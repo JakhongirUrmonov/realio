@@ -97,13 +97,13 @@ export interface BlogRequestDataDynamicZoneInner {
      * @type {string}
      * @memberof BlogRequestDataDynamicZoneInner
      */
-    text?: string;
+    imageType?: BlogRequestDataDynamicZoneInnerImageTypeEnum;
     /**
      * 
      * @type {string}
      * @memberof BlogRequestDataDynamicZoneInner
      */
-    imageType?: BlogRequestDataDynamicZoneInnerImageTypeEnum;
+    text?: string;
     /**
      * 
      * @type {string}
@@ -154,8 +154,8 @@ export function BlogRequestDataDynamicZoneInnerFromJSONTyped(json: any, ignoreDi
         'rich': json['rich'] == null ? undefined : json['rich'],
         'image': json['image'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['image']),
         'imagePosition': json['imagePosition'] == null ? undefined : json['imagePosition'],
-        'text': json['text'] == null ? undefined : json['text'],
         'imageType': json['imageType'] == null ? undefined : json['imageType'],
+        'text': json['text'] == null ? undefined : json['text'],
         'link': json['link'] == null ? undefined : json['link'],
     };
 }
@@ -171,8 +171,8 @@ export function BlogRequestDataDynamicZoneInnerToJSON(value?: BlogRequestDataDyn
         'rich': value['rich'],
         'image': OtherSeoComponentMetaSocialsInnerImageToJSON(value['image']),
         'imagePosition': value['imagePosition'],
-        'text': value['text'],
         'imageType': value['imageType'],
+        'text': value['text'],
         'link': value['link'],
     };
 }

@@ -50,6 +50,12 @@ export interface BlogSmallImageComponent {
      * @memberof BlogSmallImageComponent
      */
     imagePosition?: BlogSmallImageComponentImagePositionEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlogSmallImageComponent
+     */
+    imageType?: BlogSmallImageComponentImageTypeEnum;
 }
 
 
@@ -61,6 +67,15 @@ export const BlogSmallImageComponentImagePositionEnum = {
     Left: 'left'
 } as const;
 export type BlogSmallImageComponentImagePositionEnum = typeof BlogSmallImageComponentImagePositionEnum[keyof typeof BlogSmallImageComponentImagePositionEnum];
+
+/**
+ * @export
+ */
+export const BlogSmallImageComponentImageTypeEnum = {
+    Vertical: 'vertical',
+    Horizontal: 'horizontal'
+} as const;
+export type BlogSmallImageComponentImageTypeEnum = typeof BlogSmallImageComponentImageTypeEnum[keyof typeof BlogSmallImageComponentImageTypeEnum];
 
 
 /**
@@ -84,6 +99,7 @@ export function BlogSmallImageComponentFromJSONTyped(json: any, ignoreDiscrimina
         'component': json['__component'] == null ? undefined : json['__component'],
         'image': json['image'] == null ? undefined : OtherSeoComponentMetaSocialsInnerImageFromJSON(json['image']),
         'imagePosition': json['imagePosition'] == null ? undefined : json['imagePosition'],
+        'imageType': json['imageType'] == null ? undefined : json['imageType'],
     };
 }
 
@@ -97,6 +113,7 @@ export function BlogSmallImageComponentToJSON(value?: BlogSmallImageComponent | 
         '__component': value['component'],
         'image': OtherSeoComponentMetaSocialsInnerImageToJSON(value['image']),
         'imagePosition': value['imagePosition'],
+        'imageType': value['imageType'],
     };
 }
 

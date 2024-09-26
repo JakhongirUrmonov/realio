@@ -9,7 +9,7 @@ type Props = {
   hover: boolean;
   data: INavItemSub[];
   connect?: boolean;
-  onMouseLeave?: () => void;
+  onMouseLeave: () => void;
 };
 
 function ProductsButton({hover, data, connect, onMouseLeave}: Props): JSX.Element {
@@ -37,7 +37,15 @@ function ProductsButton({hover, data, connect, onMouseLeave}: Props): JSX.Elemen
         {data?.map((item, index) => (
           <Stack key={index}>
             {!connect && (
-              <Typography variant="bm1" sx={{color: Colors.secondaryText, margin: "12px 0 0 14px"}}>
+              <Typography
+                variant="bm1"
+                sx={{
+                  color: Colors.secondaryText,
+                  margin: "12px 0 0 14px",
+                  fontSize: {xs: "16px", md: "16px"},
+                  lineHeight: {xs: "24px", md: "24px"},
+                }}
+              >
                 {item.title}
               </Typography>
             )}
