@@ -52,6 +52,7 @@ export default async function RootLayout({
     <html lang="en">
       <body
         className={instrument_Sans.className}
+        suppressHydrationWarning={true}
         style={{
           margin: 0,
           overflowX: "hidden",

@@ -1,34 +1,87 @@
+"use client";
 import {Colors} from "@/ts/consts";
-import {getToken} from "@/utils/api";
+import {getRioCirculationData, getEthereumData, getStellarData, getAlgorandData} from "@/utils/api";
 import {formatNumber} from "@/utils/functions";
 import {Stack, Typography, Box} from "@mui/material";
-import React from "react";
+import React, {useState, useEffect, useCallback} from "react";
 
-export default async function Statistics() {
-  const result: any = await getToken();
-  const price = parseFloat(result.data[4166].quote.USD.price.toFixed(2));
+const getSafeValue = (value: any, formatter?: (val: any) => string, isCurrency: boolean = false) => {
+  if (value == null || isNaN(value) || value === 0) {
+    return "--";
+  }
+  const formattedValue = formatter ? formatter(value) : value;
+
+  return isCurrency ? `$${formattedValue}` : formattedValue;
+};
+
+const tallyHolders = (holders: Record<string, number>) => {
+  return Object.keys(holders).reduce((acc, key) => {
+    if (!holders.hasOwnProperty(key)) return acc;
+    return acc + holders[key];
+  }, 0);
+};
+
+export default function Statistics() {
+  const [state, setState] = useState({
+    circulating: 0,
+    holders: {ethereum: 0, stellar: 0, algorand: 0},
+    percentChange: 0,
+    price: 0,
+    volume: 0,
+  });
+
+  const pollAndUpdateRioStatsData = useCallback(async () => {
+    const [rioData, ethereumData, stellarData, algorandData] = await Promise.all([
+      getRioCirculationData(),
+      getEthereumData(),
+      getStellarData(),
+      getAlgorandData(),
+    ]);
+
+    setState({
+      circulating: rioData.circulating ?? 0,
+      holders: {
+        ethereum: ethereumData.holders,
+        stellar: stellarData.holders,
+        algorand: algorandData.holders,
+      },
+      percentChange: ethereumData.percentChange,
+      price: ethereumData.price,
+      volume: ethereumData.volume,
+    });
+  }, []);
+
+  useEffect(() => {
+    pollAndUpdateRioStatsData();
+    const interval = setInterval(pollAndUpdateRioStatsData, 30000);
+    return () => clearInterval(interval);
+  }, [pollAndUpdateRioStatsData]);
+
+  const holders = tallyHolders(state.holders);
+
   const stats = [
     {
-      value: `$${price}`,
+      value: getSafeValue(state.price, (val) => parseFloat(val).toFixed(2), true),
       text: "RIO Price",
     },
     {
-      value: formatNumber(result.data[4166].total_supply),
+      value: getSafeValue(state.circulating, formatNumber),
       text: "Network Supply Cap",
     },
     {
-      value: `$${formatNumber(result.data[4166].quote.USD.market_cap)}`,
+      value: getSafeValue(state.price * state.circulating, formatNumber, true),
       text: "Market Cap",
     },
     {
-      value: `$${formatNumber(result.data[4166].quote.USD.volume_24h)}`,
+      value: getSafeValue(state.volume, formatNumber, true),
       text: "Volume (24 h)",
     },
     {
-      value: formatNumber(result.data[4166].circulating_supply),
+      value: getSafeValue(holders, formatNumber),
       text: "Holders",
     },
   ];
+
   return (
     <Stack sx={{flexDirection: {md: "row"}, justifyContent: "center", marginTop: {md: "72px", xs: "60px"}}}>
       {stats.map((item, key) => (

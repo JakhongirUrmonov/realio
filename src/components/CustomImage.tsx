@@ -32,13 +32,13 @@ const CustomImage = ({
     : path?.data?.attributes?.url
     ? `${process.env.NEXT_PUBLIC_REST_API_URL}${path?.data?.attributes?.url}`
     : undefined;
-
+  const alternativeText = src ? alt : path?.data?.attributes?.alternativeText;
   return (
     <>
       {url && (
         <Image
           src={url}
-          alt={alt || "image"}
+          alt={alternativeText || "image"}
           priority={priority}
           unoptimized={unoptimazed}
           width={width ? width : fill ? undefined : 100}

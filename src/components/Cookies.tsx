@@ -83,7 +83,7 @@ const Cookies = () => {
             "transition": "box-shadow 0.3s",
             "textAlign": "center",
             "flexGrow": 1,
-            ":hover": {
+            "&:hover": {
               background: Colors.grey10,
             },
           }}
@@ -109,7 +109,7 @@ const Cookies = () => {
             "transition": "box-shadow 0.3s",
             "textAlign": "center",
             "flexGrow": 1,
-            ":hover": {
+            "&:hover": {
               background: "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
             },
           }}

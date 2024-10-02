@@ -66,7 +66,7 @@ function ProductCard({background, productIcon, isDark, title, description, slug,
           sx={{
             "height": "100%",
             "position": "relative",
-            ":hover": {
+            "&:hover": {
               "#productBackImage": {
                 transform: "scale(1.1)",
               },
@@ -93,7 +93,9 @@ function ProductCard({background, productIcon, isDark, title, description, slug,
           >
             <CustomImage
               path={productIcon}
-              style={{width: mobile ? "40px" : "64px", height: mobile ? "40px" : "64px", objectFit: "cover"}}
+              width={mobile ? 40 : 64}
+              height={mobile ? 40 : 64}
+              style={{objectFit: "cover"}}
             />
             <Typography
               variant={mobile ? "h4" : "h3"}

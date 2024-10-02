@@ -33,7 +33,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
     setImage(undefined);
   };
   useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
+    if (typeof (window as any).ethereum !== "undefined") {
       console.log("Metamask is installed");
 
       setMetaMaskInstalled(true);
@@ -42,7 +42,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       console.log("Metamask is not installed");
     }
 
-    if (!window.keplr) {
+    if (!(window as any).keplr) {
       console.error("Keplr extension not installed");
 
       return;
@@ -78,7 +78,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       const provider = await detectEthereumProvider();
 
       if (provider) {
-        const chainId = await provider.request({method: "eth_chainId"});
+        const chainId = await (provider as any).request({method: "eth_chainId"});
         if (chainId === process.env.NEXT_PUBLIC_REACT_APP_CHAIN_ID_HEX) {
           setTitle(data?.connection?.successMessageTitle);
         }
@@ -90,7 +90,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
     }
 
     try {
-      await window.ethereum.request({
+      await (window as any).ethereum.request({
         method: "wallet_addEthereumChain",
         params: [
           {
@@ -133,9 +133,9 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
       return;
     }
     try {
-      await window.keplr.enable("realionetwork_3301-1");
+      await (window as any).keplr.enable("realionetwork_3301-1");
       const chainId = "realionetwork_3301-1";
-      window.getOfflineSigner(chainId);
+      (window as any).getOfflineSigner(chainId);
       setTitle(data?.connection?.successMessageTitle);
       setDesc(`${data?.connection?.successMessageSubtitle}`);
       setKeplrInstalled(true);
@@ -149,7 +149,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
     }
 
     try {
-      await window.keplr.experimentalSuggestChain({
+      await (window as any).keplr.experimentalSuggestChain({
         chainId: process.env.NEXT_PUBLIC_REACT_APP_CHAIN_ID,
         chainName: "realio",
         rpc: process.env.NEXT_PUBLIC_REACT_APP_RPC,
@@ -314,7 +314,7 @@ function WalletButton({open, data, setOpen}: Props): JSX.Element {
                     "justifyContent": "center",
                     "transition": "all 0.3s linear",
                     "color": Colors.whiteText,
-                    ":hover": {
+                    "&:hover": {
                       background: "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
                     },
                   }}

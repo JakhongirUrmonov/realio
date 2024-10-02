@@ -26,7 +26,7 @@ const FooterLink = ({text, link, isCookie}: Props) => {
           "color": Colors.lightGrey,
           "cursor": "pointer",
           "transition": "color 0.3s linear",
-          ":hover": {
+          "&:hover": {
             color: Colors.mainText,
           },
         }}

@@ -64,7 +64,7 @@ export default function TeamMember({teamMember}: Props) {
                 "justifyContent": "center",
                 "alignItems": "center",
                 "marginRight": "12px",
-                ":hover": {
+                "&:hover": {
                   background: "linear-gradient(0deg, rgb(11 25 40 / 10%), rgb(11 25 40 / 10%))",
                 },
               }}
@@ -85,7 +85,7 @@ export default function TeamMember({teamMember}: Props) {
                 "backgroundColor": "rgba(255,255,255,0.16)",
                 "justifyContent": "center",
                 "alignItems": "center",
-                ":hover": {
+                "&:hover": {
                   background: "linear-gradient(0deg, rgb(11 25 40 / 10%), rgb(11 25 40 / 10%))",
                 },
               }}

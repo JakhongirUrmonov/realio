@@ -50,7 +50,7 @@ function ProductsButtonItem({link, title, connect, desc, icon, notProduct, isWal
         "transition": "all 0.3s linear",
         "WebkitTapHighlightColor": "transparent",
         "borderRadius": "10px",
-        ":hover": {
+        "&:hover": {
           background: link ? "#e9ebee" : isWallet ? "#e9ebee" : undefined,
         },
       }}

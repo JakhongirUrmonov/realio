@@ -96,22 +96,7 @@ export const getSeo = async (href: string) => {
   seo?.otherMetas?.forEach((meta) => {
     otherMetas[meta.name ?? ""] = meta.content;
   });
-  return {
-    title: seo?.metaTitle,
-    description: seo?.metaDescription,
-    robots: seo?.metaRobots,
-    openGraph: {
-      ...otherMetas,
-      ...socialNetworks,
-      title: seo?.metaTitle,
-      description: seo?.metaDescription,
-    },
-    ...socialNetworks,
-    keywords: seo?.keywords,
-    alternates: {
-      canonical: seo?.canonicalURL,
-    },
-  };
+  return {};
 };
 
 export const getRioCirculationData = async () => {

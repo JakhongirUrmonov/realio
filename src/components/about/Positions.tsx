@@ -8,6 +8,7 @@ import Image from "next/image";
 import positionImage from "@/assets/images/position.png";
 import {AspectRatioMode, useAspectRatio} from "@qubixstudio/sphere";
 import {useRef} from "react";
+import Link from "next/link";
 type Props = {
   title?: string;
   position?: AboutPositionsComponent[];
@@ -21,7 +22,6 @@ export default function Position({title, position}: Props) {
       sx={{
         width: "100vw",
         boxSizing: "border-box",
-        // marginLeft: {md: "-13%", xs: "-24px"},
       }}
     >
       <RoundedTitle text={title ?? ""} sx={{marginTop: {md: "88px", xs: "96px"}}} />
@@ -71,7 +71,9 @@ export default function Position({title, position}: Props) {
               </Typography>
               <Typography
                 variant="bm1"
-                onClick={() => window.open(item.url, "_blank")}
+                component={Link}
+                href={item.url ?? ""}
+                target="_blank"
                 sx={{
                   color: Colors.whiteText,
                   padding: "16px 32px",

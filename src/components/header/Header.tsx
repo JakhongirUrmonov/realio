@@ -208,7 +208,7 @@ function Header(props: Props): JSX.Element {
             }}
           >
             <CustomLink link={"/"}>
-              <Image src={logo} width={98} height={28} alt={""} />
+              <Image src={logo} priority width={98} height={28} alt={""} />
             </CustomLink>
             <Stack
               sx={{

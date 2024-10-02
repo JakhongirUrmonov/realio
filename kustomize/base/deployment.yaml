@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realio-network-frontend
+  namespace: realio-network-frontend
+spec:
+  selector:
+    matchLabels:
+      app: realio-network-frontend
+  template:
+    metadata:
+      labels:
+        app: realio-network-frontend
+    spec:
+      containers:
+      - name: realio-network-frontend
+        image: registry.digitalocean.com/kubernetes-stage/realio-network-frontend:latest
+        imagePullPolicy: Always
+        securityContext:
+          runAsUser: 1000
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "200m"
+          limits:
+            memory: "1.5Gi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

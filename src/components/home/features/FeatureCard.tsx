@@ -23,9 +23,8 @@ function FeatureCard({image, title, description}: Props): JSX.Element {
     >
       <CustomImage
         path={image}
-        alt=""
-        width={617}
-        height={214}
+        alt={image?.data?.attributes?.alternativeText}
+        unoptimazed
         style={{
           width: "100%",
           height: "214px",

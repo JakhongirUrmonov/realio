@@ -1,4 +1,3 @@
-"use client";
 import {Stack, Typography} from "@mui/material";
 import React, {useContext} from "react";
 import {Colors} from "@/ts/consts";

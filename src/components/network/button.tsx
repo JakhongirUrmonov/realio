@@ -26,7 +26,7 @@ const Button = ({text, light, link, logo, arrow}: BottomButtonProps): ReactEleme
           "boxShadow": "0px 0px 0px 1px #F5F8F9",
           "transition": "all 0.3s linear",
           "justifyContent": "center",
-          ":hover": {
+          "&:hover": {
             background: light ? Colors.grey10 : "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
           },
           "alignItems": "center",
@@ -58,7 +58,7 @@ const Button = ({text, light, link, logo, arrow}: BottomButtonProps): ReactEleme
             "boxShadow": "0px 0px 0px 1px #F5F8F9",
             "justifyContent": "center",
             "transition": "all 0.3s linear",
-            ":hover": {
+            "&:hover": {
               background: light ? Colors.grey10 : "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
             },
           }}
@@ -95,7 +95,7 @@ const Button = ({text, light, link, logo, arrow}: BottomButtonProps): ReactEleme
             "transition": "all 0.3s linear",
             "justifyContent": "center",
             "alignItems": "center",
-            ":hover": {
+            "&:hover": {
               background: light ? Colors.grey10 : "linear-gradient(0deg, rgb(11 25 40 / 77%), rgb(11 25 40 / 84%))",
             },
           }}

@@ -1,0 +1,9 @@
+resources:
+- ../../base
+- dns-records.yaml
+- httproute-www.yaml
+
+patches:
+  - path: deployment.yaml
+  - path: httproute.yaml
+  - path: hpa.yaml

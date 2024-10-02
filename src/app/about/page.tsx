@@ -12,19 +12,23 @@ export async function generateMetadata() {
 export default async function About() {
   const populateProps: string[] = ["description", "team.image", "timeline", "position"];
   const aboutData = await getter<AboutPageListResponseDataItem>(`about-page?populate=${populateProps.join()}`);
+  const position = aboutData.data?.attributes?.position;
+  const teams = {
+    title: aboutData.data?.attributes?.teamTitle,
+    team: aboutData.data?.attributes?.team,
+    description: aboutData.data?.attributes?.teamDescription,
+  };
+  const timelines = {
+    title: aboutData.data?.attributes?.timelineTitle,
+    timeline: aboutData.data?.attributes?.timeline,
+  };
   return (
     <Stack sx={{width: "100%", marginTop: {md: "115px", xs: "80px"}}}>
       <AnimatedText text={aboutData.data?.attributes?.description} />
-      <Teams
-        title={aboutData.data?.attributes?.teamTitle}
-        team={aboutData.data?.attributes?.team}
-        description={aboutData.data?.attributes?.teamDescription}
-      />
-      <Timeline title={aboutData.data?.attributes?.timelineTitle} timeline={aboutData.data?.attributes?.timeline} />
-      {aboutData.data?.attributes?.position?.length && aboutData.data?.attributes?.position.length > 0 ? (
+      <Teams title={teams.title} team={teams.team} description={teams.description} />
+      <Timeline title={timelines.title} timeline={timelines.timeline} />
+      {position && position.length > 0 && (
         <Position title={aboutData.data?.attributes?.positionTitle} position={aboutData.data?.attributes?.position} />
-      ) : (
-        ""
       )}
     </Stack>
   );

@@ -60,7 +60,7 @@ export default async function Home() {
               "boxShadow": "0px 2px 4px 0px rgb(17 38 60 / 23%)",
               "width": "fit-content",
               "marginBottom": "24px",
-              ":hover": {
+              "&:hover": {
                 background: Colors.grey10,
               },
             }}

@@ -104,7 +104,7 @@ const SlickSlider = ({
               "borderRadius": "50%",
               "transition": "all 0.3s linear",
               "fill": Colors.secondaryText,
-              ":hover": {
+              "&:hover": {
                 fill: Colors.mainText,
                 background: Colors.grey10,
               },
@@ -123,7 +123,7 @@ const SlickSlider = ({
               "boxShadow": "0px 1px 2px 0px #0B192814",
               "transition": "all 0.3s linear",
               "fill": Colors.secondaryText,
-              ":hover": {
+              "&:hover": {
                 fill: Colors.mainText,
                 background: Colors.grey10,
               },

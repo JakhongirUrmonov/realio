@@ -37,13 +37,12 @@ export default function BlogItem({blog}: Props) {
           "borderRadius": "16px",
           "overflow": "hidden",
           "height": size.height,
-          ":hover": {
+          "&:hover": {
             img: {transform: "scale(1.1)"},
           },
         }}
       >
         <CustomImage
-          alt=""
           path={blog?.image}
           fill
           style={{

@@ -424,47 +424,47 @@ function HomeHero(): JSX.Element {
         alt="realio"
         src={realio}
         priority
+        width={mobile ? 36 : 64}
+        height={mobile ? 36 : 64}
         style={{
           willChange: "transform",
           position: "absolute",
-          width: mobile ? "36px" : "64px",
-          height: mobile ? "36px" : "64px",
         }}
       />
       <Image
         id="districtIcon"
         alt="district"
         src={district}
+        width={mobile ? 36 : 64}
+        height={mobile ? 36 : 64}
         priority
         style={{
           willChange: "transform",
           position: "absolute",
-          width: mobile ? "36px" : "64px",
-          height: mobile ? "36px" : "64px",
         }}
       />
       <Image
         id="freeholdIcon"
         alt="freehold"
         priority
+        width={mobile ? 36 : 64}
+        height={mobile ? 36 : 64}
         src={freehold}
         style={{
           willChange: "transform",
           position: "absolute",
-          width: mobile ? "36px" : "64px",
-          height: mobile ? "36px" : "64px",
         }}
       />
       <Image
         id="liquidIcon"
         alt="liquid"
         src={liquid}
+        width={mobile ? 36 : 64}
+        height={mobile ? 36 : 64}
         priority
         style={{
           willChange: "transform",
           position: "absolute",
-          width: mobile ? "36px" : "64px",
-          height: mobile ? "36px" : "64px",
         }}
       />
     </Stack>

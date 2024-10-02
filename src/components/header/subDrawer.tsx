@@ -1,4 +1,3 @@
-"use client";
 import React, {Dispatch, SetStateAction, useContext} from "react";
 import {Stack, Box, List, Typography, Drawer, ListItem} from "@mui/material";
 import NetWorkButton from "@/components/network/button";

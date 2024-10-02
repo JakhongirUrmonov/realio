@@ -16,7 +16,6 @@ export default async function Timeline({title, timeline, description}: Props) {
       sx={{
         width: "100vw",
         boxSizing: "border-box",
-        // marginLeft: {md: "-13%", xs: "-24px"},
       }}
     >
       <RoundedTitle text={title ?? ""} sx={{marginTop: {md: "160px", xs: "121px"}}} />
