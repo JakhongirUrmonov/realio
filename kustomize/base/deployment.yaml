@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: realio-network-frontend
   namespace: realio-network-frontend
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
@@ -27,3 +29,6 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3000
+        envFrom:
+        - secretRef:
+            name: envvars

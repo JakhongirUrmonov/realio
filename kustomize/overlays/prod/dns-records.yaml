@@ -5,9 +5,8 @@ metadata:
   name: ingress-aliases
   namespace: realio-network-frontend
   annotations:
-    # external-dns.alpha.kubernetes.io/hostname: realio.network,www.realio.network
-    external-dns.alpha.kubernetes.io/hostname: updated.realio.network
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    external-dns.alpha.kubernetes.io/hostname: realio.network,www.realio.network
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
   type: ExternalName
   externalName: ingress.realio.network

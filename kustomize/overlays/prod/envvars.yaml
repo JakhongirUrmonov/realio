@@ -1,0 +1,9 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: envvars
+  namespace: realio-network-frontend
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gitops-stage

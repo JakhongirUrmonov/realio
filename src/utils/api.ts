@@ -1,6 +1,8 @@
+"use server";
 import {IApiReturn} from "@/types/api";
 import {OtherSeoComponent} from "@/types/REST/api/generated";
 import {cache} from "react";
+import BigNumber from "bignumber.js";
 
 export const getter = cache(async <T>(url: string, withMeta?: boolean): Promise<IApiReturn<T>> => {
   let result: IApiReturn<T> = {ok: false, data: null, msg: ""};
@@ -96,60 +98,173 @@ export const getSeo = async (href: string) => {
   seo?.otherMetas?.forEach((meta) => {
     otherMetas[meta.name ?? ""] = meta.content;
   });
+  // return {
+  //   title: seo?.metaTitle,
+  //   description: seo?.metaDescription,
+  //   robots: seo?.metaRobots,
+  //   openGraph: {
+  //     ...otherMetas,
+  //     ...socialNetworks,
+  //     title: seo?.metaTitle,
+  //     description: seo?.metaDescription,
+  //   },
+  //   ...socialNetworks,
+  //   keywords: seo?.keywords,
+  //   alternates: {
+  //     canonical: seo?.canonicalURL,
+  //   },
+  // };
   return {};
 };
 
 export const getRioCirculationData = async () => {
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_RIO_STELLAR_HOLDERS_URL ?? "");
+    const res = await fetch(process.env.RIO_NATIVE_SUPPLY_URL ?? "");
     const data = await res.json();
+    const circulating = data?.amount?.amount;
     return {
-      circulating: Math.round(parseFloat(data)),
+      circulating: new BigNumber(circulating)
+        .dividedBy(10 ** 18)
+        .integerValue()
+        .toNumber(),
     };
   } catch (e) {
+    console.error("ERROR::api.ts::getRioCirculationData", e);
     return {holders: 0};
+  }
+};
+
+export const getVolumePriceData = async () => {
+  try {
+    const res = await fetch(process.env.RIO_VOLUME_PRICE_DATA_URL ?? "", {
+      headers: {
+        "Apikey": `${process.env.CRYPTO_COMPARE_API_KEY}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    });
+    const {Data} = await res.json();
+    return {
+      volume: Data.SPOT_MOVING_24_HOUR_QUOTE_VOLUME_USD,
+      price: Data.PRICE_USD,
+    };
+  } catch (e) {
+    console.error("ERROR::api.ts::getVolumePriceData", e);
+    return {volume: 0, price: 0};
   }
 };
 
 export const getEthereumData = async () => {
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_RIO_ETHEREUM_DATA_URL ?? "");
+    const res = await fetch(process.env.RIO_ETHEREUM_DATA_URL ?? "");
     const data = await res.json();
     return {
       price: data.tokenInfo.price.rate,
-      percentChange: data.tokenInfo.price.diff,
-      volume: data.tokenInfo.price.volume24h,
       holders: data.tokenInfo.holdersCount,
     };
   } catch (e) {
-    // TODO: add info toast
-    return {price: 0, volume: 0, percentChange: 0, holders: 0};
+    console.error("ERROR::api.ts::getEthereumData", e);
+    return {price: 0, volume: 0, holders: 0};
   }
 };
 
 export const getStellarData = async () => {
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_REACT_APP_RIO_STELLAR_HOLDERS_URL ?? "");
+    const res = await fetch(`${process.env.RIO_STELLAR_HOLDERS_URL ?? ""}`);
     const data = await res.json();
-    const numAccounts = data._embedded.records[0].num_accounts;
+
+    // Count accounts with balance > 0
+    const numAccounts = data.trustlines?.funded ?? 0;
+
     return {
       holders: numAccounts,
     };
   } catch (e) {
-    // TODO: add info toast
+    console.error("ERROR::api.ts::getStellarData", e);
     return {holders: 0};
   }
 };
 
 export const getAlgorandData = async () => {
+  let next = "";
+  let totalHolders = 0;
+  const limit = 10000; // Maximum results per page
+
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_REACT_APP_RIO_ALGORAND_HOLDERS_URL ?? "");
-    const data = await res.json();
+    while (true) {
+      const queryParams = new URLSearchParams({
+        "currency-greater-than": "0",
+        "limit": limit.toString(),
+        ...(next && {next}),
+      }).toString();
+
+      const url = `${process.env.RIO_ALGORAND_HOLDERS_URL ?? ""}?${queryParams}`;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!data.balances || data.balances.length === 0) {
+        break;
+      }
+
+      totalHolders += data.balances.length;
+
+      // Last page
+      if (!data["next-token"]) {
+        break;
+      }
+      next = data["next-token"];
+    }
+
     return {
-      holders: data.balances.length,
+      holders: totalHolders,
     };
   } catch (e) {
-    // TODO: add info toast
+    console.error("ERROR::api.ts::getAlgorandData", e);
+    return {holders: 0};
+  }
+};
+
+export const getBnbData = async () => {
+  let page = 1;
+  let totalHolders = 0;
+  const holdersPerPage = 10000;
+
+  try {
+    while (true) {
+      const res = await fetch(`${process.env.RIO_BNB_HOLDERS_URL ?? ""}&page=${page}&offset=${holdersPerPage}`);
+      const data = await res.json();
+
+      if (data?.status === "0" && data?.message === "No token holder found") {
+        break;
+      }
+
+      if (data?.status === "1" && data?.result?.length > 0) {
+        totalHolders += data.result.length;
+        page++;
+      } else {
+        break;
+      }
+    }
+
+    return {
+      holders: totalHolders,
+    };
+  } catch (e) {
+    console.error("ERROR::api.ts::getBnbData", e);
+    return {holders: 0};
+  }
+};
+
+export const getNativeHolderData = async () => {
+  try {
+    const res = await fetch(process.env.RIO_NATIVE_HOLDERS_URL ?? "");
+    const data = await res.json();
+    return {
+      holders: parseInt(data.pagination.total) || 0,
+    };
+  } catch (e) {
+    console.error("ERROR::api.ts::getNativeHolderData", e);
     return {holders: 0};
   }
 };

@@ -15,4 +15,11 @@ spec:
       containers:
       - name: realio-network-frontend
         image: registry.digitalocean.com/kubernetes-prod/realio-network-frontend:latest
+        resources:
+          requests:
+            memory: "3Gi"
+            cpu: "300m"
+          limits:
+            memory: "3Gi"
+            cpu: "500m"
   replicas: 2

@@ -30,9 +30,13 @@ To run this project locally, follow these steps:
    ```bash
    NEXT_PUBLIC_REST_API_URL=<your-api-url>
    NEXT_PUBLIC_RIO_STELLAR_HOLDERS_URL=<your-stellar-holders-url>
-   NEXT_PUBLIC_RIO_ETHEREUM_DATA_URL=<your-ethereum-data-url>
-   NEXT_PUBLIC_REACT_APP_RIO_STELLAR_HOLDERS_URL=<your-react-stellar-holders-url>
-   NEXT_PUBLIC_REACT_APP_RIO_ALGORAND_HOLDERS_URL=<your-react-algorand-holders-url>
+   RIO_NATIVE_SUPPLY_URL=<your-native-circulating-supply-url>
+   RIO_VOLUME_PRICE_DATA_URL=<your-volume-price-data-url>
+   CRYPTO_COMPARE_API_KEY=<your-crypto-compare-api-key>
+   NEXT_PUBLIC_RIO_NATIVE_SUPPLY_CAP=<your-native-supply-cap>
+   RIO_ETHEREUM_DATA_URL=<your-ethereum-data-url>
+   RIO_STELLAR_HOLDERS_URL=<your-react-stellar-holders-url>
+   RIO_ALGORAND_HOLDERS_URL=<your-react-algorand-holders-url>
    NEXT_PUBLIC_REACT_APP_CHAIN_ID_HEX=<your-chain-id-hex>
    NEXT_PUBLIC_REACT_APP_RPC_URL=<your-rpc-url>
    NEXT_PUBLIC_REACT_APP_BLOCK_EXPLORE_URL=<your-block-explore-url>
@@ -62,9 +66,13 @@ This project relies on several environment variables for API integrations and bl
 | --------------------------------------------- | ----------------------------------------------------------- |
 | `NEXT_PUBLIC_REST_API_URL`                    | The base URL for the REST API used by the application.       |
 | `NEXT_PUBLIC_RIO_STELLAR_HOLDERS_URL`         | URL for retrieving Stellar holders data.                    |
-| `NEXT_PUBLIC_RIO_ETHEREUM_DATA_URL`           | URL for Ethereum data (e.g., transaction, holders info).     |
-| `NEXT_PUBLIC_REACT_APP_RIO_STELLAR_HOLDERS_URL` | Frontend endpoint for Stellar holders data retrieval.        |
-| `NEXT_PUBLIC_REACT_APP_RIO_ALGORAND_HOLDERS_URL` | Frontend endpoint for Algorand holders data retrieval.       |
+| `RIO_NATIVE_SUPPLY_URL`           | URL for retrieving Cosmos circulating supply data.          |
+| `NEXT_PUBLIC_RIO_NATIVE_SUPPLY_CAP`           | Cosmos supply cap.                                         |
+| `RIO_VOLUME_PRICE_DATA_URL`       | URL for retrieving volume and price data.                   |
+| `CRYPTO_COMPARE_API_KEY`                       | API key for CryptoCompare to retrieve volume and price data. |
+| `RIO_ETHEREUM_DATA_URL`           | URL for Ethereum data (e.g., transaction, holders info).     |
+| `RIO_STELLAR_HOLDERS_URL` | Frontend endpoint for Stellar holders data retrieval.        |
+| `RIO_ALGORAND_HOLDERS_URL` | Frontend endpoint for Algorand holders data retrieval.       |
 | `NEXT_PUBLIC_REACT_APP_CHAIN_ID_HEX`          | Hexadecimal chain ID for the blockchain network.             |
 | `NEXT_PUBLIC_REACT_APP_RPC_URL`               | RPC URL for interacting with the blockchain network.         |
 | `NEXT_PUBLIC_REACT_APP_BLOCK_EXPLORE_URL`     | URL of the block explorer for transaction tracking.          |

@@ -3,8 +3,8 @@ import React, {useContext, useEffect, useState} from "react";
 import {Stack, Typography} from "@mui/material";
 import {Colors, ZIndex} from "@/ts/consts";
 import {hasCookie, setCookie} from "cookies-next";
-import TagManager from "react-gtm-module";
 import {Cookie} from "@/app/CookieContext";
+import {install} from "ga-gtag";
 let managerInitialized = false;
 
 const Cookies = () => {
@@ -30,11 +30,7 @@ const Cookies = () => {
   useEffect(() => {
     if (cookieAccepted) {
       if (!managerInitialized) {
-        const tagManagerArgs = {
-          gtmId: "G-698N7V7VWW",
-        };
-        TagManager.initialize(tagManagerArgs);
-        managerInitialized = true;
+        install("G-698N7V7VWW");
       }
     } else {
       if (managerInitialized) {

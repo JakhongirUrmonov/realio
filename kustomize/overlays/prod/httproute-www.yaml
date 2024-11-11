@@ -7,11 +7,9 @@ spec:
   parentRefs:
   - name: nginx
     namespace: nginx-gateway
-    # sectionName: realio-network-frontend-www
-    sectionName: realio-network-frontend-updated
+    sectionName: realio-network-frontend-www
   hostnames:
-  # - "www.realio.network"
-  - "updated.realio.network"
+  - "www.realio.network"
   rules:
   - matches:
     - path:
